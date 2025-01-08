@@ -10,8 +10,8 @@ interface ButtonProps {
 }
 
 const variantstyles = {
-  primary: "bg-black text-white hover:bg-gray-800 ",
-  secondary: "bg-white text-black border hover:bg-gray-200 hover:border-gray-300",
+  primary: "bg-black text-white   hover:bg-zinc-800",
+  secondary: "bg-gray-100 text-black  hover:bg-gray-300 ",
 //   icons : "text-gray bg-white border dark:text-white dark:bg-black dark:border rounded-full"
 };
 
@@ -21,7 +21,7 @@ const sizeStyles = {
   lg: "px-4 py-2 text-lg",
 };
 
-const defaultStyles = "rounded-lg font-sans font-semibold shadow flex m-2 justify-center items-center";
+const defaultStyles = "rounded-lg font-sans font-semibold shadow  flex justify-center items-center";
 
 export const Button = ({ variant, text, startIcon, endIcon, size } : ButtonProps )=>{
    
