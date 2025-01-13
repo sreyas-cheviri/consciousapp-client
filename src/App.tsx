@@ -1,4 +1,5 @@
 import { Button } from "./components/Button";
+import { Card } from "./components/Card";
 import { AddIcon } from "./icons/AddIcon";
 import { ShareIcon } from "./icons/ShareIcon";
 
@@ -8,8 +9,10 @@ function App() {
    <div className=" flex gap-20 ">
    <Button variant="secondary" text="Share Brain" size="sm" startIcon ={<ShareIcon/>}/>
    <Button variant="primary" text="Add Content" size="sm" startIcon ={<AddIcon/>}/>
-   {/* <Button variant="primary" text="Add Content" size="sm" startIcon ={<AddIcon/>}/> */}
    </div>
+
+   <Card/>
+
     </div>;
 }
 
