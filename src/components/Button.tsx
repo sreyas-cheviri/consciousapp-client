@@ -10,8 +10,8 @@ interface ButtonProps {
 }
 
 const variantstyles = {
-  primary: "bg-black text-white   hover:bg-zinc-900 font-normal trasition duration-200",
-  secondary: "bg-gray-100 text-black font-normal  hover:bg-gray-300   trasition duration-200",
+  primary: "bg-black text-white   hover:bg-zinc-900 font-normal trasition duration-200 flex justify-center items-center",
+  secondary: "bg-gray-100 text-black font-normal  hover:bg-gray-300   trasition duration-200 flex justify-center items-center",
     // icons : "text-gray bg-white border dark:text-white dark:bg-black dark:border rounded-full"
 };
 
@@ -38,7 +38,7 @@ export const Button = ({
       }
     >
       <div className="flex justify-center items-center gap-2 ">
-        <span>{startIcon}</span>
+       {startIcon}
         <div>{text}</div>
         {endIcon}
       </div>

@@ -1,41 +1,52 @@
 // import CircleIcon from "@mui/icons-material/Circle";
+import { colors } from "@mui/material";
 import { Button } from "./components/Button";
 import Card from "./components/Card";
 // import { AddIcon } from "./icons/AddIcon";
 import AddIcon from "@mui/icons-material/Add";
 // import { ShareIcon } from "./icons/ShareIcon";
-import LinkIcon from "@mui/icons-material/Link";
 // import { Chips } from "./components/Chips";
+import LinkIcon from "@mui/icons-material/Link";
+import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
   return (
     <div className="flex justify-center items-center m-10">
-      <div className="   bg-zinc-900  max-w-5xl  mx-auto flex flex-col justify-center ">
-        <div className="flex flex-col md:flex-row  items-center md:gap-3 gap-3 md:justify-between m-4 " >
-
-        <div className="">
-          <img src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg" alt="" className="h-10 rounded-lg" />
-        </div>
-        <div className="bg-zinc-600/300 md:mt-0 mt-6 ">
-          <input type="text" className="w-[305px] md:w-[450px]  bg-zinc-600/30 p-2 text-gray-300 px-6 placeholder:opacity-50  rounded-xl" placeholder="Search in natural language.." />
-        </div>
-        <div className=" flex gap-2 p-2 bg-zinc-600/30 w-fit rounded-lg ">
-          <Button
-            variant="secondary"
-            text="Share Brain"
-            size="sm"
-            startIcon={<LinkIcon style={{ fontSize: 20 }} />}
+      <div className="   bg-zinc-900 w-full mx-10  flex flex-col justify-center ">
+        <div className="flex flex-col md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 ">
+          <div className="">
+            <img
+              src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
+              alt=""
+              className="h-10 rounded-lg"
             />
-          <Button
-            variant="primary"
-            text="Add Memory"
-            size="sm"
-            startIcon={<AddIcon style={{ fontSize: 20 }} />}
+          </div>
+          <div className="bg-zinc-600/30 md:mt-0 mt-6 flex  w-[305px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border p-2 text-gray-300 px-2">
+            <input
+              type="text"
+              className=" placeholder:opacity-50 bg-transparent w-[305px] rounded-xl md:w-[550px]"
+              placeholder="Search in natural language.."
             />
+            <button className="border-l-2 border-gray-500 px-2 bg-zinc-800 rounded-r-lg hover:bg-zinc-700"><SearchIcon style={{color: 'gray'}}/></button>
+           
+          </div>
+          <div className=" flex gap-2 p-2 bg-zinc-600/30 w-fit rounded-lg ">
+            <Button
+              variant="secondary"
+              text="Share Brain"
+              size="sm"
+              startIcon={<LinkIcon style={{ fontSize: 20 }} />}
+            />
+            <Button
+              variant="primary"
+              text="Add Memory"
+              size="sm"
+              startIcon={<AddIcon style={{ fontSize: 20 }} />}
+            />
+          </div>
         </div>
-            </div>
 
-        <div className="flex gap-2 m-4 md:justify-center justify-center flex-wrap mt-20 p-8 rounded-lg bg-zinc-600/30">
+        <div className="flex gap-2 m-4 md:justify-center max-w-5xl  mx-auto justify-center flex-wrap mt-20 p-8 rounded-lg bg-zinc-600/30">
           <Card
             title="Meeting Notes"
             type="note"
