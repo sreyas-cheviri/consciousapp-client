@@ -95,7 +95,7 @@ const Card: React.FC<CardProps> = ({
   
 
   return (
-    <div className="flex flex-col bg-white rounded-md p-1 justify-between items-center ">
+    <div className="flex flex-col bg-white rounded-md p-1 justify-between items-center shadow-lg ">
       <div className="flex justify-between  p-2 min-w-72 max-w-72 gap-5 rounded-lg ">
         <div className="flex items-center gap-1">
           <div className="bg-gray-200/50 rounded-full p-1 border-gray-400">
@@ -103,7 +103,20 @@ const Card: React.FC<CardProps> = ({
           </div>
           <h2 className="text-sm font-semibold">{title}</h2>
         </div>
-        <div className="flex items-center gap-2 ">
+      
+      </div>
+      <div className="border min-w-72 max-w-72 mt-1 bg-white rounded-lg shadow-lg p-0.5 m-1 gap-1 max-h-60 overflow-y-auto ">
+        {type == "url" ? (
+        <div className="bg-gray-200 rounded-lg p-1 text-sm min-h-56 horizontal-scroll overflow-hidden" >
+          {renderContent()}
+        </div>):(
+         <div className="bg-yellow-100 rounded-lg p-1 text-sm min-h-56 horizontal-scroll overflow-hidden" >
+         {renderContent()}
+       </div>)}
+
+        
+      </div>
+      <div className="flex items-start gap-1 justify-start w-full p-1 ">
           {type == "url" ? (
             <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
               <a href={url} target="_blank" rel="noopener noreferrer">
@@ -117,22 +130,11 @@ const Card: React.FC<CardProps> = ({
           <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 duration-300">
             <Delete />
           </button>
-        </div>
+          <button className="bg-gray-200 rounded-lg p-1 py-0 border border-gray-400/50 hover:bg-gray-300 duration-300">
+            <p>Query</p>
+          </button>
       </div>
-      <div className="border min-w-72 max-w-72 mt-1 bg-white rounded-lg shadow-lg p-0.5 m-1 gap-1 max-h-60 overflow-y-auto ">
-        {type == "url" ? (
-        <div className="bg-gray-200 rounded-lg p-1 text-sm min-h-56 horizontal-scroll overflow-hidden" >
-          {renderContent()}
-        </div>):(
-         <div className="bg-yellow-100 rounded-lg p-1 text-sm min-h-56 horizontal-scroll overflow-hidden" >
-         {renderContent()}
-       </div>)}
-
-        
-      </div>
-      <div className="bg-gray-200 h-10 mt-1 min-w-72 max-w-72 rounded-lg flex items-center justify-center bottom-0 mb-0 border hover:bg-gray-300 transition-all duration-300 border-gray-300">
-        <button className="rounded-lg w-full max-h-10 ">Query</button>
-      </div>
+     
     </div>
   );
 };
