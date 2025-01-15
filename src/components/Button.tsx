@@ -10,13 +10,13 @@ interface ButtonProps {
 }
 
 const variantstyles = {
-  primary: "bg-black text-white   hover:bg-zinc-800",
-  secondary: "bg-gray-100 text-black  hover:bg-gray-300 ",
+  primary: "bg-black text-white   hover:bg-zinc-900 font-normal trasition duration-200",
+  secondary: "bg-gray-100 text-black font-normal  hover:bg-gray-300   trasition duration-200",
   //   icons : "text-gray bg-white border dark:text-white dark:bg-black dark:border rounded-full"
 };
 
 const sizeStyles = {
-  sm: "px-2 py-1.5 text-sm",
+  sm: "px-1.5 py-1 text-sm",
   md: "px-3 py-2 text-md",
   lg: "px-4 py-2 text-lg",
 };
