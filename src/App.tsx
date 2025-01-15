@@ -1,8 +1,9 @@
 
 import { Button } from "./components/Button";
 import Card from "./components/Card";
-// import { AddIcon } from "./icons/AddIcon";
+import CircleIcon from '@mui/icons-material/Circle';
 import AddIcon from "@mui/icons-material/Add";
+import LogoutIcon from '@mui/icons-material/Logout';
 // import { ShareIcon } from "./icons/ShareIcon";
 // import { Chips } from "./components/Chips";
 import LinkIcon from "@mui/icons-material/Link";
@@ -13,29 +14,39 @@ function App() {
   return (
     <div className="flex justify-center items-center mt-10">
       <div className="   bg-zinc-900  mx-10  flex flex-col justify-center items-center ">
-        <div className="flex flex-col md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 ">
-          <div className="shadow-xl shadow-black/30">
+        <div className="flex flex-col md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 p-2 rounded-lg bg-zinc-600/5 border-gray-500/5 border  ">
+          <div className=" flex gap-4 items-center">
             <img
               src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
               alt=""
               className="h-10 rounded-lg hover:h-10 hover:border-orange-600 hover:border-2 transition-all duration-300 "
             />
+            <h1 className="shadow-none text-xl text-zinc-500">
+              Welcome, Sreyas
+            </h1>
           </div>
           
-          <div className=" flex gap-2 p-2 bg-zinc-600/30 w-fit rounded-lg shadow-xl shadow-black/30 ">
+          
+
+          <div className=" flex gap-2 p-1 bg-zinc-600/20 w-fit rounded-lg shadow-xl shadow-black/30 ">
             <Button
               variant="secondary"
               text="Share Brain"
               size="sm"
               startIcon={<LinkIcon style={{ fontSize: 20 }} />}
-            />
+              />
             <Button
               variant="primary"
               text="Add Memory"
               size="sm"
               startIcon={<AddIcon style={{ fontSize: 20 }} />}
-            />
+              />
+          {/* <div className="bg-zinc-600/30 items-center flex rounded-lg p-1 gap-1"> */}
+            <button className="text-xs text-zinc-400 hover:bg-orange-700/15 p-2 rounded-lg items-center  transition-all duration-150 flex  bg-zinc-900/70"><CircleIcon style={{fontSize: '16px'}}/></button>
+            <button className="text-xs text-zinc-400 hover:bg-orange-700/15 p-2 rounded-lg flex items-center transition-all duration-150  bg-zinc-900/70"><LogoutIcon style={{fontSize: '16px'}}/></button>
+          
           </div>
+         
         </div>
         <div className="bg-zinc-600/30 md:mt-14 mt-14 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border  p-1 text-gray-300 px-2">
             <input
@@ -43,7 +54,7 @@ function App() {
               className=" placeholder:opacity-50 bg-zinc-800 px-4 p-2 bg-transparent w-[305px] focus:outline-none rounded-l-xl md:w-[550px]"
               placeholder="Search in natural language.."
             />
-            <button className="border-l-[1px] border-gray-500/50 px-2 bg-zinc-800 rounded-r-xl hover:bg-zinc-700"><SearchIcon style={{color: 'gray'}}/></button>
+            <button className="border-l-[1px] border-gray-500/50 px-2 bg-zinc-800 rounded-r-xl hover:bg-orange-700/15 "><SearchIcon style={{color: 'gray'}}/></button>
            
           </div>
           <div className="flex gap-2 mt-2">
@@ -52,7 +63,7 @@ function App() {
             < Chips text={"Randomize"}/>
             < Chips text={"Date: Default"}/>
           </div>
-        <div className="flex gap-2 md:justify-center max-w-6xl md:min-w-[1024px] border-gray-100/10 border  mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/30">
+        <div className="flex gap-2 md:justify-center max-w-6xl md:min-w-[1024px] border-gray-500/10 border  mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/5">
           <Card
             title="Meeting Notes"
             type="note"

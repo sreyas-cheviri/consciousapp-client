@@ -93,16 +93,16 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className=" flex-col bg-gray-50/90 rounded-sm flex justify-between p-1 h-60 shadow-lg shadow-black/90  ">
+    <div className=" flex-col bg-zinc-100/90 rounded-xl flex justify-between p-1 h-60 shadow-lg shadow-black/90  ">
       <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
         <div className="flex items-center gap-3">
-          <div className="bg-gray-200/50 rounded-full p-1">
+          <div className="rounded-full p-1">
             {type === "note" ? <NoteIcon /> : <Link size={14} />}
           </div>
           <h2 className="text-sm font-semibold">{title}</h2>
         </div>
       </div>
-      <div className=" min-w-72 max-w-72  bg-white rounded-lg shadow-lg p-1  gap-1 max-h-60 overflow-y-auto ">
+      <div className=" min-w-72 max-w-72 border-1 border-gray-300 bg-white rounded-lg shadow-lg p-1  gap-1 max-h-60 overflow-y-auto ">
         {type == "url" ? (
           <div className="bg-gray-100 rounded-lg p-.5 text-sm min-h-36 horizontal-scroll overflow-hidden">
             {renderContent()}
