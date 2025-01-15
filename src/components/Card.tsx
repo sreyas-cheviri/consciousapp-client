@@ -62,17 +62,16 @@ const Card: React.FC<CardProps> = ({
         if (tweetId) {
           return (
             <div className=" overflow-auto m-0 ">
-
-            <div className="w-full ">
-              <TwitterTweetEmbed
-                tweetId={tweetId}
-                options={{
-                  theme: "dark",
-                  width: "100%",
-                }}
+              <div className="w-full ">
+                <TwitterTweetEmbed
+                  tweetId={tweetId}
+                  options={{
+                    theme: "dark",
+                    width: "100%",
+                  }}
                 />
+              </div>
             </div>
-                </div>
           );
         } else {
           return (
@@ -92,7 +91,6 @@ const Card: React.FC<CardProps> = ({
     }
     return null;
   };
-  
 
   return (
     <div className="flex flex-col bg-white rounded-md p-1 justify-between items-center shadow-lg ">
@@ -103,38 +101,38 @@ const Card: React.FC<CardProps> = ({
           </div>
           <h2 className="text-sm font-semibold">{title}</h2>
         </div>
-      
       </div>
       <div className="border min-w-72 max-w-72 mt-1 bg-white rounded-lg shadow-lg p-0.5 m-1 gap-1 max-h-60 overflow-y-auto ">
         {type == "url" ? (
-        <div className="bg-gray-200 rounded-lg p-1 text-sm min-h-56 horizontal-scroll overflow-hidden" >
-          {renderContent()}
-        </div>):(
-         <div className="bg-yellow-100 rounded-lg p-1 text-sm min-h-56 horizontal-scroll overflow-hidden" >
-         {renderContent()}
-       </div>)}
-
-        
+          <div className="bg-gray-200 rounded-lg p-.5 text-sm min-h-56 horizontal-scroll overflow-hidden">
+            {renderContent()}
+          </div>
+        ) : (
+          <div className="bg-yellow-100 rounded-lg p-.5 text-sm min-h-56 horizontal-scroll overflow-hidden">
+            {renderContent()}
+          </div>
+        )}
       </div>
       <div className="flex items-start gap-1 justify-start w-full p-1 ">
-          {type == "url" ? (
-            <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                <ShareIcon />
-              </a>
-            </button>
-          ) : <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
+        {type == "url" ? (
+          <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
+            <a href={url} target="_blank" rel="noopener noreferrer">
+              <ShareIcon />
+            </a>
+          </button>
+        ) : (
+          <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
             <Expand />
-            </button>}
+          </button>
+        )}
 
-          <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 duration-300">
-            <Delete />
-          </button>
-          <button className="bg-gray-200 rounded-lg p-1 py-0 border border-gray-400/50 hover:bg-gray-300 duration-300">
-            <p>Query</p>
-          </button>
+        <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 duration-300">
+          <Delete />
+        </button>
+        <button className="bg-gray-200 rounded-lg p-1 py-0 border border-gray-400/50 hover:bg-gray-300 duration-300">
+          <p>Query</p>
+        </button>
       </div>
-     
     </div>
   );
 };

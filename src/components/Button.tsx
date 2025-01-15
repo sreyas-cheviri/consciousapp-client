@@ -12,7 +12,7 @@ interface ButtonProps {
 const variantstyles = {
   primary: "bg-black text-white   hover:bg-zinc-900 font-normal trasition duration-200",
   secondary: "bg-gray-100 text-black font-normal  hover:bg-gray-300   trasition duration-200",
-  //   icons : "text-gray bg-white border dark:text-white dark:bg-black dark:border rounded-full"
+    // icons : "text-gray bg-white border dark:text-white dark:bg-black dark:border rounded-full"
 };
 
 const sizeStyles = {
