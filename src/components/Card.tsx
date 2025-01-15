@@ -61,7 +61,7 @@ const Card: React.FC<CardProps> = ({
         const tweetId = getTwitterTweetId(url);
         if (tweetId) {
           return (
-            <div className=" overflow-auto m-0 ">
+            <div className=" overflow-auto ">
               <div className="w-full ">
                 <TwitterTweetEmbed
                   tweetId={tweetId}
@@ -93,27 +93,27 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="flex flex-col bg-white rounded-md p-1 justify-between items-center shadow-lg ">
-      <div className="flex justify-between  p-2 min-w-72 max-w-72 gap-5 rounded-lg ">
-        <div className="flex items-center gap-1">
-          <div className="bg-gray-200/50 rounded-full p-1 border-gray-400">
+    <div className=" flex-col bg-gray-50 rounded-sm flex justify-between p-1 h-60  shadow-lg ">
+      <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
+        <div className="flex items-center gap-3">
+          <div className="bg-gray-200/50 rounded-full p-1">
             {type === "note" ? <NoteIcon /> : <Link size={14} />}
           </div>
           <h2 className="text-sm font-semibold">{title}</h2>
         </div>
       </div>
-      <div className="border min-w-72 max-w-72 mt-1 bg-white rounded-lg shadow-lg p-0.5 m-1 gap-1 max-h-60 overflow-y-auto ">
+      <div className="border min-w-72 max-w-72  bg-white rounded-lg shadow-lg p-0.5  gap-1 max-h-60 overflow-y-auto ">
         {type == "url" ? (
-          <div className="bg-gray-200 rounded-lg p-.5 text-sm min-h-56 horizontal-scroll overflow-hidden">
+          <div className="bg-gray-200 rounded-lg p-.5 text-sm min-h-36 horizontal-scroll overflow-hidden">
             {renderContent()}
           </div>
         ) : (
-          <div className="bg-yellow-100 rounded-lg p-.5 text-sm min-h-56 horizontal-scroll overflow-hidden">
+          <div className="bg-yellow-100 rounded-lg p-.5 text-sm min-h-36 horizontal-scroll overflow-hidden">
             {renderContent()}
           </div>
         )}
       </div>
-      <div className="flex items-start gap-1 justify-start w-full p-1 ">
+      <div className="flex items-start gap-1 justify-start w-full p-1  ">
         {type == "url" ? (
           <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
             <a href={url} target="_blank" rel="noopener noreferrer">

@@ -1,5 +1,4 @@
-// import CircleIcon from "@mui/icons-material/Circle";
-import { colors } from "@mui/material";
+
 import { Button } from "./components/Button";
 import Card from "./components/Card";
 // import { AddIcon } from "./icons/AddIcon";
@@ -11,26 +10,26 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function App() {
   return (
-    <div className="flex justify-center items-center m-10">
-      <div className="   bg-zinc-900 w-full mx-10  flex flex-col justify-center ">
+    <div className="flex justify-center items-center mt-10">
+      <div className="   bg-zinc-900 w-full mx-10  flex flex-col justify-center items-center ">
         <div className="flex flex-col md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 ">
-          <div className="">
+          <div className="shadow-xl shadow-black/30">
             <img
               src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
               alt=""
-              className="h-10 rounded-lg"
+              className="h-10 rounded-lg "
             />
           </div>
-          <div className="bg-zinc-600/30 md:mt-0 mt-6 flex  w-[305px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border p-2 text-gray-300 px-2">
+          <div className="bg-zinc-600/30 md:mt-0 mt-6 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border p-1 text-gray-300 px-2">
             <input
               type="text"
-              className=" placeholder:opacity-50 bg-transparent w-[305px] rounded-xl md:w-[550px]"
+              className=" placeholder:opacity-50 bg-zinc-800 px-2 p-1 bg-transparent w-[305px] focus:outline-none rounded-l-xl md:w-[550px]"
               placeholder="Search in natural language.."
             />
-            <button className="border-l-2 border-gray-500 px-2 bg-zinc-800 rounded-r-lg hover:bg-zinc-700"><SearchIcon style={{color: 'gray'}}/></button>
+            <button className="border-l-2 border-gray-500 px-2 bg-zinc-800 rounded-r-xl hover:bg-zinc-700"><SearchIcon style={{color: 'gray'}}/></button>
            
           </div>
-          <div className=" flex gap-2 p-2 bg-zinc-600/30 w-fit rounded-lg ">
+          <div className=" flex gap-2 p-2 bg-zinc-600/30 w-fit rounded-lg shadow-xl shadow-black/30 ">
             <Button
               variant="secondary"
               text="Share Brain"
@@ -46,7 +45,7 @@ function App() {
           </div>
         </div>
 
-        <div className="flex gap-2 m-4 md:justify-center max-w-5xl  mx-auto justify-center flex-wrap mt-20 p-8 rounded-lg bg-zinc-600/30">
+        <div className="flex gap-2 md:justify-center max-w-6xl md:min-w-[1024px]  mx-auto justify-center flex-wrap mt-20 p-8 rounded-lg bg-zinc-600/30">
           <Card
             title="Meeting Notes"
             type="note"
@@ -58,9 +57,9 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
           />
 
           <Card
-            title=""
+            title="outbe video"
             type="url"
-            url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            url="https://www.youtube.com/watch?v=5JYJlQpni6o&t=833s"
           />
 
           <Card
@@ -78,10 +77,11 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
             type="note"
             content="this is the first note i have written in this app and i am very happy to be here and write this note. i hope to write more notes in the future and"
           />
+        
           <Card
-            title="song"
+            title="How-to get started with UNMS Research"
             type="url"
-            url="https://www.youtube.com/watch?v=B2UBMTA57JI&list=RDB2UBMTA57JI&start_radio=1"
+            url="https://www.youtube.com/watch?v=Es_l2JM12m8"
           />
         </div>
       </div>
