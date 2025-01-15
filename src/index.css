@@ -5,6 +5,7 @@
 
 ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
     border-radius: 20px;
     padding: 10px;
 }

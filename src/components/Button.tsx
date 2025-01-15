@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 interface ButtonProps {
   variant: "primary" | "secondary";
   //   | "icons";
-  text: string;
+  text: string | React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   size: "sm" | "md" | "lg";
