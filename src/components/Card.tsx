@@ -5,6 +5,7 @@ import { ShareIcon } from "../icons/ShareIcon";
 import { Globe } from 'lucide-react';
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { Expand } from "../icons/Expand";
+import { Margin } from "@mui/icons-material";
 
 interface CardProps {
   title: string;
@@ -50,7 +51,9 @@ const Card: React.FC<CardProps> = ({
         const embedUrl = getYoutubeEmbedUrl(url);
         return (
           <div className="">
+            
             <iframe
+            
               src={embedUrl || ""}
               className="w-full h-full rounded-lg"
               allowFullScreen
@@ -62,14 +65,22 @@ const Card: React.FC<CardProps> = ({
         if (tweetId) {
           return (
          
-              
+            <div style={{ margin: 0, padding: 0 }}>
+
                 <TwitterTweetEmbed
                   tweetId={tweetId}
+                  placeholder={<div className="flex justify-center text-gray-500 items-center font-semibold m-2 p-2">Loading...</div>}
                   options={{
+                    align: "center",
                     theme: "dark",
-                    width: "100%",
+                    conversation: "none",
+                    cards: "hidden",
+                    width: 500,
+                    dnt: true,
                   }}
-                />
+                  
+                  />
+                  </div>
               
             
           );

@@ -20,14 +20,14 @@ export const Chips = ({ text, onClick }: ChipsProps) => {
       className={`bg-zinc-900 w-fit p-1 px-2 rounded-full border text-zinc-400  flex gap-1 ease-in-out 
         ${
           showIcon
-            ? "text-orange-600 border-orange-600"
-            : "hover:text-orange-600 border-zinc-600 border "
+            ? "text-orange-600 border-orange-600 "
+            : " hover:border-orange-600 border-zinc-600 border "
         } 
         items-center`}
     >
       <div className="flex gap-1 items-center">
         {showIcon && (
-          <div className="flex items-center  transition-all duration-500">
+          <div className="flex items-center text-orange-600   transition-all duration-500">
             <CircleIcon style={{ fontSize: 10 }} />
           </div>
         )}

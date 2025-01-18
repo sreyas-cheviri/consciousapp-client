@@ -11,16 +11,16 @@ import { Chips } from "./components/Chips";
 
 function App() {
   return (
-    <div className="flex justify-center items-center mt-10">
-      <div className="   bg-[zinc-900]  mx-10  flex flex-col justify-center items-center ">
-        <div className="flex flex-col md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 p-2 rounded-lg bg-zinc-600/5 border-gray-500/5 border  ">
+    <div className="flex justify-center items-center mt-4">
+      <div className="   bg-[zinc-900]    flex flex-col justify-center items-center ">
+        <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/10 border-gray-500/5 border  ">
           <div className=" flex gap-4 items-center">
             <img
               src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
               alt=""
-              className="h-10 rounded-lg hover:h-10 hover:border-orange-600 hover:border-2 transition-all duration-300 "
+              className="h-10 rounded-lg hover:h-10 hover:-translate-y-1 hover:border-1 transition-all duration-300 "
             />
-            <h1 className="shadow-none text-2xl text-zinc-500 font-serif hover:text-zinc-300 transition-all duration-300">
+            <h1 className="shadow-none text-2xl text-zinc-500 font-serif italic hover:text-zinc-500/90 transition-all duration-300">
               Welcome, Sreyas
             </h1>
           </div>
@@ -40,19 +40,19 @@ function App() {
             />
             {/* <div className="bg-zinc-600/30 items-center flex rounded-lg p-1 gap-1"> */}
             <div className="flex gap-2 items-center justify-center">
-              <button className="text-xs text-zinc-300 hover:bg-black/50 p-3 rounded-full items-center  transition-all duration-500 flex bg-zinc-900/20  ">
-                <CircleIcon style={{ fontSize: "10px" }} />
+              <button className="text-xs text-zinc-900 hover:bg-black/50 p-2 rounded-full items-center hover:text-zinc-300 transition-all duration-300 flex bg-gray-100/75  ">
+                <CircleIcon style={{ fontSize: "8px" }} />
               </button>
-              <button className="text-xs text-zinc-300 hover:bg-black/50 p-2 rounded-lg flex items-center transition-all duration-500 bg-zinc-900/20 ">
+              <button className="text-xs text-zinc-900 hover:bg-black/50 p-1 hover:text-zinc-300 rounded-lg flex items-center transition-all duration-300 bg-gray-100/75 ">
                 <LogoutIcon style={{ fontSize: "16px" }} />
               </button>
             </div>
           </div>
         </div>
-        <div className="bg-zinc-600/30 md:mt-14 mt-14 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border  p-1 text-gray-300 px-2">
+        <div className="bg-zinc-600/30 md:mt-24 mt-14 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border  p-1 text-gray-300 px-2">
           <input
             type="text"
-            className=" placeholder:opacity-40 bg-zinc-800 placeholder:font-serif  px-4 p-2 bg-transparent w-[305px] focus:outline-none rounded-l-xl md:w-[550px]"
+            className=" placeholder:opacity-40 bg-zinc-800 italic placeholder:font-serif  px-4 p-2 bg-transparent w-[305px] focus:outline-none rounded-l-xl md:w-[550px]"
             placeholder="Search your brain in natural language..."
           />
           <button className="border-l-[1px] border-gray-500/50 px-2 bg-zinc-800 rounded-r-xl hover:bg-orange-700/20 ">
