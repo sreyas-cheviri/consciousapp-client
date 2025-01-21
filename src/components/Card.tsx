@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NoteIcon } from "../icons/NoteIcon";
 import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Globe } from 'lucide-react';
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { Expand } from "../icons/Expand";
-import { Margin } from "@mui/icons-material";
+// import { Margin } from "@mui/icons-material";
 
 interface CardProps {
   title: string;
@@ -50,74 +50,107 @@ const Card: React.FC<CardProps> = ({
       if (isValidYoutubeUrl(url)) {
         const embedUrl = getYoutubeEmbedUrl(url);
         return (
-          <div className="">
-            
+          <div>
             <iframe
-            
               src={embedUrl || ""}
               className="w-full h-full rounded-lg"
               allowFullScreen
+              style={{ pointerEvents: "none"}}
             />
           </div>
         );
       } else if (isValidTwitterUrl(url)) {
         const tweetId = getTwitterTweetId(url);
-        if (tweetId) {
-          return (
-         
-            <div style={{ margin: 0, padding: 0 }}>
-
-                <TwitterTweetEmbed
-                  tweetId={tweetId}
-                  placeholder={<div className="flex justify-center text-gray-500 items-center font-semibold m-2 p-2">Loading...</div>}
-                  options={{
-                    align: "center",
-                    theme: "dark",
-                    conversation: "none",
-                    cards: "hidden",
-                    width: 500,
-                    dnt: true,
-                  }}
-                  
-                  />
-                  </div>
-              
+        return tweetId ? (
+          <div style={{
+            margin: -10,
+            padding: 0,
+           
+            overflow: "hidden",
+            pointerEvents : "none"
+          }}>
             
-          );
-        } else {
-          return (
-            <div className="">
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline break-all text-sm"
-              >
-                {url}
-              </a>
-            </div>
-          );
-        }
+            <TwitterTweetEmbed
+              tweetId={tweetId}
+              
+              placeholder={
+                <div className="flex justify-center text-gray-600 items-center font-semibold m-10 p-2">
+                  Loading...
+                </div>
+              }
+              options={{
+                align: "center",
+                theme: "dark",
+                conversation: "none",
+                cards: "hidden",
+                width: 500,
+                
+                dnt: true,
+              }}
+           
+            />
+          </div>
+        ) : (
+          <div className="w-full h-full rounded-lg">
+            <iframe
+              src={url || ""}
+              className="w-full h-full rounded-lg"
+              allowFullScreen
+            />
+          </div>
+        );
+      } else {
+        // Generic URL embedding
+        return (
+          <div className="w-full h-full rounded-lg">
+            <iframe
+              src={url}
+              className="w-full h-full rounded-lg"
+              style={{
+                // scrollMarginInline: NoEncryption;
+                
+                minHeight: "300px",
+                border: "none",
+                overflow: "hidden",
+                pointerEvents: "none", 
+                
+                msOverflowStyle: "none", // For IE 10+
+              }}
+              // allowFullScreen
+            />
+          </div>
+        );
       }
     }
     return null;
   };
+  
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsVisible(true), 100); // Optional delay for each card
+  }, []);
 
   return (
-    <div className=" flex-col bg-gray-100 rounded-xl flex justify-between p-1  h-60 shadow-lg shadow-black/90  ">
+    <div
+      className={`  ${
+        isVisible ? "animate-smoothLanding" : "opacity-0 translate-y-5"
+      }`}
+    >
+    <div className=" flex-col bg-gray-100  rounded-xl flex justify-between p-1   h-60 shadow-lg shadow-black/90  ">
      
-      <div className=" min-w-72 max-w-72 border-1 border-gray-300 bg-white rounded-xl  no-scrollbar shadow-lg min-h-32 gap-1 max-h-60 overflow-y-auto ">
+      <div className=" min-w-72 max-w-72  border border-gray-400/30 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
         {type == "url" ? (
-          <div className="bg-gray-100 rounded-lg p-.5 text-sm min-h-36 horizontal-scroll  overflow-hidden">
+          <div className="bg-gray-100  rounded-t-lg p-.5 text-sm min-h-36 horizontal-scroll  overflow-hidden">
             {renderContent()}
           </div>
         ) : (
-          <div className="bg-yellow-100 rounded-lg p-.5 text-sm min-h-36 horizontal-scroll overflow-hidden">
+          <div className="bg-blue-100 rounded-t-lg p-.5 text-sm min-h-36  horizontal-scroll overflow-hidden">
             {renderContent()}
           </div>
         )}
       </div>
-      <div className="bg-gray-300/90 mt-1 rounded-xl rounded-t-md">
+      <div className="bg-gradient-to-t  from-gray-400/90 to-gray-100  rounded-b-xl ">
       <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
         <div className="flex  gap-1">
           <div className="rounded-full p-1 text-gray-700">
@@ -126,29 +159,29 @@ const Card: React.FC<CardProps> = ({
           <h2 className="text-sm font-semibold text-gray-700">{title}</h2>
         </div>
       </div>
-     <hr  />
+     {/* <hr  /> */}
       <div className="flex items-start gap-1 justify-start rounded-xl p-1  m-1   ">
         {type == "url" ? (
-          <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
+          <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
             <a href={url} target="_blank" rel="noopener noreferrer">
               <ShareIcon />
             </a>
           </button>
         ) : (
-          <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 transition duration-300">
+          <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
             <Expand />
           </button>
         )}
 
-        <button className="bg-gray-200 rounded-lg p-1 border border-gray-400/50 hover:bg-gray-300 duration-300">
+        <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
           <Delete />
         </button>
-        <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 border border-gray-400/50 hover:bg-gray-300 duration-300">
-          <p>Query</p>
+        <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
+          <p >Query</p>
         </button>
       </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 

@@ -4,8 +4,8 @@
 
 
 ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
+    width: 0px;
+    height: 1px;
     border-radius: 20px;
     padding: 10px;
 }
@@ -30,5 +30,6 @@
 }
 
 body {
-    background-color:#18181b;
+    background-color:rgba(10, 10, 11, 0.97);
+    /* background-color:rgba(235, 235, 235, 0.97); */
 }

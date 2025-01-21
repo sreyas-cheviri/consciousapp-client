@@ -12,15 +12,18 @@ import { Chips } from "./components/Chips";
 function App() {
   return (
     <div className="flex justify-center items-center mt-4">
-      <div className="   bg-[zinc-900]    flex flex-col justify-center items-center ">
-        <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row w-full items-center md:gap-3 gap-3 md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/10 border-gray-500/5 border  ">
+      <div className="       flex flex-col justify-center items-center ">
+        <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full items-center md:gap-3 gap-24  md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/10 border-gray-500/5 border  ">
           <div className=" flex gap-4 items-center">
+            <button>
+
             <img
               src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
               alt=""
-              className="h-10 rounded-lg hover:h-10 hover:-translate-y-1 hover:border-1 transition-all duration-300 "
-            />
-            <h1 className="shadow-none text-2xl text-zinc-500 font-serif italic hover:text-zinc-500/90 transition-all duration-300">
+              className="h-10 rounded-xl  hover:-rotate-180 transform  ease-in-out hover:border-1 transition-all duration-300 "
+              />
+              </button>
+            <h1 className="shadow-none md:block hidden text-2xl text-zinc-500 font-serif  hover:text-zinc-500/90 transition-all duration-300">
               Welcome, Sreyas
             </h1>
           </div>
@@ -40,22 +43,22 @@ function App() {
             />
             {/* <div className="bg-zinc-600/30 items-center flex rounded-lg p-1 gap-1"> */}
             <div className="flex gap-2 items-center justify-center">
-              <button className="text-xs text-zinc-900 hover:bg-black/50 p-2 rounded-full items-center hover:text-zinc-300 transition-all duration-300 flex bg-gray-100/75  ">
+              <button className="text-xs text-zinc-900 hover:bg-black/50 p-2 rounded-full items-center hover:text-zinc-300 transition-all duration-300 flex bg-gray-200  ">
                 <CircleIcon style={{ fontSize: "8px" }} />
               </button>
-              <button className="text-xs text-zinc-900 hover:bg-black/50 p-1 hover:text-zinc-300 rounded-lg flex items-center transition-all duration-300 bg-gray-100/75 ">
+              <button className="text-xs text-zinc-900 hover:bg-black/50 p-1 hover:text-zinc-300 rounded-lg flex items-center transition-all duration-300 bg-gray-200 ">
                 <LogoutIcon style={{ fontSize: "16px" }} />
               </button>
             </div>
           </div>
         </div>
-        <div className="bg-zinc-600/30 md:mt-24 mt-14 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-50/10 justify-between  border  p-1 text-gray-300 px-2">
-          <input
-            type="text"
-            className=" placeholder:opacity-40 bg-zinc-800 italic placeholder:font-serif  px-4 p-2 bg-transparent w-[305px] focus:outline-none rounded-l-xl md:w-[550px]"
-            placeholder="Search your brain in natural language..."
-          />
-          <button className="border-l-[1px] border-gray-500/50 px-2 bg-zinc-800 rounded-r-xl hover:bg-orange-700/20 ">
+        <div className="bg-zinc-600/30 md:mt-24 mt-10 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-500/5    justify-between  border  p-1 text-gray-300">
+        <textarea
+  className="placeholder:opacity-40 bg-zinc-800 overflow-auto placeholder:italic h-16 placeholder:font-serif px-4 py-2 bg-transparent w-[305px] focus:outline-none rounded-l-xl md:w-[550px] resize-none"
+  placeholder="Search your brain in natural language..."
+></textarea>
+
+          <button className=" border-gray-500/50 px-2 flex py-2 bg-zinc-800 rounded-r-xl hover:bg-zinc-700/20 ">
             <SearchIcon style={{ color: "gray" }} />
           </button>
         </div>
@@ -77,20 +80,23 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
           />
 
           <Card
-            title="Youtube video"
+            title="Steve Jobs' 2005 Stanford Commencement Address
+"
             type="url"
-            url="https://www.youtube.com/watch?v=5JYJlQpni6o&t=833s"
+            url="https://www.youtube.com/watch?v=UF8uR6Z6KLc&pp=ygURc3RldmUgam9icyBzcGVlY2g%3D"
           />
 
           <Card
-            title="Big twitter heading"
+            title="navals tweet saving"
             type="url"
-            url="https://x.com/merishabh_singh/status/1879431445946745266"
+            url="https://x.com/naval/status/1880519833118478567?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Etweet"
           />
           <Card
-            title="Saleh @salehdotdev tweet"
+            title="Sam Altman
+« Back to blog
+How To Be Successful"
             type="url"
-            url="https://x.com/salehdotdev/status/1879506316689039384"
+            url="https://blog.samaltman.com/how-to-be-successful"
           />
           <Card
             title="frist note"
@@ -105,24 +111,25 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
           />
           <Card
             title="frist note"
-            type="note"
-            content="this is the first note i have written in this app and i am very happy to be here and write this note. i hope to write more notes in the future and"
+            type="url"
+            url="https://sreyascheviri.vercel.app/"
+          />
+          <Card
+            title="frist note"
+            type="url"
+            url="https://en.wikipedia.org/wiki/Steve_Jobs"
+          />
+          <Card
+            title="frist note"
+            type="url"
+            url="https://www.github.com/"
           />
           <Card
             title="frist note"
             type="note"
             content="this is the first note i have written in this app and i am very happy to be here and write this note. i hope to write more notes in the future and"
           />
-          <Card
-            title="frist note"
-            type="note"
-            content="this is the first note i have written in this app and i am very happy to be here and write this note. i hope to write more notes in the future and"
-          />
-          <Card
-            title="frist note"
-            type="note"
-            content="this is the first note i have written in this app and i am very happy to be here and write this note. i hope to write more notes in the future and"
-          />
+         
         </div>
       </div>
     </div>
