@@ -11,37 +11,48 @@ interface SideBarProps {
 export const Sidebar = ({ openpanel, closepanel }: SideBarProps) => {
   return (
     <div>
-      {openpanel && (
-        <div className="w-screen h-screen bg-black/80 fixed top-0 left-0  z-50">
+      {/* Background overlay with transition */}
+      <div
+        className={`fixed inset-0 bg-black/80 z-40 transition-opacity duration-300 ${
+          openpanel ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        onClick={closepanel}
+      ></div>
 
-        <div className="fixed z-50 h-screen w-64 md:w-1/4 lg:w-1/6 bg-zinc-800 border-r border-gray-300/20 flex flex-col">
-          <div className="flex flex-col justify-center  p-4 space-y-6">
-            {/* Add Button */}
-            <Button
-              variant="secondary"
-              startIcon={<Add />}
-              size="lg"
-              text={"Add New Brain"}
-              />
+      {/* Sidebar panel with slide-in effect */}
+      <div
+        className={`fixed left-0 top-0 h-screen bg-zinc-800 border-r border-gray-300/20 z-50 flex flex-col w-64 md:w-1/4 lg:w-1/6 transition-transform duration-300 ${
+          openpanel ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex flex-col justify-center p-4 space-y-3">
+       
+          <Button
+            variant="secondary"
+            startIcon={<Add />}
+            size="lg"
+            text={"Create New Brain"}
+          />
 
-            {/* Brain Section */}
-            <div className="w-full bg-zinc-600 p-3 text-white rounded-md">
-              <p>Brain 1</p>
-            </div>
-
-            {/* In-progress Feature */}
-            <p className="text-sm text-white italic bg-red-900 rounded p-2 text-center">
-              This feature is still in progress, sorry for the inconvenience.
-            </p>
+   
+          <div className="w-full bg-zinc-600 p-3 text-white rounded-md">
+            <p>Brain 1</p>
+          </div>
+          <div className="w-full bg-zinc-600 p-3 text-white rounded-md">
+            <p>Brain 2</p>
           </div>
 
-          
-          <div className="absolute top-80 right-3 text-white">
-            <PushButtons icon={<PanelLeftClose />} size="sm" variant="opaque" onClick={closepanel}/>
-          </div>
+   
+          <p className="text-sm text-white italic bg-red-900 rounded p-2 text-center">
+            This feature is still in progress.
+          </p>
         </div>
-              </div>
-      )}
+
+      
+        <div className="absolute bottom-10 right-3 text-white">
+          <PushButtons icon={<PanelLeftClose />} size="sm" variant="opaque" onClick={closepanel} />
+        </div>
+      </div>
     </div>
   );
 };
