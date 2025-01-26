@@ -145,7 +145,7 @@ const Card: React.FC<CardProps> = ({
             {renderContent()}
           </div>
         ) : (
-          <div className="bg-blue-100 rounded-t-lg p-.5 text-sm min-h-36  horizontal-scroll overflow-hidden">
+          <div className="bg-blue-100 rounded-t-lg text-w p-.5 text-sm min-h-36  horizontal-scroll overflow-hidden">
             {renderContent()}
           </div>
         )}

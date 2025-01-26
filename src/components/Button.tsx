@@ -7,6 +7,7 @@ interface ButtonProps {
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   size: "sm" | "md" | "lg";
+  onClick?: () => void;
 }
 
 const variantstyles = {
@@ -29,10 +30,11 @@ export const Button = ({
   text,
   startIcon,
   endIcon,
-  size,
+  size, onClick
 }: ButtonProps) => {
   return (
     <button
+    onClick={onClick}
       className={
         sizeStyles[size] + " " + variantstyles[variant] + " " + defaultStyles
       }

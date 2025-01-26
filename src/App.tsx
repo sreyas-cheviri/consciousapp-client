@@ -8,9 +8,13 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LinkIcon from "@mui/icons-material/Link";
 import SearchIcon from "@mui/icons-material/Search";
 import { Chips } from "./components/Chips";
+import { Modal } from "./components/Modal";
+import { useState } from "react";
 
 function App() {
+  const [open, setOpen] = useState(false);
   return (
+
     <div className="flex justify-center items-center mt-4">
       <div className="       flex flex-col justify-center items-center ">
         <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full items-center md:gap-3 gap-24  md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/10 border-gray-500/5 border  ">
@@ -20,7 +24,7 @@ function App() {
             <img
               src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
               alt=""
-              className="h-10 rounded-xl  hover:-rotate-180 transform  ease-in-out hover:border-1 transition-all duration-300 "
+              className="h-10 rounded-xl  hover:-rotate-180 transform  ease-in-out  transition-all duration-300 "
               />
               </button>
             <h1 className="shadow-none md:block hidden text-2xl text-zinc-500 font-serif  hover:text-zinc-500/90 transition-all duration-300">
@@ -36,6 +40,7 @@ function App() {
               startIcon={<LinkIcon style={{ fontSize: 20 }} />}
             />
             <Button
+              onClick={() => { setOpen(true)}}
               variant="secondary"
               text="Add Memory"
               size="sm"
@@ -81,7 +86,7 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
 
           <Card
             title="Steve Jobs' 2005 Stanford Commencement Address
-"
+            "
             type="url"
             url="https://www.youtube.com/watch?v=UF8uR6Z6KLc&pp=ygURc3RldmUgam9icyBzcGVlY2g%3D"
           />
@@ -93,8 +98,8 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
           />
           <Card
             title="Sam Altman
-« Back to blog
-How To Be Successful"
+            « Back to blog
+            How To Be Successful"
             type="url"
             url="https://blog.samaltman.com/how-to-be-successful"
           />
@@ -122,7 +127,7 @@ How To Be Successful"
           <Card
             title="frist note"
             type="url"
-            url="https://www.github.com/"
+            url="https://www.youtube.com/watch?v=pN6jk0uUrD8&list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP&pp=iAQB"
           />
           <Card
             title="frist note"
@@ -131,6 +136,7 @@ How To Be Successful"
           />
          
         </div>
+<Modal open={open} onClose={() => { setOpen(false)}} />
       </div>
     </div>
   );
