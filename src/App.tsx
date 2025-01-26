@@ -4,11 +4,10 @@ import CircleIcon from "@mui/icons-material/Circle";
 import AddIcon from "@mui/icons-material/Add";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LinkIcon from "@mui/icons-material/Link";
-import SearchIcon from "@mui/icons-material/Search";
 import { Chips } from "./components/Chips";
 import { Modal } from "./components/Modal";
 import { useState } from "react";
-import { ArrowUp, PanelLeftOpen, Search } from "lucide-react";
+import { ArrowUp, PanelLeftOpen } from "lucide-react";
 import { PushButtons } from "./components/PushButtons";
 import { Sidebar } from "./components/SideBar";
 import SearchBox from "./components/SearchBox";
@@ -32,14 +31,14 @@ function App() {
       />
 
       <div className="flex justify-center items-center ">
-        <div className="       flex flex-col justify-center items-center mt-4 ">
-          <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/10 border-gray-500/5 border  ">
+        <div className="flex flex-col justify-center items-center mt-4 ">
+          <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl  bg-zinc-600/1   ">
             <div className=" flex gap-4 items-center">
               <button>
                 <img
                   src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
                   alt=""
-                  className="h-10 rounded-xl  hover:-rotate-180 transform  ease-in-out  transition-all duration-300 "
+                  className="h-10 rounded-full  hover:-rotate-180 transform  ease-in-out  transition-all duration-300 "
                 />
               </button>
               <h1 className="shadow-none  text-2xl text-zinc-500 font-serif  hover:text-zinc-500/90 transition-all duration-300">
@@ -47,7 +46,7 @@ function App() {
               </h1>
             </div>
 
-            <div className=" flex gap-1 md:gap-2 p-1 px-2 bg-zinc-600/20 w-fit rounded-lg  ">
+            <div className=" flex gap-1 md:gap-2 p-1 px-2  w-fit rounded-lg  ">
               <Button
                 variant="secondary"
                 text="Share Brain"
@@ -93,14 +92,14 @@ function App() {
               onClick={handleScrollToTop}
             />
           </div>
-          <SearchBox/>
+          <SearchBox />
           <div className="flex gap-2 mt-2">
             <Chips text={"Urls"} />
             <Chips text={"Notes"} />
             <Chips text={"Randomize"} />
             <Chips text={"Date"} />
           </div>
-          <div className="flex gap-2 md:justify-center max-w-6xl md:min-w-[1024px] border-gray-500/10 border  mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/5">
+          <div className="flex gap-2 md:justify-center max-w-6xl md:min-w-[1024px] border-gray-500/10 border  mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/3">
             <Card
               title="Meeting Notes"
               type="note"

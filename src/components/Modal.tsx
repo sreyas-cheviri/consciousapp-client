@@ -8,23 +8,32 @@ interface ModalProps {
 
 export function Modal({ open, onClose }: ModalProps) {
   return (
-    <div >
-      
-        <div className={`w-screen h-screen bg-black/80 fixed top-0 left-0 transition-opacity z-40 duration-300 flex justify-center items-center ${
-          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}>
-
-          <div className={`bg-zinc-100 text-black rounded-2xl p-1 max-w-[80%] max-h-[50%] z-50 transition-opacity duration-500 md:w-[28rem] md:h-[28rem] w-full h-full`
-        }>
-            <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">
-              <div
-                className="flex justify-between text-gray-700 "
-              
-              >
-                <img src="/public/f523bb5a1e9f3b67816ed619f8657428.jpg" alt="" srcSet="" className="w-7 h-7 rounded-full" />
-                <p> Add your content</p>
-                <CircleX    onClick={onClose} className="cursor-pointer hover:text-zinc-500"/>
-              </div>
+    <div>
+      <div
+        className={`w-screen h-screen bg-black/80 fixed top-0 left-0 transition-opacity z-40 duration-300 flex justify-center items-center ${
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div
+          className={`bg-zinc-100 text-black rounded-2xl p-1 max-w-[90%] max-h-[60%] z-50 transition-opacity duration-500 md:w-[38rem] md:h-[38rem] w-full h-full`}
+        >
+          <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">
+            <div className="flex justify-between text-gray-700 ">
+              <img
+                src="/public/f523bb5a1e9f3b67816ed619f8657428.jpg"
+                alt=""
+                srcSet=""
+                className="w-7 h-7 rounded-full"
+              />
+              <p> Add your content</p>
+              <CircleX
+                onClick={onClose}
+                className="cursor-pointer hover:text-zinc-500"
+              />
+            </div>
+            <div className="flex flex-col h-full gap-4 justify-between">
               <div className="mt-6">
                 <Input
                   placeholder="Title"
@@ -39,15 +48,14 @@ export function Modal({ open, onClose }: ModalProps) {
                   }}
                 />
               </div>
-              <div className="m-2">
-              <Button variant={"primary"} text={"Add to Memory"} size={"md"} />
-
+              <div className="mb-6 flex justify-end">
+                <Button variant={"round"} text={"Add to Memory"} size={"md"} />
               </div>
             </div>
           </div>
         </div>
-      
-     </div>
+      </div>
+    </div>
   );
 }
 

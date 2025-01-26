@@ -1,8 +1,7 @@
 import { ReactElement } from "react";
 
 interface ButtonProps {
-  variant: "primary" | "secondary";
-  //   | "icons";
+  variant: "primary" | "secondary" | "round";
   text: string | React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
@@ -11,9 +10,9 @@ interface ButtonProps {
 }
 
 const variantstyles = {
-  primary: "bg-zinc-900 text-white   hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
-  secondary: "bg-gray-200 text-black font-normal  hover:bg-gray-300   trasition duration-200 flex justify-center items-center",
-    // icons : "text-gray bg-white border dark:text-white dark:bg-black dark:border rounded-full"
+  primary: "bg-zinc-900 text-white rounded-lg   hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+  round: "bg-zinc-900 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+  secondary: "bg-gray-200 text-black rounded-lg  font-normal  hover:bg-gray-300   trasition duration-200 flex justify-center items-center",
 };
 
 const sizeStyles = {
@@ -23,7 +22,7 @@ const sizeStyles = {
 };
 
 const defaultStyles =
-  "rounded-lg font-sans font-semibold shadow  flex justify-center items-center cursor-pointer";
+  "font-sans font-semibold shadow  flex justify-center items-center cursor-pointer";
 
 export const Button = ({
   variant,

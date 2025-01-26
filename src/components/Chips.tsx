@@ -17,11 +17,11 @@ export const Chips = ({ text, onClick }: ChipsProps) => {
   return (
     <button
       onClick={handleClick}
-      className={`bg-zinc-900 w-fit p-1 px-2 rounded-full border text-zinc-400  flex gap-1 ease-in-out 
+      className={`bg-zinc-900 w-fit p-1 px-2 rounded-full border-zinc-700 border text-zinc-400  flex gap-1 ease-in-out 
         ${
           showIcon
             ? "text-orange-600 border-orange-600 "
-            : " hover:border-orange-600 border-zinc-600 border "
+            : " hover:bg-zinc-700 "
         } 
         items-center`}
     >
