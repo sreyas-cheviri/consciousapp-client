@@ -58,7 +58,7 @@ function Input({
       <input
         placeholder={placeholder}
         type="text"
-        className="px-4 py-3 md:py-4 bg-zinc-200 w-full border-gray-400 border m-1 rounded-md focus:outline-none "
+        className="px-4 py-3 md:py-4 bg-zinc-200 w-full border-gray-400 border m-1 rounded-lg shadow focus:outline-none "
         onChange={onChange}
       />
     </div>

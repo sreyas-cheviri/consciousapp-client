@@ -3,8 +3,6 @@ import Card from "./components/Card";
 import CircleIcon from "@mui/icons-material/Circle";
 import AddIcon from "@mui/icons-material/Add";
 import LogoutIcon from "@mui/icons-material/Logout";
-// import { ShareIcon } from "./icons/ShareIcon";
-// import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import LinkIcon from "@mui/icons-material/Link";
 import SearchIcon from "@mui/icons-material/Search";
 import { Chips } from "./components/Chips";
@@ -12,9 +10,11 @@ import { Modal } from "./components/Modal";
 import { useState } from "react";
 import { ArrowUp, PanelLeftOpen } from "lucide-react";
 import { PushButtons } from "./components/PushButtons";
+import { Sidebar } from "./components/SideBar";
 
 function App() {
   const [open, setOpen] = useState(false);
+  const [panel, setpanel] = useState(false);
   const handleScrollToTop = () =>{
     window.scrollTo({
       top: 0,
@@ -23,8 +23,14 @@ function App() {
   }
   return (
 
-    <div className="flex justify-center items-center mt-4">
-      <div className="       flex flex-col justify-center items-center ">
+    <div >
+      <Sidebar openpanel={panel} closepanel={() => { setpanel(false)}}/>
+    
+    <div className="flex justify-center items-center ">
+
+      
+      
+      <div className="       flex flex-col justify-center items-center mt-4 ">
         <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/10 border-gray-500/5 border  ">
           <div className=" flex gap-4 items-center">
             <button>
@@ -60,8 +66,8 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="flex w-screen fixed m-10 p-10 text-zinc-900 z-40 justify-between ">
-        <PushButtons variant="transparent" icon={<PanelLeftOpen />} size="sm"/>
+        <div className="flex w-screen fixed m-10 md:p-10 p-10 px-1 text-zinc-900 z-40 justify-between -bottom-10 ">
+        <PushButtons variant="transparent" icon={<PanelLeftOpen />} size="sm" onClick={()=>{ setpanel(true)}}/>
         <PushButtons variant="transparent" icon={<ArrowUp />} size="sm" onClick={handleScrollToTop}/>
         </div>
         <div className="bg-zinc-600/30 md:mt-24 mt-10 flex shadow-xl shadow-black/30 w-[355px] rounded-xl md:w-[550px] border-gray-500/5    justify-between  border  p-1 text-gray-300">
@@ -145,7 +151,7 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
         </div>
 <Modal open={open} onClose={() => { setOpen(false)}} />
       </div>
-    </div>
+    </div></div>
   );
 }
 
