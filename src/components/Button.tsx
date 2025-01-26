@@ -23,7 +23,7 @@ const sizeStyles = {
 };
 
 const defaultStyles =
-  "rounded-lg font-sans font-semibold shadow  flex justify-center items-center";
+  "rounded-lg font-sans font-semibold shadow  flex justify-center items-center cursor-pointer";
 
 export const Button = ({
   variant,
