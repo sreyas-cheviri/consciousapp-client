@@ -36,7 +36,7 @@ function App() {
             <div className=" flex gap-4 items-center">
               <button>
                 <img
-                  src="../public/f523bb5a1e9f3b67816ed619f8657428.jpg"
+                  src="../src/assets/logo.png"
                   alt=""
                   className="h-10 rounded-full  hover:-rotate-180 transform  ease-in-out  transition-all duration-300 "
                 />

@@ -22,7 +22,7 @@ export function Modal({ open, onClose }: ModalProps) {
           <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">
             <div className="flex justify-between text-gray-700 ">
               <img
-                src="/public/f523bb5a1e9f3b67816ed619f8657428.jpg"
+                src="../src/assets/logo.png"
                 alt=""
                 srcSet=""
                 className="w-7 h-7 rounded-full"
