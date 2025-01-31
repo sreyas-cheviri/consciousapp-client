@@ -137,15 +137,15 @@ const Card: React.FC<CardProps> = ({
         isVisible ? "animate-smoothLanding" : "opacity-0 translate-y-5"
       }`}
     >
-    <div className=" flex-col bg-gray-100  rounded-xl flex justify-between p-1   h-60 shadow-lg shadow-black/90  ">
+    <div className=" flex-col bg-gray-100  rounded-xl flex justify-between p-0.5   h-60 shadow-lg shadow-black/90  ">
      
       <div className=" min-w-72 max-w-72  border border-gray-400/30 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
         {type == "url" ? (
-          <div className="bg-gray-100  rounded-t-lg p-.5 text-sm min-h-36 horizontal-scroll  overflow-hidden">
+          <div className="bg-gray-100  rounded-t-lg  text-sm min-h-36 horizontal-scroll  overflow-hidden">
             {renderContent()}
           </div>
         ) : (
-          <div className="bg-blue-100 rounded-t-lg text-w p-.5 text-sm min-h-36  horizontal-scroll overflow-hidden">
+          <div className="bg-yellow-100 rounded-t-lg text-w  text-sm min-h-36  horizontal-scroll overflow-hidden">
             {renderContent()}
           </div>
         )}

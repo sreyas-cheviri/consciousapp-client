@@ -1,5 +1,6 @@
 import { CircleX } from "lucide-react";
 import { Button } from "./Button";
+import { Chips } from "./Chips";
 
 interface ModalProps {
   open: boolean;
@@ -33,8 +34,19 @@ export function Modal({ open, onClose }: ModalProps) {
                 className="cursor-pointer hover:text-zinc-500"
               />
             </div>
-            <div className="flex flex-col h-full gap-4 justify-between">
-              <div className="mt-6">
+            <div className="flex flex-col h-full gap-2">
+              <div className="flex gap-1 mt-5 m-2">
+                {/* <Button variant={"roundchips"} text={"Url"} size="vsm" />
+                <Button variant={"roundchips"} text={"Notes"} size="vsm" />
+                <Button variant={"roundchips"} text={"Doc"} size="vsm" />
+                <Button variant={"roundchips"} text={"Image"} size="vsm" /> */}
+                 <div className="flex gap-2 mt-2 bg-black/15 p-1 rounded-full">
+                            {["Url", "Note", "Doc", "Image"].map((chip, index) => (
+                              <Chips key={index} text={chip} />
+                            ))}
+                          </div>
+              </div>
+              <div className="">
                 <Input
                   placeholder="Title"
                   onChange={() => {

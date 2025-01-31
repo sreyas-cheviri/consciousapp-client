@@ -13,7 +13,7 @@ export const Sidebar = ({ openpanel, closepanel }: SideBarProps) => {
     <div>
      
       <div
-        className={`fixed inset-0 bg-black/80 z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/80 z-50 transition-opacity duration-300  ${
           openpanel ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={closepanel}
@@ -21,7 +21,7 @@ export const Sidebar = ({ openpanel, closepanel }: SideBarProps) => {
 
       
       <div
-        className={`fixed left-0 top-0 h-screen bg-zinc-800 border-r border-gray-300/20 z-50 flex flex-col w-64 md:w-1/4 lg:w-1/6 transition-transform duration-300 ${
+        className={`fixed left-0 top-0 h-screen bg-zinc-900 border-r border-gray-300/20 z-50 flex flex-col w-64 md:w-1/4 lg:w-1/6 transition-transform duration-300 ${
           openpanel ? "translate-x-0" : "-translate-x-full"
         }`}
       >

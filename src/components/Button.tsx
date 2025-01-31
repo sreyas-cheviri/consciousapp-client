@@ -1,22 +1,24 @@
 import { ReactElement } from "react";
 
 interface ButtonProps {
-  variant: "primary" | "secondary" | "round";
+  variant: "primary" | "secondary" | "round" | "roundchips";
   text: string | React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
-  size: "sm" | "md" | "lg";
+  size: "sm" | "md" | "lg" | "vsm";
   onClick?: () => void;
 }
 
 const variantstyles = {
   primary: "bg-zinc-900 text-white rounded-lg   hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
   round: "bg-zinc-900 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
-  secondary: "bg-gray-200 text-black rounded-lg  font-normal  hover:bg-gray-300   trasition duration-200 flex justify-center items-center",
+  roundchips: "bg-zinc-700 text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
+  secondary: "bg-white/10  border-gray-300/40 text-gray-300 rounded-full  font-normal  hover:bg-zinc-700 hover:text-gray-300   trasition duration-200 flex justify-center items-center",
 };
 
 const sizeStyles = {
-  sm: "px-1.5 py-2 text-[.9rem]",
+  vsm: "px-3 py-1 text-[.7rem]",
+  sm: "px-4 py-1 text-[.9rem]",
   md: "px-3 py-2 text-md",
   lg: "px-4 py-2 text-lg",
 };
