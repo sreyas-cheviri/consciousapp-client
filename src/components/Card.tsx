@@ -135,19 +135,19 @@ const Card: React.FC<CardProps> = ({
         isVisible ? "animate-smoothLanding" : "opacity-0 translate-y-5"
       }`}
     >
-      <div className=" flex-col bg-gray-100  rounded-xl flex justify-between p-0.5   h-60 shadow-lg shadow-black/90  ">
-        <div className=" min-w-72 max-w-72  border border-gray-400/30 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
+      <div className=" flex-col bg-gray-100  rounded-xl flex justify-between   h-60 shadow-lg shadow-black/90  ">
+        <div className=" min-w-72 max-w-72  border border-gray-400/50 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
           {type == "url" ? (
             <div className="bg-gray-100  rounded-t-lg  text-sm min-h-36 horizontal-scroll  overflow-hidden">
               {renderContent()}
             </div>
           ) : (
-            <div className="bg-yellow-100 rounded-t-lg text-w  text-sm min-h-36  horizontal-scroll overflow-hidden">
+            <div className="bg-yellow-100 rounded-t-lg   text-sm min-h-36  horizontal-scroll overflow-hidden">
               {renderContent()}
             </div>
           )}
         </div>
-        <div className="bg-gradient-to-t  from-gray-400/90 to-gray-100  rounded-b-xl ">
+        <div className="bg-gradient-to-t  from-zinc-400/90 to-zinc-100  rounded-b-xl ">
           <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
             <div className="flex  gap-1">
               <div className="rounded-full p-1 text-gray-700">

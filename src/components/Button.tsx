@@ -1,12 +1,12 @@
 import clsx from "clsx";
+import { ReactElement } from "react";
 
 interface ButtonProps {
   variant: "primary" | "secondary" | "round" | "roundchips";
   // text : string | React.ReactNode; text is restrictive, children makes the component more flexible:
   children:  React.ReactNode;
-  startIcon?: undefined;
-  // endIcon?: ReactElement;  //You can consider making startIcon and endIcon optional by setting default values as undefined to ensure the layout doesn’t break if no icon is passed.
-  endIcon?: undefined;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
   size: "sm" | "md" | "lg" | "vsm";
   onClick?: () => void;
 }

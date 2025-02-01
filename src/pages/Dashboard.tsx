@@ -41,7 +41,7 @@ Let me know if you'd like this refined or expanded!y's meeting...Important point
             <Card
               title="navals tweet saving"
               type="url"
-              url="https://x.com/naval/status/1880519833118478567?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Etweet"
+              url="https://x.com/Synthetic_Copy/status/1885360529318830422"
             />
             <Card
               title="Sam Altman
