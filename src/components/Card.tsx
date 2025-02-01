@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NoteIcon } from "../icons/NoteIcon";
 import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
-import { Globe } from 'lucide-react';
+import { Globe } from "lucide-react";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { Expand } from "../icons/Expand";
 // import { Margin } from "@mui/icons-material";
@@ -55,24 +55,24 @@ const Card: React.FC<CardProps> = ({
               src={embedUrl || ""}
               className="w-full h-full rounded-lg"
               allowFullScreen
-              style={{ pointerEvents: "none"}}
+              style={{ pointerEvents: "none" }}
             />
           </div>
         );
       } else if (isValidTwitterUrl(url)) {
         const tweetId = getTwitterTweetId(url);
         return tweetId ? (
-          <div style={{
-            margin: -10,
-            padding: 0,
-           
-            overflow: "hidden",
-            pointerEvents : "none"
-          }}>
-            
+          <div
+            style={{
+              margin: -10,
+              padding: 0,
+
+              overflow: "hidden",
+              pointerEvents: "none",
+            }}
+          >
             <TwitterTweetEmbed
               tweetId={tweetId}
-              
               placeholder={
                 <div className="flex justify-center text-gray-600 items-center font-semibold m-10 p-2">
                   Loading...
@@ -84,10 +84,9 @@ const Card: React.FC<CardProps> = ({
                 conversation: "none",
                 cards: "hidden",
                 width: 500,
-                
+
                 dnt: true,
               }}
-           
             />
           </div>
         ) : (
@@ -108,12 +107,12 @@ const Card: React.FC<CardProps> = ({
               className="w-full h-full rounded-lg"
               style={{
                 // scrollMarginInline: NoEncryption;
-                
+
                 minHeight: "300px",
                 border: "none",
                 overflow: "hidden",
-                pointerEvents: "none", 
-                
+                pointerEvents: "none",
+
                 msOverflowStyle: "none", // For IE 10+
               }}
               // allowFullScreen
@@ -124,7 +123,7 @@ const Card: React.FC<CardProps> = ({
     }
     return null;
   };
-  
+
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -137,51 +136,51 @@ const Card: React.FC<CardProps> = ({
         isVisible ? "animate-smoothLanding" : "opacity-0 translate-y-5"
       }`}
     >
-    <div className=" flex-col bg-gray-100  rounded-xl flex justify-between p-0.5   h-60 shadow-lg shadow-black/90  ">
-     
-      <div className=" min-w-72 max-w-72  border border-gray-400/30 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
-        {type == "url" ? (
-          <div className="bg-gray-100  rounded-t-lg  text-sm min-h-36 horizontal-scroll  overflow-hidden">
-            {renderContent()}
+      <div className=" flex-col bg-gray-100  rounded-xl flex justify-between p-0.5   h-60 shadow-lg shadow-black/90  ">
+        <div className=" min-w-72 max-w-72  border border-gray-400/30 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
+          {type == "url" ? (
+            <div className="bg-gray-100  rounded-t-lg  text-sm min-h-36 horizontal-scroll  overflow-hidden">
+              {renderContent()}
+            </div>
+          ) : (
+            <div className="bg-yellow-100 rounded-t-lg text-w  text-sm min-h-36  horizontal-scroll overflow-hidden">
+              {renderContent()}
+            </div>
+          )}
+        </div>
+        <div className="bg-gradient-to-t  from-gray-400/90 to-gray-100  rounded-b-xl ">
+          <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
+            <div className="flex  gap-1">
+              <div className="rounded-full p-1 text-gray-700">
+                {type === "note" ? <NoteIcon /> : <Globe size={14} />}
+              </div>
+              <h2 className="text-sm font-semibold text-gray-700">{title}</h2>
+            </div>
           </div>
-        ) : (
-          <div className="bg-yellow-100 rounded-t-lg text-w  text-sm min-h-36  horizontal-scroll overflow-hidden">
-            {renderContent()}
+          {/* <hr  /> */}
+          <div className="flex items-start gap-1 justify-start rounded-xl p-1  m-1   ">
+            {type == "url" ? (
+              <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  <ShareIcon />
+                </a>
+              </button>
+            ) : (
+              <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
+                <Expand />
+              </button>
+            )}
+
+            <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
+              <Delete />
+            </button>
+            <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
+              <p>Query</p>
+            </button>
           </div>
-        )}
-      </div>
-      <div className="bg-gradient-to-t  from-gray-400/90 to-gray-100  rounded-b-xl ">
-      <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
-        <div className="flex  gap-1">
-          <div className="rounded-full p-1 text-gray-700">
-            {type === "note" ? <NoteIcon /> : <Globe size={14} />}
-          </div>
-          <h2 className="text-sm font-semibold text-gray-700">{title}</h2>
         </div>
       </div>
-     {/* <hr  /> */}
-      <div className="flex items-start gap-1 justify-start rounded-xl p-1  m-1   ">
-        {type == "url" ? (
-          <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              <ShareIcon />
-            </a>
-          </button>
-        ) : (
-          <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
-            <Expand />
-          </button>
-        )}
-
-        <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
-          <Delete />
-        </button>
-        <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
-          <p >Query</p>
-        </button>
-      </div>
-      </div>
-    </div></div>
+    </div>
   );
 };
 

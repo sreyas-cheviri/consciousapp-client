@@ -13,13 +13,7 @@ export function Dashboard() {
 
   return (
     <div>
-      <Sidebar
-        openpanel={panel}
-        closepanel={() => {
-          setpanel(false);
-        }}
-      />
-
+      <Sidebar openpanel={panel} closepanel={() => {setpanel(false);}}/>
       <div className="flex justify-center items-center ">
         <div className="flex flex-col justify-center items-center mt-4 ">
           <Header setOpen={setOpen} />

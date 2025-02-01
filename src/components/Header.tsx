@@ -3,8 +3,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LinkIcon from "@mui/icons-material/Link";
 import { Button } from "./Button";
 import { PushButtons } from "./PushButtons";
-import { DarkMode, Light, LightMode } from "@mui/icons-material";
+import { LightMode } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+
 interface HeaderProps {
   setOpen: (open: boolean) => void;
 }
@@ -25,13 +26,15 @@ export const Header =({ setOpen }: HeaderProps) =>{
               </h1>
             </div>
 
-            <div className=" flex gap-1 md:gap-2 p-1 px-2  w-fit rounded-lg  ">
+            <div className=" flex md:flex-row flex-col gap-1 md:gap-2 p-1 px-1  w-fit rounded-lg  ">
+              <div className="flex gap-2">
+
               <Button
                 variant="secondary"
                 text="Share Brain"
                 size="md"
                 startIcon={<LinkIcon style={{ fontSize: 20 }} />}
-              />
+                />
               <Button
                 onClick={() => {
                   setOpen(true);
@@ -40,8 +43,9 @@ export const Header =({ setOpen }: HeaderProps) =>{
                 text="Add Memory"
                 size="md"
                 startIcon={<AddIcon style={{ fontSize: 20 }} />}
-              />
-              <div className="flex gap-2 items-center justify-center">
+                />
+                </div>
+              <div className="md:flex gap-1 items-center justify-center  hidden">
                 <PushButtons
                   variant="opaque2"
                   icon={<LightMode style={{ fontSize: "16px" }} />}
