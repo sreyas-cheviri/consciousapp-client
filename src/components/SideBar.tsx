@@ -31,7 +31,7 @@ export const Sidebar = ({ openpanel, closepanel }: SideBarProps) => {
             variant="secondary"
             startIcon={<Add />}
             size="lg"
-            text={"Create New Brain"}
+            children={"Create New Brain"}
           />
 
    

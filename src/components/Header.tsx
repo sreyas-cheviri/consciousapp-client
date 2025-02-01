@@ -31,7 +31,7 @@ export const Header =({ setOpen }: HeaderProps) =>{
 
               <Button
                 variant="secondary"
-                text="Share Brain"
+                children="Share Brain"
                 size="md"
                 startIcon={<LinkIcon style={{ fontSize: 20 }} />}
                 />
@@ -40,7 +40,7 @@ export const Header =({ setOpen }: HeaderProps) =>{
                   setOpen(true);
                 }}
                 variant="secondary"
-                text="Add Memory"
+                children="Add Memory"
                 size="md"
                 startIcon={<AddIcon style={{ fontSize: 20 }} />}
                 />
