@@ -59,8 +59,8 @@ export function Modal({ open, onClose }: ModalProps) {
                 </div>
               </div>
               <div className="flex gap-2  flex-col">
-                <Input placeholder="Title" onChange={() => { } } variant={"secondary"} />
-                <Input placeholder="Url/link" onChange={() => { } } variant={"secondary"} />
+                <Input placeholder="Title"  variant={"secondary"} />
+                <Input placeholder="Url/link" variant={"secondary"} />
               </div>
               <div className="mb-6 flex items-end justify-end">
                 <Button variant="round" size="md">

@@ -1,10 +1,11 @@
-import React from "react";
+// import React from "react";
 import clsx from "clsx";
 
 interface InputProps {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   variant: "primary" | "secondary";
+  reference? : React.RefObject<HTMLInputElement> | undefined;
 }
 
 
@@ -17,13 +18,14 @@ const variantstyles = {
 };
 
 
-export function Input({ onChange, placeholder, variant }: InputProps) {
+export function Input({  placeholder, variant , reference }: InputProps) {
   return (
 
     <input
       placeholder={placeholder}
+      ref={reference}
       type="text"
-      onChange={onChange}
+      // onChange={onChange}
       className={clsx(variantstyles[variant])}
     />
   );
