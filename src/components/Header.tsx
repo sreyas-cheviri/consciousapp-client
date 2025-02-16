@@ -18,7 +18,8 @@ export const Header =({ setOpen }: HeaderProps) =>{
                 <img
                   src="../src/assets/logo.png"
                   alt=""
-                  className="h-8 rounded-full  hover:-rotate-180 transform  ease-in-out  transition-all duration-300 "
+                  className="h-8 rounded-full   border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+
                 />
               </button>
               <h1 className="shadow-none  text-2xl text-zinc-500 font-serif  hover:text-zinc-500/90 transition-all duration-300">

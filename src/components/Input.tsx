@@ -1,19 +1,31 @@
 import React from "react";
+import clsx from "clsx";
 
 interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
+  variant: "primary" | "secondary";
 }
 
-export function Input({ onChange, placeholder }: InputProps) {
+
+
+const variantstyles = {
+  primary:
+    "w-full px-4 py-3 md:py-3 bg-zinc-200  border border-gray-400 rounded-lg shadow text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500",
+  secondary:
+    "w-full px-2 py-2 md:py-2 bg-zinc-100  border border-gray-300 rounded-lg shadow text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-400",
+};
+
+
+export function Input({ onChange, placeholder, variant }: InputProps) {
   return (
-    <div className="w-full ">
-      <input
-        placeholder={placeholder}
-        type="text"
-        className="px-4 py-3 md:py-3 bg-zinc-200 w-full border-gray-400 border m-1 rounded-lg shadow focus:outline-none"
-        onChange={onChange}
-      />
-    </div>
+
+    <input
+      placeholder={placeholder}
+      type="text"
+      onChange={onChange}
+      className={clsx(variantstyles[variant])}
+    />
   );
 }
+

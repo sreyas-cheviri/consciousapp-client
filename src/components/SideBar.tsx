@@ -19,6 +19,10 @@ export const Sidebar = ({ openpanel, closepanel }: SideBarProps) => {
         onClick={closepanel}
       ></div>
 
+ {/* // this syntaax is bad cause the side bar is always present in the DOM and it is just hidden and shown when needed. */}
+ {/* better to   uses {open && <div>...</div>} for cleaner conditional rendering.
+✔ Modal disappears from the DOM when open is false → No extra CSS tricks needed.
+✔ Still closes when clicking outside or pressing the close button. */}
       
       <div
         className={`fixed left-0 top-0 h-screen bg-zinc-900 border-r border-gray-300/20 z-50 flex flex-col w-64 md:w-1/4 lg:w-1/6 transition-transform duration-300 ${

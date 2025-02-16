@@ -2,20 +2,26 @@ import clsx from "clsx";
 import { ReactElement } from "react";
 
 interface ButtonProps {
-  variant: "primary" | "secondary" | "round" | "roundchips";
+  variant: "primary" | "secondary" | "round" | "roundchips" | "new";
   // text : string | React.ReactNode; text is restrictive, children makes the component more flexible:
-  children:  React.ReactNode;
+  children: React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   size: "sm" | "md" | "lg" | "vsm";
   onClick?: () => void;
+  loading?: boolean;
 }
 
 const variantstyles = {
-  primary: "bg-zinc-900 text-white rounded-lg   hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
-  round: "bg-zinc-900 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
-  roundchips: "bg-zinc-700 text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
-  secondary: "bg-white/10  border-gray-300/40 text-gray-300 rounded-full  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
+  primary:
+    "bg-zinc-900 text-white rounded-lg   hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+  round:
+    "bg-zinc-900 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+  roundchips:
+    "bg-zinc-700 text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
+  secondary:
+    "bg-white/10  border-gray-300/40 text-gray-300 rounded-full  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
+  new: "bg-zinc-700    text-gray-300 rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
 };
 
 const sizeStyles = {
@@ -33,22 +39,28 @@ export const Button = ({
   children,
   startIcon,
   endIcon,
-  size = "md", 
-  onClick
+  size = "md",
+  loading,
+  onClick,
+  
 }: ButtonProps) => {
   return (
     <button
-     type="button" //it’s a good practice to add type="button" to avoid accidental form submissions.
-    onClick={onClick}
+      //  type="button" //it’s a good practice to add type="button" to avoid accidental form submissions.
+      onClick={onClick}
       // className={
-      //   sizeStyles[size] + " " + variantstyles[variant] + " " + defaultStyles
-      // }
-      className={clsx(sizeStyles[size], variantstyles[variant], defaultStyles)} //better way to write with clsx
-
+      //   sizeStyles[size] + " " + variantstyles[variant] + " " + defaultStyles// }
+      className={clsx(
+        sizeStyles[size], 
+        variantstyles[variant], 
+        defaultStyles, 
+        { "opacity-50 cursor-not-allowed": loading } // Conditionally apply styles if `loading` is true
+      )}
+      
     >
       <div className="flex justify-center items-center gap-2 ">
-       {startIcon}
-       <div>{children}</div>
+        {startIcon}
+        <div>{children}</div>
 
         {endIcon}
       </div>

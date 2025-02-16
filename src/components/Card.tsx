@@ -135,8 +135,8 @@ const Card: React.FC<CardProps> = ({
         isVisible ? "animate-smoothLanding" : "opacity-0 translate-y-5"
       }`}
     >
-      <div className=" flex-col bg-gray-100  rounded-xl flex justify-between   h-60 shadow-lg shadow-black/90  ">
-        <div className=" min-w-72 max-w-72  border border-gray-400/50 bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
+      <div className=" flex-col bg-gray-100 p-[1.5px] rounded-xl flex justify-between   h-60 shadow-lg shadow-black/90  ">
+        <div className=" min-w-72 max-w-72 border   bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
           {type == "url" ? (
             <div className="bg-gray-100  rounded-t-lg  text-sm min-h-36 horizontal-scroll  overflow-hidden">
               {renderContent()}
@@ -147,7 +147,7 @@ const Card: React.FC<CardProps> = ({
             </div>
           )}
         </div>
-        <div className="bg-gradient-to-t  from-zinc-400/90 to-zinc-100  rounded-b-xl ">
+        <div className="bg-gradient-to-t   from-zinc-400/90 to-zinc-200  rounded-b-xl ">
           <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
             <div className="flex  gap-1">
               <div className="rounded-full p-1 text-gray-700">
@@ -159,23 +159,23 @@ const Card: React.FC<CardProps> = ({
           {/* <hr  /> */}
           <div className="flex items-start gap-1 justify-start rounded-xl p-1  m-1   ">
             {type == "url" ? (
-              <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
+              <button className="border  bg-zinc-300  rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                 <a href={url} target="_blank" rel="noopener noreferrer">
                   <ShareIcon />
                 </a>
               </button>
             ) : (
-              <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 transition duration-300">
+              <button className="border bg-zinc-300 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                 <Expand />
               </button>
             )}
 
-            <button className="bg-gray-200 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
+            <button className="border bg-zinc-300 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100">
               <Delete />
             </button>
-            <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
+            {/* <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">
               <p>Query</p>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
