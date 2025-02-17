@@ -9,7 +9,7 @@ import { Footer } from "../components/Footer";
 export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [panel, setPanel] = useState(false);
-  const [filter, setFilter] = useState<string | null>(null); 
+  const [filter, setFilter] = useState<string | null>(null);
 
   const cardsData = [
     {
@@ -31,12 +31,11 @@ export function Dashboard() {
       title: "Sam Altman - How To Be Successful",
       type: "url",
       url: "https://github.com/retrogtx",
-    }, 
-   
+    },
   ];
 
   const handleChipSelect = (chip: string | null) => {
-    setFilter(chip);  
+    setFilter(chip);
   };
 
   const filteredCards = filter
@@ -50,13 +49,18 @@ export function Dashboard() {
         <div className="flex flex-col justify-center items-center mt-4">
           <Header setOpen={setOpen} />
           <Footer setpanel={setPanel} />
-          <SearchBox onChipSelect={handleChipSelect} />  
+          <SearchBox onChipSelect={handleChipSelect} />
 
           <div className="flex gap-2 md:justify-center max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/3">
-          {filteredCards.map((card) => (
-  <Card key={card.title} title={card.title} type={card.type} content={card.content} url={card.url} />
-))}
-
+            {filteredCards.map((card) => (
+              <Card
+                key={card.title}
+                title={card.title}
+                type={card.type}
+                content={card.content}
+                url={card.url}
+              />
+            ))}
           </div>
 
           <Modal

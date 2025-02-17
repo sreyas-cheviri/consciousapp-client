@@ -3,6 +3,9 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useRef, useState } from "react";
 import axios from "axios";
+// import { PushButtons } from "../components/PushButtons";
+// import { MoveLeft } from "lucide-react";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function Signup() {
@@ -11,6 +14,7 @@ export function Signup() {
   const PasswordRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); 
+  const [gloading, setgLoading] = useState(false);
   async function signup() {
     setLoading(true);
     const username = usernameRef.current?.value;
@@ -41,8 +45,32 @@ export function Signup() {
       }
     }
   }
+  async function GuestSignup() {
+    setgLoading(true);
+    
+    console.log("API URL:", API_URL);
+    try {
+      const response = await axios.post(`${API_URL}/api/v1/guest`);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+    localStorage.setItem("username", "Guest");
+
+    setgLoading(false);
+    navigate("/Dashboard");
+    alert("Logged in as Guest");
+  } catch (error) {
+    setgLoading(false);
+    setError("Guest login failed. Please try again.");
+    console.error("Guest login error:", error);
+  }
+  }
   return (
     <div className="flex  justify-center items-center min-h-screen ">
+      {/* <div className="m-10 absolute md:top-36  left-80">
+        <Link to="/">
+          <PushButtons variant={"opaque"} icon={<MoveLeft />} size={"sm"} />
+        </Link>
+      </div> */}
       <div className="bg-zinc-500 flex rounded-3xl p-[4px]   ">
         <div className="flex flex-col p-5 bg-zinc-300 max-w-80  items-center justify-center gap-2 rounded-3xl md:rounded-l-3xl md:rounded-none">
           <div className="flex  flex-col justify-center items-center mb-8">
@@ -80,6 +108,13 @@ export function Signup() {
             loading ={loading}
             size={"md"}
           ></Button>
+          <Button
+            variant={"new"}
+            onClick={GuestSignup}
+            children={ gloading? "Logging in as a Guest...." : "Continue as a Guest"}
+            loading ={gloading}
+            size={"md"}
+          ></Button>
          {error && (
             <p className="text-red-500 font-semibold text-center text-xs mt-2">
               {error}
@@ -100,7 +135,7 @@ export function Signup() {
         </div>
         <div className=" hidden md:block">
           <img
-            className=" w-64  h-fit rounded-r-3xl  contrast-75 backdrop-contrast-50 "
+            className=" w-64  h-full rounded-r-3xl  contrast-75 backdrop-contrast-50 "
             src="../src/assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg"
             alt=""
             />

@@ -7,7 +7,7 @@
 
 ## Description
 
-Superconscious Client is a TypeScript-based second brain web app project designed to save and search links, notes, & other media from various sources effortlessly..
+conscious is a TS-based second brain web app project designed to save and search links, notes, & other media from various sources effortlessly..
 
 ### BE repo
 [backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)

@@ -3,14 +3,17 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useRef, useState } from "react";
 import axios from "axios";
+// import { MoveLeft } from "lucide-react";
+// import { PushButtons } from "../components/PushButtons";
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function Signin() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const PasswordRef = useRef<HTMLInputElement>(null);
-  const [error, setError] = useState("");  
-  const [loading, setLoading] = useState(false);  
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [gloading, setgLoading] = useState(false);
 
   async function signin() {
     setLoading(true);
@@ -46,8 +49,33 @@ export function Signin() {
     }
   }
 
+  async function GuestSignup() {
+    setgLoading(true);
+    
+    console.log("API URL:", API_URL);
+    try {
+      const response = await axios.post(`${API_URL}/api/v1/guest`);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+    localStorage.setItem("username", "Guest");
+
+    setgLoading(false);
+    navigate("/Dashboard");
+    alert("Logged in as Guest");
+  } catch (error) {
+    setgLoading(false);
+    setError("Guest login failed. Please try again.");
+    console.error("Guest login error:", error);
+  }
+  }
+
   return (
     <div className="flex justify-center items-center min-h-screen ">
+      {/* <div className="m-10 absolute md:top-36  left-80">
+        <Link to="/">
+          <PushButtons variant={"opaque"} icon={<MoveLeft />} size={"sm"} />
+        </Link>
+      </div> */}
       <div className="bg-zinc-500 flex rounded-3xl p-[4px]">
         <div className="flex flex-col p-5 bg-zinc-300 max-w-80 items-center justify-center gap-2 rounded-3xl md:rounded-l-3xl md:rounded-none">
           <div className="flex flex-col justify-center items-center mb-8">
@@ -56,7 +84,9 @@ export function Signin() {
               className="h-8 rounded-full border border-gray-500 mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               alt=""
             />
-            <h1 className="font-semibold text-lg text-zinc-600">Welcome back!</h1>
+            <h1 className="font-semibold text-lg text-zinc-600">
+              Welcome back!
+            </h1>
             <p className="text-zinc-500 text-xs">
               First time here?{" "}
               <Link to="/Signup" className="text-zinc-800 font-semibold">
@@ -78,10 +108,17 @@ export function Signin() {
 
           <Button
             variant={"new"}
-            children={ loading? "logging in...." : "SignIn"}
+            children={loading ? "logging in...." : "SignIn"}
             size={"md"}
             loading={loading}
             onClick={signin}
+          ></Button>
+          <Button
+            variant={"new"}
+            children={gloading ? "logging in as a Guest...." : "Continue as a Guest"}
+            size={"md"}
+            loading={gloading}
+            onClick={GuestSignup}
           ></Button>
 
           {error && (
