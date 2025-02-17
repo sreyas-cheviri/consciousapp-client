@@ -14,7 +14,7 @@ interface FooterProps {
 
 export const Footer = ({ setpanel }: FooterProps) => {
   return (
-    <div className="flex    w-screen fixed md:m-2 bottom-0 p-2   px-10 md:p-10  md:bg-transparent bg-zinc-800 text-zinc-900 z-40 justify-between  ">
+    <div className="flex    w-screen fixed md:m-2 bottom-0 p-2   px-10 md:p-10  md:bg-transparent bg-zinc-800 text-zinc-900 md:z-0 z-40 justify-between  ">
       <div
         className="flex md:gap-4 gap-8 m-1 justify-between items-center
         "

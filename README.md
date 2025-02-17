@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+# conscious 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![License](https://img.shields.io/github/license/sreyas-cheviri/superconscious-client)
+![Language](https://img.shields.io/github/languages/top/sreyas-cheviri/superconscious-client)
+![Last Commit](https://img.shields.io/github/last-commit/sreyas-cheviri/superconscious-client)
+![Repo Size](https://img.shields.io/github/repo-size/sreyas-cheviri/superconscious-client)
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Superconscious Client is a TypeScript-based second brain web app project designed to save and search links, notes, & other media from various sources effortlessly..
 
-## Expanding the ESLint configuration
+### BE repo
+[backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Table of Contents
 
-- Configure the top-level `parserOptions` property like this:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Installation
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+To install and set up the project, follow these steps:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/sreyas-cheviri/superconscious-client.git
+    ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+2. Navigate to the project directory:
+    ```bash
+    cd superconscious-client
+    ```
+
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
+
+## Usage
+
+To use the project, follow these steps:
+
+1. Start the development server:
+    ```bash
+    npm start
+    ```
+
+2. Open your browser and navigate to `http://localhost:3000` to see the application in action.
+
+## Contributing
+
+Contributions are welcome! To contribute to the project, follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
+    ```bash
+    git checkout -b feature-name
+    ```
+3. Make your changes and commit them:
+    ```bash
+    git commit -m 'Add some feature'
+    ```
+4. Push to the branch:
+    ```bash
+    git push origin feature-name
+    ```
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Contact
+
+If you have any questions or need support, feel free to contact:
+
+  - GitHub: [sreyas-cheviri](https://github.com/sreyas-cheviri)
+  - X: [sreyascheviri](https://x.com/sreyascheviri)

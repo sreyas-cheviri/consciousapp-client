@@ -8,7 +8,7 @@ import { Expand } from "../icons/Expand";
 
 interface CardProps {
   title: string;
-  type?: "note" | "url";
+  type?: string;
   content?: string;
   url?: string;
 }
@@ -91,7 +91,7 @@ const Card: React.FC<CardProps> = ({
         ) : (
           <div className="w-full h-full rounded-lg">
             <iframe
-              src={url || ""}
+              src={url}
               className="w-full h-full rounded-lg"
               allowFullScreen
             />

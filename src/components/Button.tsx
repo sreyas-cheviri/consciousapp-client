@@ -48,8 +48,7 @@ export const Button = ({
     <button
       //  type="button" //it’s a good practice to add type="button" to avoid accidental form submissions.
       onClick={onClick}
-      // className={
-      //   sizeStyles[size] + " " + variantstyles[variant] + " " + defaultStyles// }
+      // className={sizeStyles[size] + " " + variantstyles[variant] + " " + defaultStyles// }
       className={clsx(
         sizeStyles[size], 
         variantstyles[variant], 

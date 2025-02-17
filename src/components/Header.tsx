@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export const Header =({ setOpen }: HeaderProps) =>{
     return(
-<div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full  items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl  bg-zinc-600/1   ">
+<div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full max-w-full min-w-full  items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl  bg-zinc-600/1   ">
             <div className=" flex gap-4 items-center">
               <button>
                 <img
@@ -23,7 +23,8 @@ export const Header =({ setOpen }: HeaderProps) =>{
                 />
               </button>
               <h1 className="shadow-none  text-2xl text-zinc-500 font-serif  hover:text-zinc-500/90 transition-all duration-300">
-                Welcome, Sreyas
+              Welcome, {localStorage.getItem("username")}
+
               </h1>
             </div>
 

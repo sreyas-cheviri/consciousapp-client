@@ -1,35 +1,50 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API_URL;
 
-
-
 export function Signup() {
-    const usernameRef = useRef<HTMLInputElement>(null)
-    const navigate = useNavigate();
-    const PasswordRef = useRef<HTMLInputElement>(null)
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const PasswordRef = useRef<HTMLInputElement>(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
+  async function signup() {
+    setLoading(true);
+    const username = usernameRef.current?.value;
+    const password = PasswordRef.current?.value;
 
-
-    async function signup() {
-        const username  = usernameRef.current?.value;
-        const password  = PasswordRef.current?.value;
-        console.log("API URL:", API_URL);
-
-        await  axios.post(`${API_URL}/api/v1/signup`,{
-            username,password
-        })
-        navigate("/Signin")
-        alert("signed up")
+    console.log("API URL:", API_URL);
+    try {
+      await axios.post(`${API_URL}/api/v1/signup`, {
+        username,
+        password,
+      });
+      setLoading(false);
+      navigate("/Signin");
+      alert("signed up");
+    } catch (error: unknown) {
+      setLoading(false)
+      console.error("Signup error:", error);
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          setError(error.response.data.message || "Signup failed. Try again.");
+        } else if (error.request) {
+          setError("No response from server.");
+        } else {
+          setError("Something went wrong. Please try again.");
+        }
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
     }
+  }
   return (
-
-   
     <div className="flex  justify-center items-center min-h-screen ">
       <div className="bg-zinc-500 flex rounded-3xl p-[4px]   ">
-        <div className="flex flex-col p-8 bg-zinc-300 max-w-80  items-center justify-center gap-2 rounded-3xl md:rounded-l-3xl md:rounded-none">
+        <div className="flex flex-col p-5 bg-zinc-300 max-w-80  items-center justify-center gap-2 rounded-3xl md:rounded-l-3xl md:rounded-none">
           <div className="flex  flex-col justify-center items-center mb-8">
             <img
               src="../src/assets/logo.png"
@@ -53,24 +68,42 @@ export function Signup() {
             variant={"secondary"}
           />
           <Input
-            placeholder="P@$$worD"
+            placeholder="Password"
             reference={PasswordRef}
             variant={"secondary"}
           />
 
-          <Button variant={"new"} onClick={signup} children={"SignUp"} size={"md"}></Button>
+          <Button
+            variant={"new"}
+            onClick={signup}
+            children={ loading? "Signing up...." : "SignUp"}
+            loading ={loading}
+            size={"md"}
+          ></Button>
+         {error && (
+            <p className="text-red-500 font-semibold text-center text-xs mt-2">
+              {error}
+            </p>
+          )}
           <p className="text-zinc-500 text-xs w-full text-justify mt-3 align-middle">
-  By signing up, you agree to our <a href="#" className="text-zinc-800 font-semibold">Terms of Service</a> and{" "}
-  <a href="#" className="text-zinc-800 font-semibold">Privacy Policy</a>.
-</p>
-
+            By signing up you agree to our{" "}
+            <a href="#" className="text-zinc-800 font-semibold">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-zinc-800 font-semibold">
+              Privacy Policy
+            </a>
+            .
+          </p>
+            
         </div>
         <div className=" hidden md:block">
           <img
-            className="h-[11cm] w-64   rounded-r-3xl  contrast-75 backdrop-contrast-50 "
+            className=" w-64  h-fit rounded-r-3xl  contrast-75 backdrop-contrast-50 "
             src="../src/assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg"
             alt=""
-          />
+            />
         </div>
       </div>
     </div>

@@ -54,7 +54,9 @@ export function Modal({ open, onClose }: ModalProps) {
               <div className="flex gap-1 mt-10 m-2">
                 <div className="flex gap-2 mt-2 bg-black/15 p-1 rounded-full">
                   {["Url", "Note", "Doc", "Image"].map((chip, index) => (
-                    <Chips key={index} text={chip} />
+                    <Chips key={index} text={chip} isSelected={false} onClick={function (): void {
+                      throw new Error("Function not implemented.");
+                    } } />
                   ))}
                 </div>
               </div>
