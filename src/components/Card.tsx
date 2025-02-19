@@ -11,6 +11,7 @@ interface CardProps {
   type?: string;
   content?: string;
   url?: string;
+  setdelete : () => void;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -18,6 +19,7 @@ const Card: React.FC<CardProps> = ({
   type = "",
   content = "",
   url = "",
+  setdelete
 }) => {
   const isValidYoutubeUrl = (url: string) => {
     return url.match(/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/);
@@ -154,7 +156,14 @@ const Card: React.FC<CardProps> = ({
                 {type === "Note" ? <NoteIcon /> : <Globe size={14} />}
               </div>
               {/* <h2 className="text-sm font-semibold text-gray-700">{title}</h2> */}
-              <h2 className="text-sm font-semibold text-gray-700">{title.length > 72 ? title.slice(0, 72) + "..." : title}</h2>;
+              <h2
+  className="text-sm font-semibold text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60"
+>
+  {title}
+</h2>
+
+
+
             </div>
           </div>
           {/* <hr  /> */}
@@ -171,7 +180,7 @@ const Card: React.FC<CardProps> = ({
               </button>
             )}
 
-            <button className="border bg-zinc-300 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100">
+            <button onClick={setdelete} className="border bg-zinc-300 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100">
               <Delete />
             </button>
             {/* <button className="bg-gray-200 flex items-center justify-center rounded-lg p-1 py-0 text-gray-700 border-gray-400/50 hover:bg-gray-300 duration-300">

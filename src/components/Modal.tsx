@@ -49,7 +49,7 @@ export function Modal({ open, onClose }: ModalProps) {
     console.log(type);
     
     await axios.post(`${API_URL}/api/v1/content`,{
-      title,link,type,content
+    title,link,type,content
     },{
       headers:{
         "Authorization" : localStorage.getItem("token")
@@ -104,7 +104,7 @@ export function Modal({ open, onClose }: ModalProps) {
                 {type === ContentType.Url ? (
                   <Input placeholder="Url/link" reference={LinkRef} variant={"secondary"} />
                 ) : (
-                  <textarea  placeholder="Your text.........." ref={NoteRef} className="p-3 rounded-xl border-gray-300 bg-gray-50 border-2 h-36" />
+                  <textarea  placeholder="Your text.........." ref={NoteRef} className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-fit bg-gray-50 border-2 " />
                 )}
               </div>
               <div className="mb-6 flex items-end justify-end">
