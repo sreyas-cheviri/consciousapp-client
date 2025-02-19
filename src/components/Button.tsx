@@ -21,11 +21,11 @@ const variantstyles = {
     "bg-zinc-700 text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
   secondary:
     "bg-white/10  border-gray-300/40 text-gray-300 rounded-full  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
-  new: "bg-zinc-700    text-gray-300 rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
+  new: "bg-zinc-700    text-gray-300 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
 };
 
 const sizeStyles = {
-  vsm: "px-3 py-1 text-[.7rem]",
+  vsm: "px-2 py-.5 text-[.7rem]",
   sm: "px-4 py-1 text-[.9rem]",
   md: "px-3 py-2 text-md",
   lg: "px-4 py-2 text-lg",

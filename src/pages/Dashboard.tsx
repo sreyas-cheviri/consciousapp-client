@@ -5,34 +5,20 @@ import { Sidebar } from "../components/SideBar";
 import SearchBox from "../components/SearchBox";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { useContent } from "../hooks/useContent";
 
 export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [panel, setPanel] = useState(false);
   const [filter, setFilter] = useState<string | null>(null);
-
-  const cardsData = [
-    {
-      title: "Meeting Notes",
-      type: "note",
-      content: "Important points from today's meeting...",
-    },
-    {
-      title: "Steve Jobs' 2005 Stanford Commencement Address",
-      type: "url",
-      url: "https://www.youtube.com/watch?v=UF8uR6Z6KLc&pp=ygURc3RldmUgam9icyBzcGVlY2g%3D",
-    },
-    {
-      title: "Naval's Tweet Saving",
-      type: "url",
-      url: "https://x.com/Synthetic_Copy/status/1885360529318830422",
-    },
-    {
-      title: "Sam Altman - How To Be Successful",
-      type: "url",
-      url: "https://github.com/retrogtx",
-    },
-  ];
+  const content = useContent();
+  const cardsData = content.map(({ type, link, title, content }) => ({
+    type,
+    link,
+    title,
+    content,
+  }));
+  
 
   const handleChipSelect = (chip: string | null) => {
     setFilter(chip);
@@ -58,7 +44,7 @@ export function Dashboard() {
                 title={card.title}
                 type={card.type}
                 content={card.content}
-                url={card.url}
+                url={card.link}
               />
             ))}
           </div>

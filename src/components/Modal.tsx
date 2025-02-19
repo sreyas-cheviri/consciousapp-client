@@ -2,11 +2,20 @@ import { CircleX } from "lucide-react";
 import { Button } from "./Button";
 import { Chips } from "./Chips";
 import { Input } from "./Input";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
 interface ModalProps {
   open: boolean;
   onClose: () => void;
+}
+const API_URL = import.meta.env.VITE_API_URL;
+
+enum ContentType {
+  Url = "Url",
+  Note = "Note",
+  Doc = "Doc",
+  Image = "Image"
 }
 
 export function Modal({ open, onClose }: ModalProps) {
@@ -18,9 +27,38 @@ export function Modal({ open, onClose }: ModalProps) {
     }
 
     return () => {
-      document.body.style.overflow = "auto"; // Cleanup when unmounted
+      document.body.style.overflow = "auto"; 
     };
   }, [open]);
+
+
+  const titleRef = useRef<HTMLInputElement | null>(null);
+  const LinkRef = useRef<HTMLInputElement | null>(null);
+  const NoteRef = useRef<HTMLTextAreaElement | null>(null);
+  const [selectedChip, setSelectedChip] = useState<string | null>(null);
+  const handleChipClick = (chip: string) => {
+    const newSelectedChip = selectedChip === chip ? null : chip;
+    setSelectedChip(newSelectedChip);
+
+  };
+  const [type, setType] = useState(ContentType.Url)
+  async function addContent(){
+    const title  = titleRef.current?.value;
+    const link  = LinkRef.current?.value;
+    const content  = NoteRef.current?.value;
+    console.log(type);
+    
+    await axios.post(`${API_URL}/api/v1/content`,{
+      title,link,type,content
+    },{
+      headers:{
+        "Authorization" : localStorage.getItem("token")
+      }
+    }).then(() => {onClose();
+    window.location.reload()})
+
+    
+  }
 
   return (
     open && (
@@ -54,18 +92,23 @@ export function Modal({ open, onClose }: ModalProps) {
               <div className="flex gap-1 mt-10 m-2">
                 <div className="flex gap-2 mt-2 bg-black/15 p-1 rounded-full">
                   {["Url", "Note", "Doc", "Image"].map((chip, index) => (
-                    <Chips key={index} text={chip} isSelected={false} onClick={function (): void {
-                      throw new Error("Function not implemented.");
+                    <Chips key={index} text={chip} isSelected={selectedChip === chip} onClick={()=>{
+                      setType(ContentType[chip as keyof typeof ContentType]);
+                      handleChipClick(chip);
                     } } />
                   ))}
                 </div>
               </div>
               <div className="flex gap-2  flex-col">
-                <Input placeholder="Title"  variant={"secondary"} />
-                <Input placeholder="Url/link" variant={"secondary"} />
+                <Input placeholder="Title" reference={titleRef}  variant={"secondary"} />
+                {type === ContentType.Url ? (
+                  <Input placeholder="Url/link" reference={LinkRef} variant={"secondary"} />
+                ) : (
+                  <textarea  placeholder="Your text.........." ref={NoteRef} className="p-3 rounded-xl border-gray-300 bg-gray-50 border-2 h-36" />
+                )}
               </div>
               <div className="mb-6 flex items-end justify-end">
-                <Button variant="round" size="md">
+                <Button onClick={addContent} variant="round" size="md">
                   Add to Memory
                 </Button>
               </div>

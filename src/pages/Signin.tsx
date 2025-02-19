@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
+
 // import { MoveLeft } from "lucide-react";
 // import { PushButtons } from "../components/PushButtons";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -13,12 +15,17 @@ export function Signin() {
   const PasswordRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [gloading, setgLoading] = useState(false);
-
+  useEffect(()=>{
+    usernameRef.current?.focus();
+  },[])
+  // const [gloading, setgLoading] = useState(false);
+ 
   async function signin() {
     setLoading(true);
     const username = usernameRef.current?.value;
     const password = PasswordRef.current?.value;
+    
+    
     console.log("API URL:", API_URL);
     try {
       const response = await axios.post(`${API_URL}/api/v1/signin`, {
@@ -49,25 +56,25 @@ export function Signin() {
     }
   }
 
-  async function GuestSignup() {
-    setgLoading(true);
+  // async function GuestSignup() {
+  //   setgLoading(true);
     
-    console.log("API URL:", API_URL);
-    try {
-      const response = await axios.post(`${API_URL}/api/v1/guest`);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-    localStorage.setItem("username", "Guest");
+  //   console.log("API URL:", API_URL);
+  //   try {
+  //     const response = await axios.post(`${API_URL}/api/v1/guest`);
+  //     const token = response.data.token;
+  //     localStorage.setItem("token", token);
+  //   localStorage.setItem("username", "Guest");
 
-    setgLoading(false);
-    navigate("/Dashboard");
-    alert("Logged in as Guest");
-  } catch (error) {
-    setgLoading(false);
-    setError("Guest login failed. Please try again.");
-    console.error("Guest login error:", error);
-  }
-  }
+  //   setgLoading(false);
+  //   navigate("/Dashboard");
+  //   alert("Logged in as Guest");
+  // } catch (error) {
+  //   setgLoading(false);
+  //   setError("Guest login failed. Please try again.");
+  //   console.error("Guest login error:", error);
+  // }
+  // }
 
   return (
     <div className="flex justify-center items-center min-h-screen ">
@@ -108,18 +115,18 @@ export function Signin() {
 
           <Button
             variant={"new"}
-            children={loading ? "logging in...." : "SignIn"}
+            children={loading ? <div className="flex gap-2 items-center justify-center"><Loader2 className=" h-5  w-5 animate-spin"  /> Logging In...</div>: "SignIn"}
             size={"md"}
             loading={loading}
             onClick={signin}
           ></Button>
-          <Button
+          {/* <Button
             variant={"new"}
-            children={gloading ? "logging in as a Guest...." : "Continue as a Guest"}
+            children={gloading ? "Logging in as a Guest...." : "Continue as a Guest"}
             size={"md"}
             loading={gloading}
             onClick={GuestSignup}
-          ></Button>
+          ></Button> */}
 
           {error && (
             <p className="text-red-500 font-semibold text-center text-xs mt-2">

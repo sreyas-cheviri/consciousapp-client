@@ -15,7 +15,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({
   title,
-  type = "note",
+  type = "",
   content = "",
   url = "",
 }) => {
@@ -39,13 +39,13 @@ const Card: React.FC<CardProps> = ({
   };
 
   const renderContent = () => {
-    if (type === "note") {
+    if (type === "Note") {
       return (
         <div className="p-2">
           <p className="text-gray-700">{content}</p>
         </div>
       );
-    } else if (type === "url") {
+    } else if (type === "Url") {
       if (isValidYoutubeUrl(url)) {
         const embedUrl = getYoutubeEmbedUrl(url);
         return (
@@ -137,7 +137,7 @@ const Card: React.FC<CardProps> = ({
     >
       <div className=" flex-col bg-gray-100 p-[1.5px] rounded-xl flex justify-between   h-60 shadow-lg shadow-black/90  ">
         <div className=" min-w-72 max-w-72 border   bg-white rounded-xl  no-scrollbar  min-h-32  max-h-60 overflow-y-auto ">
-          {type == "url" ? (
+          {type == "Url" ? (
             <div className="bg-gray-100  rounded-t-lg  text-sm min-h-36 horizontal-scroll  overflow-hidden">
               {renderContent()}
             </div>
@@ -151,14 +151,15 @@ const Card: React.FC<CardProps> = ({
           <div className="flex justify-between  p-2 min-w-72 max-w-72 rounded-lg ">
             <div className="flex  gap-1">
               <div className="rounded-full p-1 text-gray-700">
-                {type === "note" ? <NoteIcon /> : <Globe size={14} />}
+                {type === "Note" ? <NoteIcon /> : <Globe size={14} />}
               </div>
-              <h2 className="text-sm font-semibold text-gray-700">{title}</h2>
+              {/* <h2 className="text-sm font-semibold text-gray-700">{title}</h2> */}
+              <h2 className="text-sm font-semibold text-gray-700">{title.length > 72 ? title.slice(0, 72) + "..." : title}</h2>;
             </div>
           </div>
           {/* <hr  /> */}
           <div className="flex items-start gap-1 justify-start rounded-xl p-1  m-1   ">
-            {type == "url" ? (
+            {type == "Url" ? (
               <button className="border  bg-zinc-300  rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                 <a href={url} target="_blank" rel="noopener noreferrer">
                   <ShareIcon />

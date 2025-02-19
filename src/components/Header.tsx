@@ -5,12 +5,18 @@ import { Button } from "./Button";
 import { PushButtons } from "./PushButtons";
 import { LightMode } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   setOpen: (open: boolean) => void;
 }
-
 export const Header =({ setOpen }: HeaderProps) =>{
+  const navigate = useNavigate();
+  function Logout(){
+    localStorage.removeItem("token");
+    navigate("/")
+
+  }
     return(
 <div className="flex flex-col shadow-black/70 shadow-2xl md:flex-row md:w-full max-w-full min-w-full  items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl  bg-zinc-600/1   ">
             <div className=" flex gap-4 items-center">
@@ -22,6 +28,7 @@ export const Header =({ setOpen }: HeaderProps) =>{
 
                 />
               </button>
+              {/* <span ><Button variant={"new"} children={"Beta"} size={"vsm"} ></Button></span> */}
               <h1 className="shadow-none  text-2xl text-zinc-500 font-serif  hover:text-zinc-500/90 transition-all duration-300">
               Welcome, {localStorage.getItem("username")}
 
@@ -57,6 +64,7 @@ export const Header =({ setOpen }: HeaderProps) =>{
                   variant="opaque2"
                   icon={<LogoutIcon style={{ fontSize: "16px" }} />}
                   size="md"
+                  onClick={Logout}
                 />
               </div>
             </div>

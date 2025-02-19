@@ -6,6 +6,7 @@ interface InputProps {
   placeholder: string;
   variant: "primary" | "secondary";
   reference? : React.RefObject<HTMLInputElement> | undefined;
+  maxlength? : number;
 }
 
 
@@ -18,13 +19,14 @@ const variantstyles = {
 };
 
 
-export function Input({  placeholder, variant , reference }: InputProps) {
+export function Input({  placeholder, variant , reference , maxlength }: InputProps) {
   return (
 
     <input
       placeholder={placeholder}
       ref={reference}
       type="text"
+      maxLength={maxlength}
       // onChange={onChange}
       className={clsx(variantstyles[variant])}
     />

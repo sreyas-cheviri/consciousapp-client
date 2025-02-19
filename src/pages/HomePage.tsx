@@ -15,7 +15,7 @@ export default function HomePage() {
         alt="Logo"
       />
 
-      <h1 className="text-4xl mt-10 italic opacity-60 font-serif">Conscious</h1>
+      <h1 className="text-4xl mt-2 italic opacity-60 font-serif">Conscious</h1>  <span className="-rotate-12 hover:rotate-0 transition-all duration-300"><Button variant={"new"} children={"Beta"} size={"vsm"} ></Button></span>
       <p className="opacity-60   md:mt-24 mt-14 italic font-serif text-center max-w-lg md:max-w-2xl text-sm  md:text-xl">
         Never Lose an Idea Again! <br />
         Conscious helps you store, recall, and link your knowledge effortlessly.
@@ -29,10 +29,10 @@ export default function HomePage() {
         </Link>
       </div>
       <div className=" flex justify-center items-center  ">
-        <div className="absolute flex-col justify-center items-center opacity-50 flex text-gray-800 bottom-2 text-xs ">
+        <div className="absolute flex-col justify-center items-center opacity-50 flex text-zinc-800 bottom-2 text-xs ">
           <Button
             variant={"round"}
-            size={"md"}
+            size={"vsm"}
             startIcon={
               <a
                 href="https://x.com/sreyascheviri"
@@ -56,7 +56,7 @@ export default function HomePage() {
             }
           ></Button>
 
-          <p className="flex justify-center">© Conscious 2025</p>
+          <p className="flex text-zinc-800  justify-center">© Conscious 2025</p>
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useRef, useState } from "react";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 // import { PushButtons } from "../components/PushButtons";
 // import { MoveLeft } from "lucide-react";
 
@@ -14,7 +15,7 @@ export function Signup() {
   const PasswordRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false); 
-  const [gloading, setgLoading] = useState(false);
+  // const [gloading, setgLoading] = useState(false);
   async function signup() {
     setLoading(true);
     const username = usernameRef.current?.value;
@@ -45,25 +46,25 @@ export function Signup() {
       }
     }
   }
-  async function GuestSignup() {
-    setgLoading(true);
+  // async function GuestSignup() {
+  //   setgLoading(true);
     
-    console.log("API URL:", API_URL);
-    try {
-      const response = await axios.post(`${API_URL}/api/v1/guest`);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-    localStorage.setItem("username", "Guest");
+  //   console.log("API URL:", API_URL);
+  //   try {
+  //     const response = await axios.post(`${API_URL}/api/v1/guest`);
+  //     const token = response.data.token;
+  //     localStorage.setItem("token", token);
+  //   localStorage.setItem("username", "Guest");
 
-    setgLoading(false);
-    navigate("/Dashboard");
-    alert("Logged in as Guest");
-  } catch (error) {
-    setgLoading(false);
-    setError("Guest login failed. Please try again.");
-    console.error("Guest login error:", error);
-  }
-  }
+  //   setgLoading(false);
+  //   navigate("/Dashboard");
+  //   alert("Logged in as Guest");
+  // } catch (error) {
+  //   setgLoading(false);
+  //   setError("Guest login failed. Please try again.");
+  //   console.error("Guest login error:", error);
+  // }
+  // }
   return (
     <div className="flex  justify-center items-center min-h-screen ">
       {/* <div className="m-10 absolute md:top-36  left-80">
@@ -104,17 +105,17 @@ export function Signup() {
           <Button
             variant={"new"}
             onClick={signup}
-            children={ loading? "Signing up...." : "SignUp"}
+            children={loading ? <div className="flex gap-2 items-center justify-center"><Loader2 className=" h-5 w-5 animate-spin"  /> Signing Up...</div> : "SignUp"}
             loading ={loading}
             size={"md"}
           ></Button>
-          <Button
+          {/* <Button
             variant={"new"}
             onClick={GuestSignup}
             children={ gloading? "Logging in as a Guest...." : "Continue as a Guest"}
             loading ={gloading}
             size={"md"}
-          ></Button>
+          ></Button> */}
          {error && (
             <p className="text-red-500 font-semibold text-center text-xs mt-2">
               {error}
