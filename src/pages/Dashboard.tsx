@@ -42,7 +42,7 @@ export function Dashboard() {
   };
 
   const filteredCards = filter
-    ? cardsData.filter((card) => card.type === filter.toLowerCase())
+    ? cardsData.filter((card) => card.type === filter)
     : cardsData;
 
   return (

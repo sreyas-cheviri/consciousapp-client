@@ -70,7 +70,7 @@ export function Modal({ open, onClose }: ModalProps) {
           className="bg-zinc-100 text-black rounded-2xl max-w-[90%] max-h-[65%] z-50 md:w-[44rem] md:h-[40rem] w-full h-full"
           onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing the modal
         >
-          <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">
+          <div className="bg-zinc-400/60  p-5 w-full h-full rounded-2xl">
             <div className="flex items-center justify-between w-full text-gray-700">
               <div className="flex-grow flex justify-center">
                 <p className="font-bold text-lg">Add your content</p>
@@ -104,7 +104,7 @@ export function Modal({ open, onClose }: ModalProps) {
                 {type === ContentType.Url ? (
                   <Input placeholder="Url/link" reference={LinkRef} variant={"secondary"} />
                 ) : (
-                  <textarea  placeholder="Your text.........." ref={NoteRef} className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-fit bg-gray-50 border-2 " />
+                  <textarea  placeholder="Your Notes.........." ref={NoteRef} className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-fit bg-gray-50 border-2 " />
                 )}
               </div>
               <div className="mb-6 flex items-end justify-end">

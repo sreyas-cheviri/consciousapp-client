@@ -12,13 +12,14 @@ const SearchBox = ({ onChipSelect }: SearchBoxProps) => {
   const handleChipClick = (chip: string) => {
     const newSelectedChip = selectedChip === chip ? null : chip;
     setSelectedChip(newSelectedChip);
+    
     onChipSelect(newSelectedChip);  // Notify parent component
   };
 
   return (
-    <div className="bg-zinc-700 md:mt-10 mt-10 flex flex-col shadow-xl shadow-black/30 w-[355px] rounded-3xl md:w-[650px] border-gray-500/5 justify-between border p-1 text-gray-300 relative">
+    <div className="bg-zinc-700 dark:bg-zinc-400 md:mt-10 mt-10 flex flex-col dark:text-zinc-900 dark:shadow-zinc-300 shadow-xl shadow-black/30 w-[355px] rounded-3xl md:w-[650px] border-gray-500/5 justify-between border p-1 text-gray-300 relative">
       <textarea
-        className="placeholder:opacity-60 bg-zinc-700 overflow-auto h-16 px-4 py-2 bg-transparent w-full focus:outline-none rounded-3xl md:w-full resize-none"
+        className="placeholder:opacity-60 bg-zinc-700 dark:bg-zinc-400 dark:placeholder-zinc-900  overflow-auto h-16 px-4 py-2 bg-transparent w-full focus:outline-none rounded-3xl md:w-full resize-none"
         placeholder="Filter your brain with natural language..."
       ></textarea>
 
@@ -33,8 +34,8 @@ const SearchBox = ({ onChipSelect }: SearchBoxProps) => {
         ))}
       </div>
 
-      <button className="absolute right-2 top-16 bg-zinc-700/20 border-gray-500/50 px-2 flex py-2 rounded-3xl h-fit hover:bg-zinc-400/20">
-        <SearchIcon style={{ color: "gray" }} />
+      <button className="absolute right-2 top-16 bg-zinc-700/20 dark:bg-zinc-400 dark:hover:bg-zinc-600 dark:text-zinc-700 border-gray-500/50 px-2 flex py-2 rounded-3xl h-fit hover:bg-zinc-400/20">
+        <SearchIcon style={{ color: "black" }} />
       </button>
     </div>
   );

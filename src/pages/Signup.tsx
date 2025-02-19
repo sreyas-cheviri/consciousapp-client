@@ -29,7 +29,7 @@ export function Signup() {
       });
       setLoading(false);
       navigate("/Signin");
-      alert("signed up");
+      // alert("signed up");
     } catch (error: unknown) {
       setLoading(false)
       console.error("Signup error:", error);

@@ -38,7 +38,7 @@ export function Signin() {
       localStorage.setItem("username", response.data.username);
       setLoading(false);
       navigate("/Dashboard");
-      alert("Signed in");
+      // alert("Signed in");
     } catch (error: unknown) {
       setLoading(false);
       console.error("Signin error:", error);
