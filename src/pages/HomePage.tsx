@@ -15,8 +15,8 @@ export default function HomePage() {
         alt="Logo"
       />
 
-      <h1 className="text-4xl mt-2 italic opacity-60 font-serif">Conscious</h1>  <span className="-rotate-12 hover:rotate-0 transition-all duration-300"><Button variant={"new"} children={"Beta"} size={"vsm"} ></Button></span>
-      <p className="opacity-60   md:mt-24 mt-14 italic font-serif text-center max-w-lg md:max-w-2xl text-sm  md:text-xl">
+      <h1 className="text-4xl mt-2 italic text-white opacity-60 font-serif">Conscious</h1>  <span className="-rotate-12 hover:rotate-0 transition-all duration-300"><Button variant={"new"} children={"Beta"} size={"vsm"} ></Button></span>
+      <p className="opacity-60   md:mt-24 mt-14  text-center max-w-lg md:max-w-2xl text-sm  md:text-xl">
         Never Lose an Idea Again! <br />
         Conscious helps you store, recall, and link your knowledge effortlessly.
       </p>

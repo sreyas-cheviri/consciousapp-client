@@ -56,11 +56,7 @@ export const Header =({ setOpen }: HeaderProps) =>{
                 />
                 </div>
               <div className="md:flex gap-1 items-center justify-center  hidden">
-                {/* <PushButtons
-                  variant="opaque2"
-                  icon={<LightMode style={{ fontSize: "16px" }} />}
-                  size="md"
-                /> */}
+                
                    <DarkModeToggle/>
                 <PushButtons
                   variant="opaque2"

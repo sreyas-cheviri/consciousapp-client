@@ -54,7 +54,9 @@ export function Dashboard() {
           <Footer setpanel={setPanel} />
           <SearchBox onChipSelect={handleChipSelect} />
 
-          <div className="flex gap-2 md:justify-center mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/3">
+          <div  className={`flex gap-2 md:justify-center mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/3 transition-all duration-300 ${
+              open ? "blur-sm" : ""
+            }`}>
             {filteredCards.map((card) => (
               <Card
                 key={card.id}
