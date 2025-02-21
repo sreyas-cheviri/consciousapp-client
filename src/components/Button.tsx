@@ -14,7 +14,7 @@ interface ButtonProps {
 
 const variantstyles = {
   primary:
-    "bg-zinc-900  text-white rounded-lg hover:-translate-y-[2px] hover:shadow-lg hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+    "bg-zinc-900  text-white rounded-lg    hover:shadow-lg hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
   round:
     "bg-zinc-900 dark:border-zinc-700 dark:border dark:text-zinc-900 dark:hover:bg-gray-200 dark:bg-zinc-300 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
   roundchips:

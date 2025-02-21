@@ -7,36 +7,41 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { useContent } from "../hooks/useContent";
 import axios from "axios";
+import CommonMondal from "../components/CommonMondal";
 const API_URL = import.meta.env.VITE_API_URL;
 export function Dashboard() {
   const [open, setOpen] = useState(false);
+  const [Copen, setCOpen] = useState(false);
   const [panel, setPanel] = useState(false);
   const [filter, setFilter] = useState<string | null>(null);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const content = useContent();
-  const cardsData = content.map(({_id, type, link, title, content }) => ({
+  const cardsData = content.map(({ _id, type, link, title, content }) => ({
     id: _id,
     type,
     link,
     title,
     content,
   }));
-  
- function deletecard (contentId: string){
-  axios
-  .delete(`${API_URL}/api/v1/content/${contentId}`, {
-    headers: {
-      Authorization: localStorage.getItem("token"),
 
-    },
-  }).then(() => {
-    window.location.reload(); // Refresh the page after deletion
-  })
-  .catch((error) => {
-    console.error("Error deleting content:", error);
-  });
+  const handleDeleteClick = (id: string) => {
+    setSelectedCardId(id);
+    setCOpen(true);
+  };
 
+  const deleteCard = () => {
+    if (!selectedCardId) return;
+    
+    axios.delete(`${API_URL}/api/v1/content/${selectedCardId}`, {
+      headers: { Authorization: localStorage.getItem("token") },
+    })
+    .then(() => window.location.reload()) 
+    .catch((error) => console.error("Error deleting content:", error));
 
-};
+    console.log(`Deleting card with ID: ${selectedCardId}`); 
+    setCOpen(false);
+    setSelectedCardId(null);
+  };
   const handleChipSelect = (chip: string | null) => {
     setFilter(chip);
   };
@@ -54,21 +59,34 @@ export function Dashboard() {
           <Footer setpanel={setPanel} />
           <SearchBox onChipSelect={handleChipSelect} />
 
-          <div  className={`flex gap-2 md:justify-center mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center flex-wrap mt-8 p-6 rounded-lg bg-zinc-600/3 transition-all duration-300 ${
-              open ? "blur-sm" : ""
-            }`}>
-            {filteredCards.map((card) => (
-              <Card
-                key={card.id}
-                title={card.title}
-                type={card.type}
-                content={card.content}
-                url={card.link}
-                setdelete={()=> deletecard(card.id)}
-              />
-            ))}
+          <div
+            className={`flex gap-2 flex-wrap md:justify-center mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center  mt-8 p-6 rounded-lg bg-zinc-600/3 transition-all duration-300 ${
+              open ? "blur-sm" : ""} ${ Copen? "blur-sm" : ""}` }
+          >
+            {filteredCards
+              .slice()
+              .reverse()
+              .map((card) => (
+                <Card
+                  key={card.id}
+                  title={card.title}
+                  type={card.type}
+                  content={card.content}
+                  url={card.link}
+                  setdelete={() => handleDeleteClick(card.id)}
+                />
+              ))}
           </div>
-
+          <CommonMondal
+            Copen={Copen}
+            onClose={() => {
+              setCOpen(false);
+            }}
+            Message={"Do you want to delete the content ?"}
+            // Message={`Do you want to delete the content ${cardsData.find(card => card.id === selectedCardId)?.title} ?`}
+            ButtonMessage={"Yes"}
+            onConfirm={deleteCard}
+          />
           <Modal
             open={open}
             onClose={() => {

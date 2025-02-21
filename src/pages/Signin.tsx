@@ -4,6 +4,7 @@ import { Input } from "../components/Input";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+// import { ArrowBackIos } from "@mui/icons-material";
 
 // import { MoveLeft } from "lucide-react";
 // import { PushButtons } from "../components/PushButtons";
@@ -37,7 +38,9 @@ export function Signin() {
       localStorage.setItem("token", token);
       localStorage.setItem("username", response.data.username);
       setLoading(false);
-      navigate("/Dashboard");
+      setInterval(() => {
+        navigate("/Dashboard");
+      }, 1000);
       // alert("Signed in");
     } catch (error: unknown) {
       setLoading(false);
@@ -77,21 +80,30 @@ export function Signin() {
   // }
 
   return (
-    <div className="flex justify-center items-center min-h-screen ">
+    <div className="flex md:flex-row flex-col justify-center gap-2 ">
+      {/* <Link to="/" className="w-fit">
+          <div className="text-gray-200 pl-2 w-fit mt-28 bg-zinc-800 h-fit md:ml-0 ml-10  md:mt-48 transition-all duration-100 hover:bg-zinc-300 hover:text-zinc-600  rounded-full">
+           
+          <ArrowBackIos className=" m-1 "/>
+            
+          </div>
+          </Link> */}
+   
+          <div className="flex  justify-center items-center min-h-screen  ">
       {/* <div className="m-10 absolute md:top-36  left-80">
         <Link to="/">
           <PushButtons variant={"opaque"} icon={<MoveLeft />} size={"sm"} />
         </Link>
       </div> */}
-      <div className="bg-zinc-500 flex rounded-3xl p-[4px]">
-        <div className="flex flex-col p-5 bg-zinc-300 max-w-80 items-center justify-center gap-2 rounded-3xl md:rounded-l-3xl md:rounded-none">
+      <div className="bg-zinc-300 border-gray-600 border dark:bg-zinc-100 flex rounded-xl p-[4px]">
+        <div className="flex flex-col p-5 bg-zinc-300 dark:bg-zinc-100  max-w-80 items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
           <div className="flex flex-col justify-center items-center mb-8">
             <img
               src="../src/assets/logo.png"
               className="h-8 rounded-full border border-gray-500 mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               alt=""
             />
-            <h1 className="font-semibold text-lg text-zinc-600">
+            <h1 className="font-semibold text-2xl text-zinc-600">
               Welcome back!
             </h1>
             <p className="text-zinc-500 text-xs">
@@ -136,24 +148,28 @@ export function Signin() {
 
           <p className="text-zinc-500 text-xs w-full text-justify mt-3 align-middle">
             By signing in, you agree to our{" "}
-            <a href="#" className="text-zinc-800 font-semibold">
+            <a href="#" className="text-zinc-800 ">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="#" className="text-zinc-800 font-semibold">
+            <a href="#" className="text-zinc-800 ">
               Privacy Policy
             </a>
             .
+            <Link to="/" className="ml-10 font-semibold text-sm text-black underline hover:text-gray">	&larr; Home</Link>
           </p>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden h-96 w-64 md:block rounded-r-xl overflow-hidden">
+          
+
           <img
-            className="h-fit w-64 rounded-r-3xl contrast-75 backdrop-contrast-50"
-            src="../src/assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg"
+            className="    contrast-75 backdrop-contrast-50"
+            src="../src/assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg"
             alt=""
           />
+          
         </div>
       </div>
-    </div>
+    </div> </div>
   );
 }

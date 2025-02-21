@@ -13,11 +13,14 @@ interface HeaderProps {
 }
 export const Header =({ setOpen }: HeaderProps) =>{
   const navigate = useNavigate();
-  function Logout(){
+  function Logout() {
     localStorage.removeItem("token");
-    navigate("/")
-
+    localStorage.removeItem("username");
+    setTimeout(() => {
+      navigate("/Signup");
+    }, 100); 
   }
+  
     return(
 <div className="flex flex-col shadow-black/70 dark:shadow-zinc-400/50 dark:bg-zinc-400  shadow-2xl md:flex-row md:w-full max-w-full min-w-full  items-center md:gap-3 gap-4  md:justify-between m-4 p-2 rounded-2xl  bg-zinc-600/1   ">
             <div className=" flex gap-4 items-center">

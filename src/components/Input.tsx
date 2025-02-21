@@ -8,6 +8,7 @@ interface InputProps {
   reference? : React.RefObject<HTMLInputElement> | undefined;
   maxlength? : number;
   required?: boolean;
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
 }
 
 
