@@ -25,6 +25,7 @@ export default function CommonMondal({
   startIcon,
   Message2,
   WrongButtonMessage,
+  loading,
 }: CommonMondalProp) {
   return (
     Copen && (
@@ -57,7 +58,7 @@ export default function CommonMondal({
                   </div>
                 )}
               </div>
-              <div className="flex justify-end gap-3 px-3">
+              <div className={`flex justify-end gap-3 px-3 ${loading ? "opacity-70" : ""}`}>
                 <Button
                   variant={"new"}
                   children={ButtonMessage}

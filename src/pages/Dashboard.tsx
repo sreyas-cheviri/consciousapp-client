@@ -34,14 +34,18 @@ export function Dashboard() {
 
   const [loading, setLoading] = useState(false);
 
-  const copyLink = () => {
+  const copyLink = async () => {
     setLoading(true);
-    const copyText = shareUrl;
-    navigator.clipboard.writeText(copyText);
-    alert("Copied the text: " + copyText);
-    setLoading(false);
-    setShare(false);
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+    setTimeout(() => {
+      setLoading(false); // Ensures user sees loading state briefly
+    }, 1000);
   };
+  
 
   const deleteCard = () => {
     if (!selectedCardId) return;
@@ -98,7 +102,7 @@ export function Dashboard() {
             {filteredCards
               .slice()
               .reverse()
-              .map((card) => (
+              .map((card,index) => (
                 <Card
                   key={card.id}
                   title={card.title}
@@ -106,6 +110,7 @@ export function Dashboard() {
                   content={card.content}
                   url={card.link}
                   setdelete={() => handleDeleteClick(card.id)}
+                  index={index}
                 />
               ))}
           </div>
@@ -136,15 +141,7 @@ export function Dashboard() {
             startIcon={<LinkIcon className="p-1 mr-2" />}
             Message={"Copy the link to share your brain"}
             Message2={shareUrl}
-            ButtonMessage={
-              loading ? (
-                <div className="flex gap-2 items-center justify-center">
-                  <Loader2 className=" h-5  w-5 animate-spin" /> Copying...
-                </div>
-              ) : (
-                "COPY"
-              )
-            }
+            ButtonMessage={loading ? "Copied" : "COPY"}
             onConfirm={copyLink}
             loading={loading}
             Copen={share}
