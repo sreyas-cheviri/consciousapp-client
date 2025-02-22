@@ -11,7 +11,7 @@ interface CardProps {
   type?: string;
   content?: string;
   url?: string;
-  setdelete : () => void;
+  setdelete? : () => void;
 }
 
 const Card: React.FC<CardProps> = ({
