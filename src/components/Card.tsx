@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({
   
 }) => {
   const randomColour = React.useMemo(() => {
-    const colours = ["pink", "blue", "green", "yellow", "purple"];
+    const colours = [ "blue", "green", "yellow", "purple"];
     return colours[Math.floor(Math.random() * colours.length)];
   }, []);
   const isValidYoutubeUrl = (url: string) => {

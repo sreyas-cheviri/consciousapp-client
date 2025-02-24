@@ -2,10 +2,10 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   safelist: [
-    'bg-pink-100',
     'bg-blue-100',
     'bg-green-100',
     'bg-yellow-100',
+    'bg-purple-100'
   ],
   darkMode: "class",
   theme: {
