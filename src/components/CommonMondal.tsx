@@ -30,7 +30,7 @@ export default function CommonMondal({
   return (
     Copen && (
       <div
-        className="w-screen h-screen bg-black/80 z-0 fixed top-0 left-0 flex justify-center items-center"
+        className="w-screen h-screen bg-black/80 z-40 fixed top-0 left-0 flex justify-center items-center"
         onClick={onClose}
       >
         <div
@@ -39,7 +39,7 @@ export default function CommonMondal({
         >
           <div className="bg-zinc-400/60 dark:bg-zinc-400 z-50 p-1 md:w-96 h-fit flex-col justify-between rounded-xl">
             
-            <div className="flex-col flex h-[60%]  bg-zinc-200  m-1 rounded-lg p-1 justify-between">
+            <div className="flex-col flex h-[60%]    m-1 rounded-lg p-1 justify-between">
                 
               <div className="bg-white w-full justify-center flex-col p-2  font-semibold text-zinc-800 h-fit  mb-2 rounded-lg ">
               <div className="flex z-50 justify-end mb-3">
@@ -53,7 +53,7 @@ export default function CommonMondal({
                   {Message}
                 </div>
                 {Message2 && (
-                  <div className="flex justify-center bg-gray-200 p-1 rounded-md">
+                  <div className="flex justify-center bg-zinc-400/50 p-1 rounded-md">
                     {Message2}
                   </div>
                 )}

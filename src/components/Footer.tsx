@@ -22,9 +22,9 @@ export const Footer = ({ setpanel }: FooterProps) => {
 
   }
   return (
-    <div className="flex dark:bg-zinc-200 md:dark:bg-transparent  w-screen fixed md:m-2 -bottom-1 p-2   px-10 md:p-10  md:bg-transparent bg-zinc-800 text-zinc-900 md:z-0 z-40 justify-between  ">
+    <div className="flex dark:bg-zinc-200 md:dark:bg-transparent  -z-0 w-screen fixed md:m-2 -bottom-1 p-2   px-10 md:p-10  md:bg-transparent bg-zinc-800 text-zinc-900  justify-between  ">
       <div
-        className="flex md:gap-4 gap-8 m-1 justify-between items-center
+        className="flex md:gap-4 gap-8 m-1 justify-between items-center 
         "
       >
         <PushButtons

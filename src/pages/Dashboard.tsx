@@ -1,15 +1,16 @@
 import Card from "../components/Card";
 import { Modal } from "../components/Modal";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Sidebar } from "../components/SideBar";
 import SearchBox from "../components/SearchBox";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { useContent } from "../hooks/useContent";
 import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
 import { LinkIcon, Loader2 } from "lucide-react";
+
 const API_URL = import.meta.env.VITE_API_URL;
+
 export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [share, setShare] = useState(false);
@@ -18,7 +19,32 @@ export function Dashboard() {
   const [shareUrl, setShareURL] = useState<string>("");
   const [filter, setFilter] = useState<string | null>(null);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
-  const content = useContent();
+  const [loading, setLoading] = useState(false);
+  
+  // Instead of using the useContent hook, manage content state directly in the component
+  const [content, setContent] = useState<{ _id: string; type: string; link: string; title: string; content: string }[]>([]);
+  
+  // Function to fetch content
+  const fetchContent = useCallback(() => {
+    axios
+      .get(`${API_URL}/api/v1/content`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setContent(response.data.content);
+      })
+      .catch((error) => {
+        console.error("Error fetching content:", error);
+      });
+  }, []);
+  
+  // Initial content fetch (same as useEffect in your useContent hook)
+  useState(() => {
+    fetchContent();
+  });
+
   const cardsData = content.map(({ _id, type, link, title, content }) => ({
     id: _id,
     type,
@@ -32,8 +58,6 @@ export function Dashboard() {
     setCOpen(true);
   };
 
-  const [loading, setLoading] = useState(false);
-
   const copyLink = async () => {
     setLoading(true);
     try {
@@ -46,7 +70,6 @@ export function Dashboard() {
     }, 1000);
   };
   
-
   const deleteCard = () => {
     if (!selectedCardId) return;
 
@@ -57,20 +80,21 @@ export function Dashboard() {
         headers: { Authorization: localStorage.getItem("token") },
       })
       .then(() => {
-        window.location.reload();
+        // Instead of reloading the page, update the state
+        setContent(prevContent => 
+          prevContent.filter(item => item._id !== selectedCardId)
+        );
       })
       .catch((error) => {
         console.error("Error deleting content:", error);
       })
       .finally(() => {
-        setInterval(() => {
+        setTimeout(() => {
           setLoading(false);
           setCOpen(false);
           setSelectedCardId(null);
-        }, 2000);
+        }, 500);
       });
-
-    console.log(`Deleting card with ID: ${selectedCardId}`);
   };
 
   const handleChipSelect = (chip: string | null) => {
@@ -80,6 +104,11 @@ export function Dashboard() {
   const filteredCards = filter
     ? cardsData.filter((card) => card.type === filter)
     : cardsData;
+    
+  // Function to add new content to state
+  const handleContentAdded = (newContent: { _id: string; type: string; link: string; title: string; content: string; }) => {
+    setContent(prevContent => [...prevContent, newContent]);
+  };
 
   return (
     <div>
@@ -102,7 +131,7 @@ export function Dashboard() {
             {filteredCards
               .slice()
               .reverse()
-              .map((card,index) => (
+              .map((card, index) => (
                 <Card
                   key={card.id}
                   title={card.title}
@@ -120,7 +149,6 @@ export function Dashboard() {
               setCOpen(false);
             }}
             Message={"Are you sure you want to delete the content?"}
-            // Message={`Do you want to delete the content ${cardsData.find(card => card.id === selectedCardId)?.title} ?`}
             ButtonMessage={
               loading ? (
                 <div className="flex gap-2 items-center justify-center">
@@ -152,6 +180,7 @@ export function Dashboard() {
             onClose={() => {
               setOpen(false);
             }}
+            onContentAdded={handleContentAdded} // Pass the handler to update content state
           />
         </div>
       </div>
