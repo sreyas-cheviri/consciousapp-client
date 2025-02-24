@@ -28,8 +28,8 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
   }
 
   return (
-    <div className="flex flex-col shadow-black/70 dark:shadow-zinc-400/50 dark:bg-zinc-400 shadow-2xl md:flex-row md:w-full max-w-full min-w-full items-center md:gap-3 gap-4 md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/1">
-      <div className="flex gap-4 items-center">
+    <div className="flex flex-col shadow-black/50 bg-zinc-900/70 dark:shadow-zinc-400/50 dark:bg-zinc-400 shadow-2xl md:flex-row md:w-full max-w-full min-w-full items-center md:gap-3 gap-4 md:justify-between m-4 p-2 rounded-2xl bg-zinc-600/1">
+      <div className="flex gap-2 px-3 items-center">
         <button>
           <img
             src="../src/assets/logo.png"
@@ -38,7 +38,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
           />
         </button>
         <h1 className="shadow-none text-2xl text-zinc-500 font-serif dark:text-zinc-800 hover:text-zinc-500/90 transition-all duration-300">
-          Welcome, {localStorage.getItem("username")}
+          Conscious  {localStorage.getItem("username")}
         </h1>
       </div>
 

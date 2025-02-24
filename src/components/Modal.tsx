@@ -5,10 +5,11 @@ import { Input } from "./Input";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-interface ModalProps {
+type ModalProps = {
   open: boolean;
   onClose: () => void;
-}
+  onContentAdded?: (newContent: { _id: string; type: string; link: string; title: string; content: string; }) => void;
+};
 const API_URL = import.meta.env.VITE_API_URL;
 
 enum ContentType {
@@ -18,7 +19,7 @@ enum ContentType {
   Image = "Image"
 }
 
-export function Modal({ open, onClose }: ModalProps) {
+export function Modal({ open, onClose ,onContentAdded }: ModalProps) {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -33,15 +34,23 @@ export function Modal({ open, onClose }: ModalProps) {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const LinkRef = useRef<HTMLInputElement | null>(null);
   const NoteRef = useRef<HTMLTextAreaElement | null>(null);
-  const [selectedChip, setSelectedChip] = useState<string | null>(null);
+  const [selectedChip, setSelectedChip] = useState<string | null>("Url");
   const [error, setError] = useState<string | null>(null); // Error state
+  const [type, setType] = useState(ContentType.Url);
+
+  useEffect(() => {
+    if (open) {
+      // Reset form when modal opens
+      setSelectedChip("Url");
+      setType(ContentType.Url);
+      setError(null);
+    }
+  }, [open]);
 
   const handleChipClick = (chip: string) => {
-    const newSelectedChip = selectedChip === chip ? null : chip;
-    setSelectedChip(newSelectedChip);
+    setSelectedChip(chip);
+    setType(ContentType[chip as keyof typeof ContentType]);
   };
-
-  const [type, setType] = useState(ContentType.Url);
 
   async function addContent() {
     const title = titleRef.current?.value?.trim();
@@ -56,7 +65,7 @@ export function Modal({ open, onClose }: ModalProps) {
     setError(null); // Clear error if title is provided
 
     try {
-      await axios.post(`${API_URL}/api/v1/content`, {
+    const response =  await axios.post(`${API_URL}/api/v1/content`, {
         title,
         link,
         type,
@@ -66,9 +75,11 @@ export function Modal({ open, onClose }: ModalProps) {
           "Authorization": localStorage.getItem("token")
         }
       });
-
+      console.log("New Content Added:", response.data);
+      if(onContentAdded){
+        onContentAdded(response.data)
+      } 
       onClose();
-      window.location.reload();
     } catch (err) {
       console.error("Error adding content:", err);
       setError("Failed to add content. Please try again.");
@@ -129,7 +140,7 @@ export function Modal({ open, onClose }: ModalProps) {
                   <textarea
                     placeholder="Your Notes.........."
                     ref={NoteRef}
-                    className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-44  bg-gray-50 border-2"
+                    className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-44 bg-gray-50 border-2"
                   />
                 )}
               </div>

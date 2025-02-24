@@ -1,21 +1,40 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL; // Define your API URL here
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function useContent() {
   const [content, setContent] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    axios
-      .get(`${API_URL}/api/v1/content`, {
+  const fetchContent = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(`${API_URL}/api/v1/content`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
-      })
-      .then((response) => {
-        setContent(response.data.content);
       });
+      setContent(response.data.content);
+      setError(null);
+    } catch (err) {
+      console.error("Error fetching content:", err);
+      setError("Failed to fetch content");
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
-  return content;
+
+  useEffect(() => {
+    fetchContent();
+  }, [fetchContent]);
+
+  return {
+    content,
+    isLoading,
+    error,
+    refetch: fetchContent,
+    updateContent: setContent
+  };
 }
