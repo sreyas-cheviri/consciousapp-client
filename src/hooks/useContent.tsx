@@ -30,6 +30,7 @@ export function useContent() {
     fetchContent();
   }, [fetchContent]);
 
+  // Return more data for better flexibility
   return {
     content,
     isLoading,
