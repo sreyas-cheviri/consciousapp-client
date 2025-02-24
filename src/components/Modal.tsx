@@ -93,7 +93,7 @@ export function Modal({ open, onClose ,onContentAdded }: ModalProps) {
         onClick={onClose} // Clicking outside closes the modal
       >
         <div
-          className="bg-zinc-100 text-black rounded-2xl max-w-[90%] max-h-[65%] z-50 md:w-[44rem] md:h-[40rem] w-full h-full"
+          className="bg-zinc-100 text-black rounded-2xl max-w-[90%] h-fit z-50 md:w-[44rem]  w-full "
           onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing the modal
         >
           <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">

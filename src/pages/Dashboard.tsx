@@ -125,7 +125,7 @@ export function Dashboard() {
           <SearchBox onChipSelect={handleChipSelect} />
 
           <div
-            className={`flex gap-2 flex-wrap md:justify-center mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center  mt-8 p-6 rounded-lg bg-zinc-600/3 transition-all duration-300 ${
+            className={`flex gap-2 flex-wrap md:justify-center bg-black/10  mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center  mt-8 p-6 rounded-2xl bg-zinc-600/3 transition-all duration-300 ${
               open ? "blur-sm" : ""
             } ${Copen ? "blur-sm" : ""} ${share ? "blur-sm" : ""}`}
           >
