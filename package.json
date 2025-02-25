@@ -17,11 +17,9 @@
     "axios": "^1.7.9",
     "clsx": "^2.1.1",
     "env": "^0.0.2",
-    "framer-motion": "^12.4.7",
     "lucide-react": "^0.471.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-intersection-observer": "^9.15.1",
     "react-router-dom": "^7.1.5",
     "react-twitter-embed": "^4.0.4"
   },

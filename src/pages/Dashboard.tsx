@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 import { Modal } from "../components/Modal";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Sidebar } from "../components/SideBar";
 import SearchBox from "../components/SearchBox";
 import { Header } from "../components/Header";
@@ -37,9 +37,10 @@ export function Dashboard() {
       });
   }, []);
   
-  useState(() => {
+  // Fixed the useEffect hook (was incorrectly using useState)
+  useEffect(() => {
     fetchContent();
-  });
+  }, [fetchContent]);
 
   const cardsData = content.map(({ _id, type, link, title, content }) => ({
     id: _id,
@@ -67,21 +68,15 @@ export function Dashboard() {
   };
   
   const deleteCard = () => {
-    console.log("reached1");
     if (!selectedCardId) return;
-
-    console.log("reached");
     
-
     setLoading(true);
 
     axios
       .delete(`${API_URL}/api/v1/content/${selectedCardId}`, {
         headers: { Authorization: localStorage.getItem("token") },
-        
       })
       .then(() => {
-        
         setContent(prevContent => 
           prevContent.filter(item => item._id !== selectedCardId)
         );
@@ -106,16 +101,16 @@ export function Dashboard() {
     ? cardsData.filter((card) => card.type === filter)
     : cardsData;
     
-  
   const handleContentAdded = (newContent: { _id: string; type: string; link: string; title: string; content: string; }) => {
-    setContent(prevContent => [...prevContent, newContent]);fetchContent();
+    setContent(prevContent => [...prevContent, newContent]);
+    fetchContent();
   };
 
   return (
     <div>
       <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
-      <div className="flex justify-center items-center ">
-        <div className="flex flex-col justify-center  items-center mt-4">
+      <div className="flex justify-center items-center">
+        <div className="flex flex-col justify-center items-center mt-4 max-w-6xl w-full px-4">
           <Header
             setOpen={setOpen}
             setCOpen={setShare}
@@ -125,25 +120,32 @@ export function Dashboard() {
           <SearchBox onChipSelect={handleChipSelect} />
 
           <div
-            className={`flex gap-2 flex-wrap md:justify-center bg-black/10  mb-10 max-w-6xl md:min-w-[1154px] border-gray-500/10 border mx-auto justify-center  mt-8 p-6 rounded-2xl bg-zinc-600/3 transition-all duration-300 ${
-              open ? "blur-sm" : ""
-            } ${Copen ? "blur-sm" : ""} ${share ? "blur-sm" : ""}`}
+            className={`flex gap-2 flex-wrap justify-center min-h-96 w-full max-w-6xl bg-black/10 mb-10 border-gray-500/10 border mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300 ${
+              open || Copen || share ? "blur-sm" : ""
+            }`}
           >
-            {filteredCards
-              .slice()
-              .reverse()
-              .map((card, index) => (
-                <Card
-                  key={card.id}
-                  title={card.title}
-                  type={card.type}
-                  content={card.content}
-                  url={card.link}
-                  setdelete={() => handleDeleteClick(card.id)}
-                  index={index}
-                />
-              ))}
+            {filteredCards.length > 0 ? (
+              filteredCards
+                .slice()
+                .reverse()
+                .map((card, index) => (
+                  <Card
+                    key={card.id}
+                    title={card.title}
+                    type={card.type}
+                    content={card.content}
+                    url={card.link}
+                    setdelete={() => handleDeleteClick(card.id)}
+                    index={index}
+                  />
+                ))
+            ) : (
+              <div className="flex items-center justify-center h-40 w-full text-gray-500">
+                No content found. Add some content to get started.
+              </div>
+            )}
           </div>
+          
           <CommonMondal
             Copen={Copen}
             onClose={() => {
@@ -153,7 +155,7 @@ export function Dashboard() {
             ButtonMessage={
               loading ? (
                 <div className="flex gap-2 items-center justify-center">
-                  <Loader2 className=" h-5  w-5 animate-spin" /> Deleting...
+                  <Loader2 className="h-5 w-5 animate-spin" /> Deleting...
                 </div>
               ) : (
                 "Yes"
@@ -163,6 +165,7 @@ export function Dashboard() {
             onConfirm={deleteCard}
             loading={loading}
           />
+          
           <CommonMondal
             onClose={() => {
               setShare(false);
