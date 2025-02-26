@@ -14,6 +14,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [share, setShare] = useState(false);
+  const [Note, setNote] = useState(false);
   const [Copen, setCOpen] = useState(false);
   const [panel, setPanel] = useState(false);
   const [shareUrl, setShareURL] = useState<string>("");
@@ -21,6 +22,7 @@ export function Dashboard() {
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState<{ _id: string; type: string; link: string; title: string; content: string }[]>([]);
+  const [selectedNote, setSelectedNote] = useState<{title: string, content: string} | null>(null);
   
   const fetchContent = useCallback(() => {
     axios
@@ -53,6 +55,16 @@ export function Dashboard() {
   const handleDeleteClick = (id: string) => {
     setSelectedCardId(id);
     setCOpen(true);
+  };
+  const handleNotesOpen = (id: string) => {
+    const noteContent = content.find(item => item._id === id);
+    if (noteContent) {
+      setSelectedNote({
+        title: noteContent.title,
+        content: noteContent.content
+      });
+      setNote(true);
+    }
   };
 
   const copyLink = async () => {
@@ -136,6 +148,7 @@ export function Dashboard() {
                     content={card.content}
                     url={card.link}
                     setdelete={() => handleDeleteClick(card.id)}
+                    setNotes={()=> handleNotesOpen(card.id)}
                     index={index}
                   />
                 ))
@@ -150,34 +163,39 @@ export function Dashboard() {
             Copen={Copen}
             onClose={() => {
               setCOpen(false);
-            }}
+            } }
             Message={"Are you sure you want to delete the content?"}
-            ButtonMessage={
-              loading ? (
-                <div className="flex gap-2 items-center justify-center">
-                  <Loader2 className="h-5 w-5 animate-spin" /> Deleting...
-                </div>
-              ) : (
-                "Yes"
-              )
-            }
+            ButtonMessage={loading ? (
+              <div className="flex gap-2 items-center justify-center">
+                <Loader2 className="h-5 w-5 animate-spin" /> Deleting...
+              </div>
+            ) : (
+              "Yes"
+            )}
             WrongButtonMessage={"No"}
             onConfirm={deleteCard}
-            loading={loading}
-          />
+            loading={loading} variant={"normal"}          />
           
           <CommonMondal
             onClose={() => {
               setShare(false);
-            }}
+            } }
             startIcon={<LinkIcon className="p-1 mr-2" />}
             Message={"Copy the link to share your brain"}
             Message2={shareUrl}
             ButtonMessage={loading ? "Copied" : "COPY"}
             onConfirm={copyLink}
             loading={loading}
-            Copen={share}
-          />
+            Copen={share} variant={"normal"}          />
+          <CommonMondal
+            onClose={() => {
+              setNote(false);
+              setSelectedNote(null);
+            } }
+            Message={selectedNote?.title || ''}
+            Message2={selectedNote?.content || ''}
+            loading={loading}
+            Copen={Note} variant={"fullscreen"}          />
 
           <Modal
             open={open}

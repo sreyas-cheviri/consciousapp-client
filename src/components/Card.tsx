@@ -12,6 +12,7 @@ interface CardProps {
   content?: string;
   url?: string;
   setdelete?: () => void;
+  setNotes?: () => void;
   index?: number; // New index prop for delay
 }
 
@@ -24,6 +25,7 @@ const Card: React.FC<CardProps> = ({
   content = "",
   url = "",
   setdelete,
+  setNotes
   
 }) => {
   const randomColour = React.useMemo(() => {
@@ -54,9 +56,12 @@ const Card: React.FC<CardProps> = ({
     if (type === "Note") {
       return (
         <div className="p-2">
-          <p className="text-gray-700">{content}</p>
-        </div>
+        <p className="text-gray-700 pointer-events-none whitespace-pre-wrap line-clamp-6">
+          {content}
+        </p>
+      </div>
       );
+      
     } else if (type === "Url") {
       if (isValidYoutubeUrl(url)) {
         const embedUrl = getYoutubeEmbedUrl(url);
@@ -131,13 +136,13 @@ const Card: React.FC<CardProps> = ({
   return (
     <div>
       <div className="flex-col bg-zinc-300 dark:bg-zinc-200 p-[1.5px] border z-50 border-zinc-400/50 rounded-xl flex justify-between dark:shadow-none h-60 shadow-lg shadow-gray-500/10">
-        <div className="min-w-72 max-w-72 border bg-white rounded-xl no-scrollbar min-h-32 max-h-60 overflow-y-auto">
+        <div className="min-w-72 max-w-72 border bg-white rounded-xl no-scrollbar min-h-32 max-h-60 ">
           {type == "Url" ? (
-            <div className=" rounded-t-lg text-sm min-h-36 horizontal-scroll overflow-hidden">
+            <div className=" rounded-t-lg text-sm min-h-36  horizontal-scroll  overflow-hidden">
               {renderContent()}
             </div>
           ) : (
-            <div className={`bg-${randomColour}-100 rounded-t-lg text-sm min-h-36 horizontal-scroll overflow-hidden`}>
+            <div className={`bg-${randomColour}-100 rounded-t-lg text-sm min-h-36 overflow-hidden`}>
             {renderContent()}
           </div>
           )}
@@ -161,7 +166,8 @@ const Card: React.FC<CardProps> = ({
                 </a>
               </button>
             ) : (
-              <button className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+              <button onClick={setNotes} className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+                {/* onClick={setNotes} */}
                 <Expand />
               </button>
             )}
