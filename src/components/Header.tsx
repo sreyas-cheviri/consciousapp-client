@@ -24,7 +24,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     setTimeout(() => {
-      navigate("/Home");
+      navigate("/");
     }, 100);
   }
 
