@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { GitHub, X } from "@mui/icons-material";
 import { useEffect } from "react";
+import logo from "../assets/logo.png"
 
 export default function HomePage() {
 
@@ -24,7 +25,7 @@ useEffect(() => {
       >
       {/* <Button variant={"roundchips"} children={"Beta"} size={"sm"}></Button> */}
       <img
-        src="../assets/logo.png"
+        src={logo}
         className="w-12 md:w-10 rounded-full border border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
         alt="Logo"
         />
