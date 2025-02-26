@@ -3,6 +3,7 @@ import { Button } from "../components/Button";
 import { GitHub, X } from "@mui/icons-material";
 import { useEffect } from "react";
 import logo from "../assets/logo.png"
+import bg from "../assets/bg.png"
 
 export default function HomePage() {
 
@@ -21,7 +22,7 @@ useEffect(() => {
 
     <div
       className="h-screen flex flex-col items-center justify-center  text-white relative bg-cover bg-center bg-no-repeat px-4"
-      style={{ backgroundImage: "url('../assets/bg.png')" }}
+      style={{ backgroundImage: `url(${bg})` }}
       >
       {/* <Button variant={"roundchips"} children={"Beta"} size={"sm"}></Button> */}
       <img

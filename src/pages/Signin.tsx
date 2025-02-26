@@ -4,6 +4,8 @@ import { Input } from "../components/Input";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import cfaeebc3ea50c461b550a8cea90b2bdc from "../assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg"
+import logo from "../assets/logo.png"
 // import { ArrowBackIos } from "@mui/icons-material";
 
 // import { MoveLeft } from "lucide-react";
@@ -99,7 +101,7 @@ export function Signin() {
         <div className="flex flex-col p-5 bg-zinc-300 dark:bg-zinc-100  max-w-80 items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
           <div className="flex flex-col justify-center items-center mb-8">
             <img
-              src="../assets/logo.png"
+              src={logo}
               className="h-8 rounded-full border border-gray-500 mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               alt=""
             />
@@ -164,7 +166,7 @@ export function Signin() {
 
           <img
             className="    contrast-75 backdrop-contrast-50"
-            src="../assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg"
+            src={cfaeebc3ea50c461b550a8cea90b2bdc}
             alt=""
           />
           

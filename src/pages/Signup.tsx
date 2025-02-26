@@ -4,6 +4,8 @@ import { Input } from "../components/Input";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import logo from "../assets/logo.png"
+import signupimg from "../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg"
 // import { ArrowBackIos } from "@mui/icons-material";
 // import { PushButtons } from "../components/PushButtons";
 // import { MoveLeft } from "lucide-react";
@@ -86,7 +88,7 @@ export function Signup() {
         <div className="flex flex-col p-5 bg-zinc-300 max-w-80 dark:bg-zinc-100  items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
           <div className="flex  flex-col justify-center items-center mb-8">
             <img
-              src="../assets/logo.png"
+              src={logo}
               className="h-8 rounded-full border border-gray-500 mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               alt=""
             />
@@ -148,7 +150,7 @@ export function Signup() {
         <div className="hidden h-96 w-64 md:block rounded-r-xl overflow-hidden">
           <img
             className="  contrast-75 backdrop-contrast-50 "
-            src="../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg"
+            src={signupimg}
             alt=""
             />
         </div>

@@ -6,6 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useNavigate } from "react-router-dom";
 import DarkModeToggle from "./DarkModeButton";
 import axios from "axios";
+import logo from "../assets/logo.png"
 
 const API_URL = import.meta.env.VITE_API_URL;
 const FE_URL = import.meta.env.VITE_FE_URL;
@@ -32,7 +33,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
       <div className="flex gap-2 px-3 items-center">
         <button>
           <img
-            src="../assets/logo.png"
+            src={logo}
             alt=""
             className="h-8 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />
