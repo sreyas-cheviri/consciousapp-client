@@ -47,7 +47,7 @@ export default function CommonMondal({
           className="bg-zinc-100 z-50 rounded-xl flex flex-col m-2 "
           onClick={(e) => e.stopPropagation()}
         >
-          <div className={clsx("bg-zinc-400/60 dark:bg-zinc-400 z-50 p-1 flex flex-col   justify-between rounded-xl h-full", variantstyles[variant])}>
+          <div className={clsx("bg-zinc-400/60 dark:bg-zinc-400 z-50 p-1 flex flex-col   justify-between rounded-xl ", variantstyles[variant])}>
             
             <div className="flex-col flex m-1 rounded-lg p-1 justify-between h-full ">
                 
