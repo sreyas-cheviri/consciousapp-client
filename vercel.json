@@ -1,8 +1,8 @@
 {
     "rewrites": [
       {
-        "source": "/api/v1/brain/:hash",
-        "destination": "https://conscious-rf48.onrender.com/api/v1/brain/:hash"
+        "source": "/(.*)",
+        "destination": "/index.html"
       }
     ]
   }

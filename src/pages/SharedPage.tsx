@@ -2,8 +2,9 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card";
+import logo from "../assets/logo.png"
 
-// const API_URL = import.meta.env.VITE_FE_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function SharedPage() {
   const { hash } = useParams();
@@ -23,21 +24,22 @@ export default function SharedPage() {
 
   useEffect(() => {
     axios
-      .get(`/api/v1/brain/${hash}`) // No need to manually include API_URL
+      .get(`${API_URL}/api/v1/brain/${hash}`, {
+      })
       .then((response) => {
         setContent(response.data.content);
         console.log(content);
         setName(response.data.username);
+        
       });
-}, [hash, content]);
-
+  }, [hash, content]);
 
   return (
     <div className=" ">
             <Link to="/">
         <div className="flex justify-center items-center p-10 gap-1">
         <img
-            src="../src/assets/logo.png"
+            src={logo}
             alt=""
             className="h-8 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />
