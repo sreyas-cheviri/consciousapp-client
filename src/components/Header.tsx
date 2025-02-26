@@ -57,7 +57,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
                   },
                 }
               );
-              const ShareURL = `${FE_URL}api/v1/brain/${result.data.hash}`;
+              const ShareURL = `${FE_URL}share/${result.data.hash}`;
               setShareURL(ShareURL); 
             }}
             variant="secondary"
