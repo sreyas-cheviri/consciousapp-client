@@ -32,7 +32,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
       <div className="flex gap-2 px-3 items-center">
         <button>
           <img
-            src="../src/assets/logo.png"
+            src="src/assets/logo.png"
             alt=""
             className="h-8 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />

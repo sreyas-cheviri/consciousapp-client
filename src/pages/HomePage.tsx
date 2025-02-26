@@ -20,11 +20,11 @@ useEffect(() => {
 
     <div
       className="h-screen flex flex-col items-center justify-center  text-white relative bg-cover bg-center bg-no-repeat px-4"
-      style={{ backgroundImage: "url('../src/assets/bg.png')" }}
+      style={{ backgroundImage: "url('src/assets/bg.png')" }}
       >
       {/* <Button variant={"roundchips"} children={"Beta"} size={"sm"}></Button> */}
       <img
-        src="../src/assets/logo.png"
+        src="src/assets/logo.png"
         className="w-12 md:w-10 rounded-full border border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
         alt="Logo"
         />

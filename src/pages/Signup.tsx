@@ -86,7 +86,7 @@ export function Signup() {
         <div className="flex flex-col p-5 bg-zinc-300 max-w-80 dark:bg-zinc-100  items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
           <div className="flex  flex-col justify-center items-center mb-8">
             <img
-              src="../src/assets/logo.png"
+              src="src/assets/logo.png"
               className="h-8 rounded-full border border-gray-500 mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               alt=""
             />
