@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card";
 
-const API_URL = import.meta.env.VITE_FE_URL;
+// const API_URL = import.meta.env.VITE_FE_URL;
 
 export default function SharedPage() {
   const { hash } = useParams();
@@ -23,15 +23,14 @@ export default function SharedPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/v1/brain/${hash}`, {
-      })
+      .get(`/api/v1/brain/${hash}`) // No need to manually include API_URL
       .then((response) => {
         setContent(response.data.content);
         console.log(content);
         setName(response.data.username);
-        
       });
-  }, [hash, content]);
+}, [hash, content]);
+
 
   return (
     <div className=" ">
