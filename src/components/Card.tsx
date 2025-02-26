@@ -3,7 +3,7 @@ import { NoteIcon } from "../icons/NoteIcon";
 import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Globe } from "lucide-react";
-import { TwitterTweetEmbed } from "react-twitter-embed";
+import { Tweet } from "react-tweet";
 import { Expand } from "../icons/Expand";
 
 interface CardProps {
@@ -79,30 +79,15 @@ const Card: React.FC<CardProps> = ({
         const tweetId = getTwitterTweetId(url);
         return tweetId ? (
           <div
-            style={{
-              margin: -10,
-              padding: 0,
-              overflow: "hidden",
-              pointerEvents: "none",
-            }}
-          >
-            <TwitterTweetEmbed
-              tweetId={tweetId}
-              placeholder={
-                <div className="flex justify-center text-gray-600 items-center font-semibold m-10 p-2">
-                  Loading...
-                </div>
-              }
-              options={{
-                align: "center",
-                theme: "dark",
-                conversation: "none",
-                cards: "hidden",
-                width: 500,
-                dnt: true,
-              }}
-            />
-          </div>
+          style={{
+            margin: -10,
+            padding: 0,
+            overflow: "hidden",
+            pointerEvents: "none",
+          }}
+        >
+          <Tweet id={tweetId} />
+        </div>
         ) : (
           <div className="w-full h-full rounded-lg">
             <iframe
