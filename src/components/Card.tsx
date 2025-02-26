@@ -80,7 +80,8 @@ const Card: React.FC<CardProps> = ({
         return tweetId ? (
           <div
           style={{
-            margin: -10,
+            // margin: ,
+            marginTop : -30,
             padding: 0,
             overflow: "hidden",
             pointerEvents: "none",
