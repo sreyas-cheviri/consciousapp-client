@@ -109,6 +109,7 @@ export function Signup() {
             variant={"secondary"}
           />
           <Input
+          type="password"
             placeholder="Password"
             reference={PasswordRef}
             variant={"secondary"}

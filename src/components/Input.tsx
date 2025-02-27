@@ -7,6 +7,7 @@ interface InputProps {
   variant: "primary" | "secondary";
   reference? : React.RefObject<HTMLInputElement> | undefined;
   maxlength? : number;
+  type? : string;
   required?: boolean;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
 }
@@ -21,14 +22,15 @@ const variantstyles = {
 };
 
 
-export function Input({  placeholder, variant , reference , maxlength ,required}: InputProps) {
+export function Input({  placeholder, variant , reference , maxlength ,required , type}: InputProps) {
   return (
 
     <input
       placeholder={placeholder}
       ref={reference}
-      type="text"
+      type={type}
       maxLength={maxlength}
+      
       // onChange={onChange}
       required={required}
       className={clsx(variantstyles[variant])}

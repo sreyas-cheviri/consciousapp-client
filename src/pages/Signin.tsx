@@ -122,6 +122,7 @@ export function Signin() {
             variant={"secondary"}
           />
           <Input
+          type="password"
             placeholder="Password"
             reference={PasswordRef}
             variant={"secondary"}
