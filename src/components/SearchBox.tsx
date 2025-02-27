@@ -17,7 +17,7 @@ const SearchBox = ({ onChipSelect }: SearchBoxProps) => {
   };
 
   return (
-    <div className="bg-zinc-700 dark:bg-zinc-400  md:mt-10 mt-10 flex flex-col dark:text-zinc-900 dark:shadow-zinc-300 shadow-xl shadow-black/30 w-[355px] rounded-2xl md:w-[650px] border-gray-500/5 justify-between border p-1 text-gray-300 relative">
+    <div className="bg-zinc-700 dark:bg-zinc-400 w-full  mt-10 flex flex-col  dark:text-zinc-900 dark:shadow-zinc-300 shadow-xl shadow-black/30  rounded-2xl md:w-[650px] border-gray-500/5 justify-between border p-1 text-gray-300 relative">
       <textarea
         className="placeholder:opacity-60 bg-zinc-700 dark:bg-zinc-400 dark:placeholder-zinc-900  overflow-auto h-16 px-4 py-2 bg-transparent w-full focus:outline-none rounded-2xl md:w-full resize-none"
         placeholder="Search your brain with natural language..."

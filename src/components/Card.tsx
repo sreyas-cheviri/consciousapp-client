@@ -80,7 +80,7 @@ const Card: React.FC<CardProps> = ({
         return tweetId ? (
           <div
           style={{
-            // margin: ,
+            zIndex: 0,
             marginTop : -30,
             padding: 0,
             overflow: "hidden",
@@ -90,7 +90,7 @@ const Card: React.FC<CardProps> = ({
           <Tweet id={tweetId} />
         </div>
         ) : (
-          <div className="w-full h-full rounded-lg">
+          <div className="w-full h-full rounded-lg ">
             <iframe
               src={url}
               className="w-full h-full rounded-lg"

@@ -22,7 +22,7 @@ export const Footer = ({ setpanel }: FooterProps) => {
 
   }
   return (
-    <div className="flex dark:bg-zinc-200 md:dark:bg-transparent  z-0 w-screen fixed md:m-2 -bottom-1 p-2   px-10 md:p-10   md:bg-transparent bg-zinc-800 text-zinc-900  justify-between  ">
+    <footer className="flex dark:bg-zinc-200 md:dark:bg-transparent  z-0 w-screen fixed md:m-2 bottom-0 p-2   px-10 md:p-10   md:bg-transparent bg-zinc-800 text-zinc-900  justify-between  ">
       <div
         className="flex md:gap-4 gap-8 m-1 justify-between items-center 
         "
@@ -43,7 +43,7 @@ export const Footer = ({ setpanel }: FooterProps) => {
         />
       </div>
 
-      <div className="md:hidden  flex gap-5 bg-zinc-700 dark:bg-zinc-400 p-1  m rounded-full">
+      <div className="md:hidden  z-50 flex gap-5 bg-zinc-700 dark:bg-zinc-400 p-1  m rounded-full">
         {/* <PushButtons
           variant="opaque2"
           icon={<LightMode style={{ fontSize: "16px" }} />}
@@ -66,6 +66,6 @@ export const Footer = ({ setpanel }: FooterProps) => {
           
            
       </div>
-    </div>
+    </footer>
   );
 };
