@@ -59,8 +59,7 @@ export default function SharedPage() {
             title={card.title}
             type={card.type}
             content={card.content}
-            url={card.link}
-            />
+            url={card.link} time={""}            />
         ))}
     </div>
         </div>

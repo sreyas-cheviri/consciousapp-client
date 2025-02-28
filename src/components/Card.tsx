@@ -29,6 +29,7 @@ const Card: React.FC<CardProps> = ({
   time = "",
   setdelete,
   setNotes,
+  
 }) => {
   const getDomain = (url: string) => {
     try {
