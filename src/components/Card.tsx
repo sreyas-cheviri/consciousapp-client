@@ -2,9 +2,11 @@ import React from "react";
 import { NoteIcon } from "../icons/NoteIcon";
 import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
-import { Globe } from "lucide-react";
+// import { Globe } from "lucide-react";
 import { Tweet } from "react-tweet";
 import { Expand } from "../icons/Expand";
+import { DockIcon, Globe, ImageIcon } from "lucide-react";
+// import { Image } from "@mui/icons-material";
 
 interface CardProps {
   title: string;
@@ -25,11 +27,26 @@ const Card: React.FC<CardProps> = ({
   content = "",
   url = "",
   setdelete,
-  setNotes
-  
+  setNotes,
 }) => {
+  const getDomain = (url: string) => {
+    try {
+      const hostname = new URL(url).hostname;
+      return hostname.replace("www.", ""); // Remove 'www.' if present
+    } catch {
+      return null;
+    }
+  };
+
+  const getFaviconUrl = (url: string) => {
+    const domain = getDomain(url);
+    return domain
+      ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32`
+      : undefined;
+  };
+
   const randomColour = React.useMemo(() => {
-    const colours = [ "blue", "green", "yellow", "purple"];
+    const colours = ["blue", "green", "yellow", "purple"];
     return colours[Math.floor(Math.random() * colours.length)];
   }, []);
   const isValidYoutubeUrl = (url: string) => {
@@ -56,12 +73,11 @@ const Card: React.FC<CardProps> = ({
     if (type === "Note") {
       return (
         <div className="p-2">
-        <p className="text-gray-700 pointer-events-none whitespace-pre-wrap line-clamp-6">
-          {content}
-        </p>
-      </div>
+          <p className="text-gray-700 pointer-events-none whitespace-pre-wrap line-clamp-6">
+            {content}
+          </p>
+        </div>
       );
-      
     } else if (type === "Url") {
       if (isValidYoutubeUrl(url)) {
         const embedUrl = getYoutubeEmbedUrl(url);
@@ -79,16 +95,16 @@ const Card: React.FC<CardProps> = ({
         const tweetId = getTwitterTweetId(url);
         return tweetId ? (
           <div
-          style={{
-            zIndex: 0,
-            marginTop : -30,
-            padding: 0,
-            overflow: "hidden",
-            pointerEvents: "none",
-          }}
-        >
-          <Tweet id={tweetId} />
-        </div>
+            style={{
+              zIndex: 0,
+              marginTop: -30,
+              padding: 0,
+              overflow: "hidden",
+              pointerEvents: "none",
+            }}
+          >
+            <Tweet id={tweetId} />
+          </div>
         ) : (
           <div className="w-full h-full rounded-lg ">
             <iframe
@@ -100,7 +116,10 @@ const Card: React.FC<CardProps> = ({
         );
       } else {
         return (
-          <div className="w-full h-full rounded-lg "style={{ overflow: "hidden" }}>
+          <div
+            className="w-full h-full rounded-lg "
+            style={{ overflow: "hidden" }}
+          >
             <iframe
               src={url}
               className="w-full h-full rounded-lg"
@@ -111,7 +130,7 @@ const Card: React.FC<CardProps> = ({
                 overflow: "hidden",
                 pointerEvents: "none",
                 msOverflowStyle: "none",
-    scrollbarWidth: "none"
+                scrollbarWidth: "none",
               }}
             />
           </div>
@@ -130,17 +149,40 @@ const Card: React.FC<CardProps> = ({
               {renderContent()}
             </div>
           ) : (
-            <div className={`bg-${randomColour}-100 rounded-t-lg text-sm min-h-36 overflow-hidden`}>
-            {renderContent()}
-          </div>
+            <div
+              className={`bg-${randomColour}-100 rounded-t-lg text-sm min-h-36 overflow-hidden`}
+            >
+              {renderContent()}
+            </div>
           )}
         </div>
         <div className="rounded-b-xl">
           <div className="flex justify-between p-2 min-w-72 max-w-72 rounded-lg">
             <div className="flex gap-2 ">
-              <div className="rounded-full p-1  text-gray-700 bg-zinc-400/50">
-                {type === "Note" ? <NoteIcon /> : <Globe size={14} />}
+              <div className="rounded-full p-1 text-gray-700 bg-zinc-400/50">
+                {
+                
+                
+                type === "Doc" ? (
+                  <DockIcon className=" w-4 h-4 " />
+                ) : 
+                type === "Image" ? (
+                  <ImageIcon className=" w-4 h-4 " />
+                ) : 
+                type === "Note" ? (
+                  <NoteIcon />
+                ) : getFaviconUrl(url) ? (
+                  <img
+                    src={getFaviconUrl(url)}
+                    alt="Website Logo"
+                    className="w-4 h-4 rounded-full"
+                    onError={(e) => (e.currentTarget.style.display = "none")}
+                  />
+                ) : (
+                  <Globe size={14} />
+                )}
               </div>
+
               <h2 className="text-sm font-semibold text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60">
                 {title}
               </h2>
@@ -150,11 +192,14 @@ const Card: React.FC<CardProps> = ({
             {type == "Url" ? (
               <button className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                 <a href={url} target="_blank" rel="noopener noreferrer">
-                  <ShareIcon  />
+                  <ShareIcon />
                 </a>
               </button>
             ) : (
-              <button onClick={setNotes} className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+              <button
+                onClick={setNotes}
+                className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+              >
                 {/* onClick={setNotes} */}
                 <Expand />
               </button>
