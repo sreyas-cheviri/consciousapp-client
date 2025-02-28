@@ -124,16 +124,15 @@ const Card: React.FC<CardProps> = ({
           >
             <iframe
               src={url}
-              className="min-w-full h-full rounded-lg"
+              className="min-w-full min-h-full rounded-lg"
               style={{
-                // overflow: "hidden",
-                // minHeight: "600px",
-                
+                minHeight: "400px",
                 // border: "none",
                 // overflow: "hidden",
-                pointerEvents: "none",
-                // msOverflowStyle: "none",
-                // scrollbarWidth: "thin",
+                overflow: "hidden",
+                // pointerEvents: "none",
+                msOverflowStyle: "none",
+                scrollbarWidth: "none",
               }}
             />
           </div>
