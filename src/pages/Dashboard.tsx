@@ -22,7 +22,7 @@ export function Dashboard() {
   const [filter, setFilter] = useState<string | null>(null);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [content, setContent] = useState<{ _id: string; type: string; link: string; title: string; content: string }[]>([]);
+  const [content, setContent] = useState<{ _id: string; type: string; link: string; title: string; content: string , createdAt : Date}[]>([]);
   const [page, setPage] = useState(1)
   const [selectedNote, setSelectedNote] = useState<{title: string, content: string} | null>(null);
   
@@ -34,7 +34,10 @@ export function Dashboard() {
         },
       })
       .then((response) => {
-        setContent(response.data.content);
+        setContent(response.data.content.map((item: { _id: string; type: string; link: string; title: string; content: string; createdAt: string }) => ({
+          ...item,
+          createdAt: new Date(item.createdAt), // Convert to Date object
+        })));
       })
       .catch((error) => {
         console.error("Error fetching content:", error);
@@ -46,12 +49,13 @@ export function Dashboard() {
     fetchContent();
   }, [fetchContent]);
 
-  const cardsData = content.map(({ _id, type, link, title, content }) => ({
+  const cardsData = content.map(({ _id, type, link, title, content, createdAt  }) => ({
     id: _id,
     type,
     link,
     title,
     content,
+    createdAt 
   }));
 
   const handleDeleteClick = (id: string) => {
@@ -111,14 +115,20 @@ export function Dashboard() {
     setFilter(chip);
   };
 
-  const filteredCards = filter
-    ? cardsData.filter((card) => card.type === filter)
-    : cardsData;
+  const filteredCards = (() => {
+    let data = cardsData;
+  
+    if (filter === "Date") {
+      data = data.slice().reverse(); // Reverse the array if filter is "Date"
+    }
+  
+    return filter && filter !== "Date" ? data.filter((card) => card.type === filter) : data;
+  })();
     
-  const handleContentAdded = (newContent: { _id: string; type: string; link: string; title: string; content: string; }) => {
-    setContent(prevContent => [...prevContent, newContent]);
-    fetchContent();
-  };
+  const handleContentAdded = (newContent: { _id: string; type: string; link: string; title: string; content: string; createdAt: Date }) => {
+      setContent(prevContent => [...prevContent, newContent]);
+      fetchContent();
+    };
   // const addedmore = (page: number) =>{
   //   setPage(page)
   // }
@@ -148,15 +158,23 @@ export function Dashboard() {
     .slice(0, page * 6) 
     .map((card, index) => (
       <Card
-        key={card.id}
-        title={card.title}
-        type={card.type}
-        content={card.content}
-        url={card.link}
-        setdelete={() => handleDeleteClick(card.id)}
-        setNotes={() => handleNotesOpen(card.id)}
-        index={index}
-      />
+      key={card.id}
+      title={card.title}
+      type={card.type}
+      content={card.content}
+      url={card.link}
+      setdelete={() => handleDeleteClick(card.id)}
+      setNotes={() => handleNotesOpen(card.id)}
+      index={index}
+      time={card.createdAt.toLocaleString("en-GB", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })} 
+    />
+    
     ))
 ) : (
   <div className="flex items-center justify-center h-40 w-full text-gray-500">

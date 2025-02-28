@@ -8,7 +8,7 @@ import axios from "axios";
 type ModalProps = {
   open: boolean;
   onClose: () => void;
-  onContentAdded?: (newContent: { _id: string; type: string; link: string; title: string; content: string; }) => void;
+  onContentAdded?: (newContent: { _id: string; type: string; link: string; title: string; content: string;createdAt: Date; }) => void;
 };
 const API_URL = import.meta.env.VITE_API_URL;
 

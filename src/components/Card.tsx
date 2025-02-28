@@ -15,6 +15,7 @@ interface CardProps {
   setdelete?: () => void;
   setNotes?: () => void;
   index?: number;
+  time : string;
 }
 
 // const colours = ["pink", "blue", "green", "yellow"];
@@ -25,6 +26,7 @@ const Card: React.FC<CardProps> = ({
   type = "",
   content = "",
   url = "",
+  time = "",
   setdelete,
   setNotes,
 }) => {
@@ -187,7 +189,8 @@ const Card: React.FC<CardProps> = ({
               </h2>
             </div>
           </div>
-          <div className="flex items-start gap-1 justify-start rounded-xl p-1 m-1 ">
+          <div className="flex items-end gap-1 justify-between rounded-xl p-1 m-1 ">
+            <div className="gap-1 flex items-center justify-center">
             {type == "Url" ? (
               <button className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                 <a href={url} target="_blank" rel="noopener noreferrer">
@@ -209,6 +212,9 @@ const Card: React.FC<CardProps> = ({
             >
               <Delete />
             </button>
+
+            </div >
+            <p className="text-gray-500 flex text-xs">{time}</p>
           </div>
         </div>
       </div>

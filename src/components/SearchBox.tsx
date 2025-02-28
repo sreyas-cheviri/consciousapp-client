@@ -24,7 +24,7 @@ const SearchBox = ({ onChipSelect }: SearchBoxProps) => {
       ></textarea>
 
       <div className="flex gap-1 p-2">
-        {["Url", "Note", "Doc", "Image"].map((chip) => (
+        {["Url", "Note", "Doc", "Image" , "Date"].map((chip) => (
           <Chips
             key={chip}
             text={chip}
