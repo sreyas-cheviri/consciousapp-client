@@ -98,6 +98,7 @@ const Card: React.FC<CardProps> = ({
             style={{
               zIndex: 0,
               marginTop: -30,
+              marginBottom: -30,
               padding: 0,
               overflow: "hidden",
               pointerEvents: "none",
@@ -122,15 +123,16 @@ const Card: React.FC<CardProps> = ({
           >
             <iframe
               src={url}
-              className="w-full h-full rounded-lg"
+              className="min-w-full h-full rounded-lg"
               style={{
                 // overflow: "hidden",
-                minHeight: "300px",
-                border: "none",
-                overflow: "hidden",
+                // minHeight: "600px",
+                
+                // border: "none",
+                // overflow: "hidden",
                 pointerEvents: "none",
-                msOverflowStyle: "none",
-                scrollbarWidth: "none",
+                // msOverflowStyle: "none",
+                // scrollbarWidth: "thin",
               }}
             />
           </div>
