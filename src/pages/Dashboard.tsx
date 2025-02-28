@@ -163,7 +163,7 @@ export function Dashboard() {
     No content found. Add some content to get started.
   </div>
   
-)}     <div className={`flex w-full h-fit mt-2 mb-2 justify-center m-0 ${page * 9 >= filteredCards.length ? "opacity-30 pointer-events-none" : ""}`}>
+)}     <div className={`flex w-full h-fit mt-2 mb-2 justify-center m-0 ${page * 6 >= filteredCards.length ? "opacity-30 pointer-events-none" : ""}`}>
 <Button variant={"load"} children={"Load More"} size={"md"} onClick={() => setPage(page + 1)} />
 </div>
 </div>
