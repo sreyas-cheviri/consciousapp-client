@@ -8,6 +8,7 @@ import { Footer } from "../components/Footer";
 import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
 import { LinkIcon, Loader2 } from "lucide-react";
+import { Button } from "../components/Button";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -22,6 +23,7 @@ export function Dashboard() {
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState<{ _id: string; type: string; link: string; title: string; content: string }[]>([]);
+  const [page, setPage] = useState(1)
   const [selectedNote, setSelectedNote] = useState<{title: string, content: string} | null>(null);
   
   const fetchContent = useCallback(() => {
@@ -117,6 +119,9 @@ export function Dashboard() {
     setContent(prevContent => [...prevContent, newContent]);
     fetchContent();
   };
+  // const addedmore = (page: number) =>{
+  //   setPage(page)
+  // }
 
   return (
     <div>
@@ -136,29 +141,38 @@ export function Dashboard() {
               open || Copen || share ? "blur-sm" : ""
             }`}
           >
-            {filteredCards.length > 0 ? (
-              filteredCards
-                .slice()
-                .reverse()
-                .map((card, index) => (
-                  <Card
-                    key={card.id}
-                    title={card.title}
-                    type={card.type}
-                    content={card.content}
-                    url={card.link}
-                    setdelete={() => handleDeleteClick(card.id)}
-                    setNotes={()=> handleNotesOpen(card.id)}
-                    index={index}
-                  />
-                ))
-            ) : (
-              <div className="flex items-center justify-center h-40 w-full text-gray-500">
-                No content found. Add some content to get started.
-              </div>
-            )}
-          </div>
-          
+              
+ {filteredCards.length > 0 ? (
+  [...filteredCards]
+    .reverse() 
+    .slice(0, page * 6) 
+    .map((card, index) => (
+      <Card
+        key={card.id}
+        title={card.title}
+        type={card.type}
+        content={card.content}
+        url={card.link}
+        setdelete={() => handleDeleteClick(card.id)}
+        setNotes={() => handleNotesOpen(card.id)}
+        index={index}
+      />
+    ))
+) : (
+  <div className="flex items-center justify-center h-40 w-full text-gray-500">
+    No content found. Add some content to get started.
+  </div>
+  
+)}     <div className={`flex w-full h-fit mt-2 mb-2 justify-center m-0 ${page * 9 >= filteredCards.length ? "opacity-30 pointer-events-none" : ""}`}>
+<Button variant={"load"} children={"Load More"} size={"md"} onClick={() => setPage(page + 1)} />
+</div>
+</div>
+
+
+
+
+
+        
           <CommonMondal
             Copen={Copen}
             onClose={() => {
@@ -204,6 +218,7 @@ export function Dashboard() {
             }}
             onContentAdded={handleContentAdded} 
           />
+     
         </div>
       </div>
     </div>
