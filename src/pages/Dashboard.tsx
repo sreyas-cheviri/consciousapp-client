@@ -166,13 +166,16 @@ export function Dashboard() {
       setdelete={() => handleDeleteClick(card.id)}
       setNotes={() => handleNotesOpen(card.id)}
       index={index}
-      time={card.createdAt.toLocaleString("en-GB", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      })} 
+      time={card.createdAt
+        ? card.createdAt.toLocaleString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        : ".."} 
+      
     />
     
     ))
