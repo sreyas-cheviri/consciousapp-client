@@ -43,7 +43,7 @@ export const Footer = ({ setpanel }: FooterProps) => {
         />
       </div>
 
-      <div className="md:hidden  z-50 flex gap-5 bg-zinc-700 dark:bg-zinc-400 p-1  m rounded-full">
+      <div className="md:hidden  z-[9999]  flex gap-5 bg-zinc-700 dark:bg-zinc-400 p-1  m rounded-full">
         {/* <PushButtons
           variant="opaque2"
           icon={<LightMode style={{ fontSize: "16px" }} />}

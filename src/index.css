@@ -37,3 +37,8 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+  footer {
+    /* position: fixed; */
+    z-index: 10 !important;
+  }
+  
