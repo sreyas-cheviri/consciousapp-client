@@ -2,11 +2,10 @@ import React from "react";
 import { NoteIcon } from "../icons/NoteIcon";
 import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
-// import { Globe } from "lucide-react";
 import { Tweet } from "react-tweet";
 import { Expand } from "../icons/Expand";
 import { DockIcon, Globe, ImageIcon } from "lucide-react";
-// import { Image } from "@mui/icons-material";
+
 
 interface CardProps {
   title: string;
@@ -15,7 +14,7 @@ interface CardProps {
   url?: string;
   setdelete?: () => void;
   setNotes?: () => void;
-  index?: number; // New index prop for delay
+  index?: number;
 }
 
 // const colours = ["pink", "blue", "green", "yellow"];
@@ -119,18 +118,16 @@ const Card: React.FC<CardProps> = ({
       } else {
         return (
           <div
-            className="w-full h-full rounded-lg "
+            className="w-full  rounded-lg "
             style={{ overflow: "hidden" }}
           >
             <iframe
               src={url}
-              className="min-w-full min-h-full rounded-lg"
+              className="min-w-full  rounded-lg"
               style={{
-                minHeight: "400px",
-                // border: "none",
-                // overflow: "hidden",
+                minHeight: "600px",
                 overflow: "hidden",
-                // pointerEvents: "none",
+                pointerEvents: "none",
                 msOverflowStyle: "none",
                 scrollbarWidth: "none",
               }}
