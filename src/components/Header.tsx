@@ -23,8 +23,10 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
   function Logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
+    
     setTimeout(() => {
-      navigate("/");
+      navigate("/", { replace: true }); // After logout → Prevents back button navigation to the protected page.
+      window.location.reload(); 
     }, 100);
   }
 
