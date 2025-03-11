@@ -102,7 +102,7 @@ export function Signin() {
           <div className="flex flex-col justify-center items-center mb-8">
             <img
               src={logo}
-              className="h-8 rounded-full border border-gray-500 mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+              className="h-8 rounded-full  mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               alt=""
             />
             <h1 className="font-semibold text-2xl text-zinc-600">
