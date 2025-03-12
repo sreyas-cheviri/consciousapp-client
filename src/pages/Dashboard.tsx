@@ -147,7 +147,7 @@ export function Dashboard() {
           <SearchBox onChipSelect={handleChipSelect} />
 
           <div
-            className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl bg-black/10 mb-10 border-gray-500/10 border mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300 ${
+            className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl  mb-10  mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300 ${
               open || Copen || share ? "blur-sm" : ""
             }`}
           >

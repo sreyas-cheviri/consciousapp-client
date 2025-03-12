@@ -15,14 +15,14 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-zinc-400  text-white relative bg-cover bg-center bg-no-repeat px-4">
+    <div className="h-screen flex flex-col items-center justify-center bg-zinc-200  text-white relative bg-cover bg-center bg-no-repeat px-4">
       <img
         src={logo}
         className="w-12 md:w-12 rounded-fulltransition-transform duration-500 ease-in-out hover:rotate-[360deg]"
         alt="Logo"
       />
       <h1 className="text-5xl mt-2 italic text-black  font-serif">Conscious</h1>{" "}
-      <span className="-rotate-12 hover:rotate-0 transition-all opacity-70 duration-300">
+      <span className="-rotate-12 hover:rotate-0 transition-all opacity-50 duration-300">
         <Button variant={"new"} children={"Beta"} size={"vsm"}></Button>
       </span>
       <p className="md:mt-16 mt-12 font-medium text-zinc-800 text-center max-w-lg md:max-w-2xl text-md md:text-xl">

@@ -128,7 +128,7 @@ const Card: React.FC<CardProps> = ({
               src={url}
               className="min-w-full  rounded-lg"
               style={{
-                minHeight: "600px",
+                minHeight: "200px",
                 overflow: "hidden",
                 pointerEvents: "none",
                 msOverflowStyle: "none",
@@ -144,7 +144,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div>
-      <div className="flex-col bg-zinc-300 dark:bg-zinc-200 p-[1.5px] border z-10 border-zinc-400/50 rounded-xl flex justify-between dark:shadow-none h-60 shadow-lg shadow-gray-500/10">
+      <div className="flex-col bg-zinc-300  dark:bg-zinc-200 p-[1.5px] border z-10 border-zinc-400/40 rounded-xl flex justify-between dark:shadow-none h-60 shadow-lg shadow-gray-500/10">
         <div className="min-w-72 max-w-72 border bg-white rounded-xl no-scrollbar min-h-32 max-h-60 overflow-y-auto">
           {type == "Url" ? (
             <div className=" rounded-t-lg text-sm min-h-36  horizontal-scroll  overflow-hidden">
@@ -185,7 +185,7 @@ const Card: React.FC<CardProps> = ({
                 )}
               </div>
 
-              <h2 className="text-sm font-semibold text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60">
+              <h2 className="text-md font-semibold text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60">
                 {title}
               </h2>
             </div>
