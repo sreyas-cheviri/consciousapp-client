@@ -12,7 +12,7 @@ export default function HomePage() {
     if (token) {
       navigate("/Dashboard");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-zinc-200  text-white relative bg-cover bg-center bg-no-repeat px-4">
