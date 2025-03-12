@@ -138,6 +138,12 @@ export function Dashboard() {
       <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
       <div className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center mt-4 max-w-6xl w-full px-4">
+
+          <div    className={`flex flex-col justify-center items-center max-w-6xl w-full  ${
+              open || Copen || share ? "blur-[2px]" : ""
+            }`}>
+
+         
           <Header
             setOpen={setOpen}
             setCOpen={setShare}
@@ -147,9 +153,9 @@ export function Dashboard() {
           <SearchBox onChipSelect={handleChipSelect} />
 
           <div
-            className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl  mb-10  mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300 ${
-              open || Copen || share ? "blur-sm" : ""
-            }`}
+            className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl  mb-10  mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300
+              
+           `}
           >
               
  {filteredCards.length > 0 ? (
@@ -187,7 +193,7 @@ export function Dashboard() {
 )}     <div className={`flex w-full h-fit mt-2 mb-2 justify-center m-0 ${page * 6 >= filteredCards.length ? "opacity-30 pointer-events-none" : ""}`}>
 <Button variant={"load"} children={"Load More"} size={"md"} onClick={() => setPage(page + 1)} />
 </div>
-</div>
+</div> </div>
 
 
 
