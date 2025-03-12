@@ -119,7 +119,7 @@ export function Dashboard() {
     let data = cardsData;
   
     if (filter === "Date") {
-      data = data.slice().reverse(); // Reverse the array if filter is "Date"
+      data = data.slice().reverse(); 
     }
   
     return filter && filter !== "Date" ? data.filter((card) => card.type === filter) : data;
@@ -129,9 +129,17 @@ export function Dashboard() {
       setContent(prevContent => [...prevContent, newContent]);
       fetchContent();
     };
-  // const addedmore = (page: number) =>{
-  //   setPage(page)
-  // }
+
+   useEffect(() => {
+    if (open || Copen || share || panel) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto"; 
+    };
+  }, [open,share,Copen,panel]);
 
   return (
     <div>
@@ -140,7 +148,7 @@ export function Dashboard() {
         <div className="flex flex-col justify-center items-center mt-4 max-w-6xl w-full px-4">
 
           <div    className={`flex flex-col justify-center items-center max-w-6xl w-full  ${
-              open || Copen || share ? "blur-[2px]" : ""
+              open || Copen || share ||panel ? "blur-[1.5px]" : ""
             }`}>
 
          

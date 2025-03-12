@@ -144,7 +144,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div>
-      <div className="flex-col bg-zinc-300  dark:bg-zinc-200 p-[1.5px] border z-10 border-zinc-400/40 rounded-xl flex justify-between dark:shadow-none h-60 shadow-lg shadow-gray-500/10">
+      <div className="flex-col bg-zinc-300  dark:bg-zinc-100/90 p-[1.5px] border z-10 border-zinc-400/40 rounded-xl flex justify-between dark:shadow-none h-60 shadow-lg shadow-gray-500/10">
         <div className="min-w-72 max-w-72 border bg-white rounded-xl no-scrollbar min-h-32 max-h-60 overflow-y-auto">
           {type == "Url" ? (
             <div className=" rounded-t-lg text-sm min-h-36  horizontal-scroll  overflow-hidden">

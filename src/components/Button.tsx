@@ -22,7 +22,7 @@ const variantstyles = {
   roundchips:
     "bg-zinc-700 text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
   secondary:
-    "bg-white/10  dark:bg-zinc-300 dark:text-zinc-900 dark:hover:bg-gray-200 border-gray-300/40 text-gray-300 rounded-xl  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
+    "bg-white/10  dark:bg-zinc-400/20 dark:text-zinc-900 dark:hover:bg-gray-200 border-gray-300/40 text-gray-300 rounded-xl  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
   new: "bg-zinc-700  hover:bg-zinc-700/90  text-gray-300 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
 };
 
