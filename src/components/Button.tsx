@@ -3,13 +3,13 @@ import { ReactElement } from "react";
 
 interface ButtonProps {
   variant: "primary" | "secondary" | "round" | "roundchips" | "new" | "load";
-  // text : string | React.ReactNode; text is restrictive, children makes the component more flexible:
   children: React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   size: "sm" | "md" | "lg" | "vsm";
   onClick?: () => void;
   loading?: boolean;
+  disabled?: boolean;
 }
 
 const variantstyles = {
@@ -42,22 +42,23 @@ export const Button = ({
   startIcon,
   endIcon,
   size = "md",
-  loading,
+  loading = false,
+  disabled = false,
   onClick,
-  
 }: ButtonProps) => {
   return (
     <button
-      //  type="button" //it’s a good practice to add type="button" to avoid accidental form submissions.
       onClick={onClick}
-      // className={sizeStyles[size] + " " + variantstyles[variant] + " " + defaultStyles// }
+      disabled={loading || disabled}
       className={clsx(
         sizeStyles[size], 
         variantstyles[variant], 
         defaultStyles, 
-        { "opacity-50 cursor-not-allowed": loading } // Conditionally apply styles if `loading` is true
+        { 
+          "opacity-70 cursor-not-allowed": loading || disabled,
+          "pointer-events-none": loading 
+        }
       )}
-      
     >
       <div className="flex justify-center items-center gap-2 ">
         {startIcon}

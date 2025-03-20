@@ -250,9 +250,8 @@ export function Dashboard() {
             open={open}
             onClose={() => {
               setOpen(false);
-            }}
-            onContentAdded={handleContentAdded} 
-          />
+            } }
+            onContentAdded={handleContentAdded}          />
      
         </div>
       </div>

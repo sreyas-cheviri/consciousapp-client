@@ -1,4 +1,4 @@
-import { CircleX } from "lucide-react";
+import { CircleX, Loader2 } from "lucide-react";
 import { Button } from "./Button";
 import { Chips } from "./Chips";
 import { Input } from "./Input";
@@ -8,8 +8,9 @@ import axios from "axios";
 type ModalProps = {
   open: boolean;
   onClose: () => void;
-  onContentAdded?: (newContent: { _id: string; type: string; link: string; title: string; content: string;createdAt: Date; }) => void;
+  onContentAdded?: (newContent: { _id: string; type: string; link: string; title: string; content: string; createdAt: Date; }) => void;
 };
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 enum ContentType {
@@ -19,24 +20,14 @@ enum ContentType {
   Image = "Image"
 }
 
-export function Modal({ open, onClose ,onContentAdded }: ModalProps) {
-  // useEffect(() => {
-  //   if (open) {
-  //     document.body.style.overflow = "hidden";
-  //   } else {
-  //     document.body.style.overflow = "auto";
-  //   }
-  //   return () => {
-  //     document.body.style.overflow = "auto"; 
-  //   };
-  // }, [open]);
-
+export function Modal({ open, onClose, onContentAdded }: ModalProps) {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const LinkRef = useRef<HTMLInputElement | null>(null);
   const NoteRef = useRef<HTMLTextAreaElement | null>(null);
   const [selectedChip, setSelectedChip] = useState<string | null>("Url");
   const [error, setError] = useState<string | null>(null); // Error state
   const [type, setType] = useState(ContentType.Url);
+  const [loading, setLoading] = useState(false);  // This is the single source of truth for loading state
 
   useEffect(() => {
     if (open) {
@@ -62,27 +53,24 @@ export function Modal({ open, onClose ,onContentAdded }: ModalProps) {
       return;
     }
 
+    setLoading(true); // Start loading
     setError(null); // Clear error if title is provided
 
     try {
-    const response =  await axios.post(`${API_URL}/api/v1/content`, {
-        title,
-        link,
-        type,
-        content
-      }, {
-        headers: {
-          "Authorization": localStorage.getItem("token")
-        }
-      });
-      console.log("New Content Added:", response.data);
-      if(onContentAdded){
-        onContentAdded(response.data)
-      } 
+      const response = await axios.post(`${API_URL}/api/v1/content`, 
+        { title, link, type, content },
+        { headers: { "Authorization": localStorage.getItem("token") }}
+      );
+      
+      if(onContentAdded) {
+        onContentAdded(response.data);
+      }
       onClose();
     } catch (err) {
       console.error("Error adding content:", err);
       setError("Failed to add content. Please try again.");
+    } finally {
+      setLoading(false); // End loading regardless of success/failure
     }
   }
 
@@ -144,10 +132,19 @@ export function Modal({ open, onClose ,onContentAdded }: ModalProps) {
                   />
                 )}
               </div>
-              <div className="mb-6 flex items-end justify-end">
-                <Button onClick={addContent} variant="round" size="md">
-                  Add to Memory
+              <div className={`mb-6 flex items-end justify-end ${loading ? "opacity-70 " : ""}`}>
+                <Button onClick={addContent} variant="round" size="md" loading={loading}>
+                  {loading ? (
+                    <div className="flex gap-2 items-center justify-center">
+                      <Loader2 className="h-5 w-5 animate-spin" /> 
+                      Adding...
+                      <p className="text-xs italic">do not close this modal while adding</p>
+                    </div>
+                  ) : (
+                    "Add to Memory"
+                  )}
                 </Button>
+                
               </div>
             </div>
           </div>
