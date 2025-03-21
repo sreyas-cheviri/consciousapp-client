@@ -15,7 +15,7 @@ export default function HomePage() {
   }, [navigate]);
 
   return (
-    <div className="h-screen flex flex-col items-center justify-center bg-zinc-200  text-white relative bg-cover bg-center bg-no-repeat px-4">
+    <div className="h-screen bg-gradient-to-t from-gray-500/40 via-gray-200 to-gray-100 flex flex-col items-center justify-center bg-zinc-200  text-white relative bg-cover bg-center bg-no-repeat px-4">
       <img
         src={logo}
         className="w-12 md:w-12 rounded-fulltransition-transform duration-500 ease-in-out hover:rotate-[360deg]"
@@ -65,7 +65,7 @@ export default function HomePage() {
             }
           ></Button> */}
 
-          <p className="flex text-zinc-800  justify-center">© Conscious 2025</p>
+          <p className="flex text-zinc-800  justify-center">© 2025 Conscious. All rights reserved.</p>
         </div>
       </div>
     </div>

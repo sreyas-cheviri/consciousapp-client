@@ -3,7 +3,7 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { useRef, useState } from "react";
 import axios from "axios";
-import { Loader2 } from "lucide-react";
+import { CircleX, Loader2 } from "lucide-react";
 import logo from "../assets/logo.png"
 import signupimg from "../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg"
 // import { ArrowBackIos } from "@mui/icons-material";
@@ -49,42 +49,23 @@ export function Signup() {
       }
     }
   }
-  // async function GuestSignup() {
-  //   setgLoading(true);
-    
-  //   console.log("API URL:", API_URL);
-  //   try {
-  //     const response = await axios.post(`${API_URL}/api/v1/guest`);
-  //     const token = response.data.token;
-  //     localStorage.setItem("token", token);
-  //   localStorage.setItem("username", "Guest");
 
-  //   setgLoading(false);
-  //   navigate("/Dashboard");
-  //   alert("Logged in as Guest");
-  // } catch (error) {
-  //   setgLoading(false);
-  //   setError("Guest login failed. Please try again.");
-  //   console.error("Guest login error:", error);
-  // }
-  // }
   return (
 
     <div className="flex md:flex-row flex-col justify-center ">
 
 
 
-     {/* <Link to="/" className="w-fit">
-          <div className="text-gray-200 pl-2 w-fit mt-28 bg-zinc-800 h-fit md:ml-0 ml-10  md:mt-48 transition-all duration-100 hover:bg-zinc-300 hover:text-zinc-600  rounded-full">
-           
-          <ArrowBackIos className=" m-1 "/>
-            
-          </div>
-          </Link> */}
 
     <div className="flex  justify-center items-center min-h-screen  ">
      
-      <div className="bg-zinc-300 flex border-gray-600 border dark:bg-zinc-100  rounded-xl p-[4px]   ">
+      <div className="bg-zinc-300 flex border-gray-600 border dark:bg-zinc-100  rounded-xl p-[4px]  relative ">
+      <div className="left-0 top-0 absolute z-50 justify-end flex-row p-2 text-gray-700 ">
+              <Link to="/">
+                <CircleX className="cursor-pointer size-5 hover:text-gray-600" />
+              </Link>
+            </div>
+            
         <div className="flex flex-col p-5 bg-zinc-300 max-w-80 dark:bg-zinc-100  items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
           <div className="flex  flex-col justify-center items-center mb-8">
             <img
@@ -122,13 +103,7 @@ export function Signup() {
             loading ={loading}
             size={"md"}
           ></Button>
-          {/* <Button
-            variant={"new"}
-            onClick={GuestSignup}
-            children={ gloading? "Logging in as a Guest...." : "Continue as a Guest"}
-            loading ={gloading}
-            size={"md"}
-          ></Button> */}
+     
          {error && (
             <p className="text-red-500 font-semibold text-center text-xs mt-2">
               {error}
@@ -144,7 +119,7 @@ export function Signup() {
               Privacy Policy
             </a>
             .
-            <Link to="/" className="ml-10 font-semibold text-sm text-black underline hover:text-zinc-600">	&larr; Home</Link>
+            
           </p>
             
         </div>

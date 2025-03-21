@@ -41,4 +41,6 @@
     /* position: fixed; */
     z-index: 10 !important;
   }
-  
+  body{
+    background-color: white;
+  }
