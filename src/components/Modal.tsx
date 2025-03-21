@@ -123,7 +123,7 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                 {error && <p className="text-red-500 text-sm">{error}</p>} {/* Show error message */}
 
                 {type === ContentType.Url ? (
-                  <Input placeholder="Url/link" reference={LinkRef} variant="secondary" />
+                  <Input placeholder="https://consciousapp.vercel.app" reference={LinkRef} variant="secondary" />
                 ) : (
                   <textarea
                     placeholder="Paste your Notes.........."
@@ -138,7 +138,8 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                     <div className="flex gap-2 items-center justify-center">
                       <Loader2 className="h-5 w-5 animate-spin" /> 
                       Adding...
-                      <p className="text-xs italic">do not close this modal while adding</p>
+                      <br />
+                      <p className="text-xs italic">Content is being extracted and embedded. This may take few seconds.</p>
                     </div>
                   ) : (
                     "Add to Memory"

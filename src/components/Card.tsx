@@ -128,7 +128,7 @@ const Card: React.FC<CardProps> = ({
               src={url}
               className="min-w-full  rounded-lg"
               style={{
-                minHeight: "200px",
+                // minHeight: "100px",
                 overflow: "hidden",
                 pointerEvents: "none",
                 msOverflowStyle: "none",
