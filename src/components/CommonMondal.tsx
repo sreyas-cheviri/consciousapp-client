@@ -40,7 +40,7 @@ export default function CommonMondal({
   return (
     Copen && (
       <div
-        className="w-screen h-screen bg-black/80   z-40 fixed top-0 left-0 flex justify-center items-center"
+        className="w-screen h-screen bg-black/80   z-50 fixed top-0 left-0 flex justify-center items-center"
         onClick={onClose}
       >
         <div

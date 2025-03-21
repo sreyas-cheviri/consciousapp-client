@@ -128,7 +128,7 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                   <textarea
                     placeholder="Paste your Notes.........."
                     ref={NoteRef}
-                    className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-screen bg-gray-50 border-2"
+                    className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-screen min-h-36 bg-gray-50 border-2"
                   />
                 )}
               </div>

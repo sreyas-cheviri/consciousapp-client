@@ -156,6 +156,7 @@ export function Dashboard() {
             setOpen={setOpen}
             setCOpen={setShare}
             setShareURL={setShareURL}
+            
           />
           <Footer setpanel={setPanel} />
           <SearchBox onChipSelect={handleChipSelect} />
