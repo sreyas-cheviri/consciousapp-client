@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { PushButtons } from "./PushButtons";
 
-const DarkModeToggle = () => {
+
+
+const DarkModeToggle = ( ) => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark");
 
@@ -17,6 +19,8 @@ const DarkModeToggle = () => {
   }, [darkMode]);
 
   return (
+    <>
+
     <PushButtons
       variant="opaque2"
       icon={
@@ -26,9 +30,12 @@ const DarkModeToggle = () => {
           <LightMode style={{ fontSize: "16px" }} />
         )
       }
-      size="md"
+      size="sm"
       onClick={() => setDarkMode(!darkMode)}
-    />
+      
+      />
+
+      </>
   );
 };
 

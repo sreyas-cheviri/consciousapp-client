@@ -1,12 +1,14 @@
-import LogoutIcon from "@mui/icons-material/Logout";
+
 import LinkIcon from "@mui/icons-material/Link";
 import { Button } from "./Button";
-import { PushButtons } from "./PushButtons";
+// import { PushButtons } from "./PushButtons";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router-dom";
-import DarkModeToggle from "./DarkModeButton";
+// import { useNavigate } from "react-router-dom";
+// import MoreVertIcon from '@mui/icons-material/MoreVert';
+// import DarkModeToggle from "./DarkModeButton";
 import axios from "axios";
 import logo from "../assets/logo.png"
+import DropDown from "./DropDown";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const FE_URL = import.meta.env.VITE_FE_URL;
@@ -18,17 +20,7 @@ interface HeaderProps {
 }
 
 export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
-  const navigate = useNavigate();
-
-  function Logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    
-    setTimeout(() => {
-      navigate("/", { replace: true }); // After logout → Prevents back button navigation to the protected page.
-      window.location.reload(); 
-    }, 100);
-  }
+  
 
   return (
     <header className="sticky top-0 flex flex-col shadow-black/50 bg-zinc-900 dark:shadow-zinc-400/50 dark:bg-zinc-300 backdrop-blur-md shadow-2xl md:flex-row md:w-full max-w-full min-w-full items-center md:gap-3 gap-4 md:justify-between  p-3 rounded-b-2xl z-50">
@@ -78,13 +70,8 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
         </div>
 
         <div className="md:flex gap-1 items-center justify-center hidden">
-          <DarkModeToggle />
-          <PushButtons
-            variant="opaque2"
-            icon={<LogoutIcon style={{ fontSize: "16px" }} />}
-            size="md"
-            onClick={Logout}
-          />
+    
+          <DropDown />
         </div>
       </div>
     </header>

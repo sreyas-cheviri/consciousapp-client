@@ -230,14 +230,14 @@ export function Dashboard() {
                 </div>
               )}{" "}
               <div
-                className={`flex w-full h-fit mt-2 mb-2 justify-center m-0 ${
+                className={`flex w-full h-fit mt-2 mb-2  justify-center m-0 ${
                   page * 6 >= filteredCards.length
                     ? "opacity-30 pointer-events-none"
                     : ""
-                }`}
+                } ${filteredCards.length==0 ? "hidden" : "block" }`}
               >
                 <Button
-                  variant={"load"}
+                  variant={"secondary"}
                   children={"Load More"}
                   size={"md"}
                   onClick={() => setPage(page + 1)}
