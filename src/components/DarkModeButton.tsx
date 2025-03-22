@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { DarkMode, LightMode } from "@mui/icons-material";
-import { PushButtons } from "./PushButtons";
+import { Button } from "./Button";
 
+// Define the props type
+interface DarkModeToggleProps {
+  themeText: string;
+}
 
-
-const DarkModeToggle = ( ) => {
+const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ themeText }) => {
   const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark");
+    localStorage.getItem("theme") === "dark"
+  );
 
   useEffect(() => {
     if (darkMode) {
@@ -19,23 +23,18 @@ const DarkModeToggle = ( ) => {
   }, [darkMode]);
 
   return (
-    <>
-
-    <PushButtons
-      variant="opaque2"
-      icon={
-        darkMode ? (
-          <DarkMode  style={{ fontSize: "16px" }} />
-        ) : (
-          <LightMode style={{ fontSize: "16px" }} />
-        )
-      }
+    <Button
+      variant="drop"
+      startIcon={darkMode ? (
+        <DarkMode style={{ fontSize: "16px" }} />
+      ) : (
+        <LightMode style={{ fontSize: "16px" }} />
+      )}
       size="sm"
       onClick={() => setDarkMode(!darkMode)}
-      
-      />
-
-      </>
+    >
+      {themeText} {/* Correct way to use the prop */}
+    </Button>
   );
 };
 

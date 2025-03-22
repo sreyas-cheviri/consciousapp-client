@@ -22,7 +22,8 @@ export const Sidebar = ({ openpanel, closepanel }: SideBarProps) => {
  {/* // this syntaax is bad cause the side bar is always present in the DOM and it is just hidden and shown when needed. */}
  {/* better to   uses {open && <div>...</div>} for cleaner conditional rendering.
 ✔ Modal disappears from the DOM when open is false → No extra CSS tricks needed.
-✔ Still closes when clicking outside or pressing the close button. */}
+✔ Still closes when clicking outside or pressing the close button.
+The issue with  this approach is that when isOpen is false, the element is completely removed from the DOM, making transitions impossible. */}
       
       <div
         className={`fixed left-0 top-0 h-screen bg-zinc-900 dark:bg-zinc-300 border-r border-gray-300/20 z-50 flex flex-col w-64 md:w-1/4 lg:w-1/6 transition-transform duration-300 ${
