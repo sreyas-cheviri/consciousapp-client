@@ -61,13 +61,13 @@ function DropDown() {
       
 <div
   className={`absolute md:bottom-auto bottom-10 md:top-12 md:right-0 right-4 md:mt-2 w-40 
-    bg-zinc-700 flex flex-col items-start border-zinc-500 border 
+    bg-zinc-700 flex flex-col items-start  
     dark:border-zinc-400 dark:bg-zinc-300 dark:text-black text-zinc-200 
-    rounded shadow-md transition-all duration-500 transform 
+    rounded-lg shadow-md transition-all duration-300 transform 
     ${isOpen ? "opacity-100 scale-100 visible" : "opacity-0 scale-95 invisible"}`}
 >
   <ul className="w-full flex flex-col items-start"> 
-    <li className="px-1 py-1 border-b-2 border-zinc-500 dark:border-zinc-400 w-full">
+    <li className="px-1 py-1 border-b-[.01rem]  border-zinc-500 dark:border-zinc-400 w-full">
       <Button
         variant="drop"
         startIcon={<Person style={{ fontSize: "medium" }}/>}
@@ -79,7 +79,7 @@ function DropDown() {
 
     <li
       onClick={toggleDropDown}
-      className="px-1 py-1 border-b-2 border-zinc-500 dark:border-zinc-400 w-full cursor-pointer"
+      className="px-1 py-1  dark:border-zinc-400 w-full cursor-pointer"
     >
       <a
         href="https://github.com/sreyas-cheviri/superconscious"
@@ -101,8 +101,9 @@ function DropDown() {
       </a>
     </li>
 
-    <li className="border-b-2 border-zinc-500 dark:border-zinc-400 px-1 py-1 w-full">
+    <li className=" dark:border-zinc-400 px-1 py-1 w-full" >
       <DarkModeButton themeText={themeText} />
+      
     </li>
 
     <li className="px-1 py-1 w-full">
