@@ -14,17 +14,17 @@ interface ButtonProps {
 
 const variantstyles = {
   primary:
-    "bg-zinc-900  text-white rounded-lg  w-full   hover:shadow-lg hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+    "bg-zinc-900 flex justify-center items-center text-white rounded-lg  w-full   hover:shadow-lg hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
   load:
-    "bg-white text-black rounded-xl  hover:bg-gray-200   font-normal flex justify-center items-center",
+    "bg-white  flex justify-center items-center text-black rounded-xl  hover:bg-gray-200   font-normal flex justify-center items-center",
   round:
-    "bg-zinc-900 dark:border-zinc-700 dark:border dark:text-zinc-900 dark:hover:bg-gray-200 dark:bg-zinc-300 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
+    "bg-zinc-900 flex justify-center items-center dark:border-zinc-700 dark:border dark:text-zinc-900 dark:hover:bg-gray-200 dark:bg-zinc-300 text-white  rounded-full  hover:bg-black/60 font-normal trasition duration-200 flex justify-center items-center",
   roundchips:
-    "bg-zinc-700 text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
-  drop: "items-center  bg-zinc-800 text-zinc-300 dark:bg-zinc-400 dark:text-zinc-800 rounded-sm w-full flex justify-start",
+    "bg-zinc-700 flex justify-center items-center text-white font-medium rounded-lg  hover:bg-black/60 font-normal  flex justify-center items-center",
+  drop: " flex bg-zinc-700 hover:bg-zinc-800 text-zinc-300 dark:bg-zinc-300 dark:hover:bg-zinc-400 dark:text-zinc-800 rounded-sm w-full  ",
   secondary:
-    "bg-white/10  dark:bg-zinc-400/20 dark:text-zinc-900 dark:hover:bg-gray-200 border-gray-300/40 text-gray-300 rounded-xl  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
-  new: "bg-zinc-700  hover:bg-zinc-700/90  text-gray-300 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
+    "bg-white/10 flex justify-center items-center dark:bg-zinc-400/20 dark:text-zinc-900 dark:hover:bg-gray-200 border-gray-300/40 text-gray-300 rounded-xl  font-normal  hover:bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
+  new: "bg-zinc-700 flex justify-center items-center hover:bg-zinc-700/90  text-gray-300 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
 };
 
 const sizeStyles = {
@@ -35,7 +35,7 @@ const sizeStyles = {
 };
 
 const defaultStyles =
-  "font-sans font-semibold shadow  flex justify-center items-center cursor-pointer";
+  "font-sans font-semibold shadow   cursor-pointer";
 
 export const Button = ({
   variant = "primary",
