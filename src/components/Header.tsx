@@ -31,15 +31,16 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
           onClick={() => window.location.reload()}
             src={logo}
             alt=""
-            className="h-8 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+            className="h-6 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />
         </button>
-        <h1 className="shadow-none text-2xl text-zinc-400 font-semibold dark:text-zinc-800 transition-all duration-300">
-          Conscious  {localStorage.getItem("username")}
+        <h1 className="shadow-none text-xl text-zinc-200 font-normal dark:text-zinc-800 transition-all duration-300">
+          Conscious  
+          {/* {localStorage.getItem("username")} */}
         </h1>
       </div>
 
-      <div className="flex md:flex-row flex-col gap-1 md:gap-2 p-1 px-1 w-fit rounded-lg">
+      <div className="flex items-center flex-row gap-2  md:gap-2 p-1 px-1 w-fit rounded-lg">
         <div className="flex gap-2">
           <Button
             onClick={async () => {
@@ -70,7 +71,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
           />
         </div>
 
-        <div className="md:flex gap-1 items-center justify-center hidden">
+        <div className="md:flex gap-1 items-center justify-center ">
     
           <DropDown />
         </div>

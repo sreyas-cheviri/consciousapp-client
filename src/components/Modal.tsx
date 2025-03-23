@@ -133,7 +133,7 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                 )}
               </div>
               <div className={`mb-6 flex items-end justify-end ${loading ? "opacity-70 " : ""}`}>
-                <Button onClick={addContent} variant="round" size="md" loading={loading}>
+                <Button onClick={addContent} variant="new" size="md" loading={loading}>
                   {loading ? (
                     <div className="flex gap-2 items-center justify-center">
                       <Loader2 className="h-5 w-5 animate-spin" /> 

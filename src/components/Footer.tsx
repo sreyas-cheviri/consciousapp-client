@@ -1,6 +1,6 @@
 import { PanelLeftOpen, ArrowUp } from "lucide-react";
 import { PushButtons } from "./PushButtons";
-import DropDown from "./DropDown";
+// import DropDown from "./DropDown";
 const handleScrollToTop = () => {
   window.scrollTo({
     top: 0,
@@ -37,9 +37,9 @@ export const Footer = ({ setpanel }: FooterProps) => {
         />
       </div>
 
-      <div className="md:hidden  z-[9999]  flex gap-5   p-1  m rounded-full">
+      {/* <div className="md:hidden  z-[9999]  flex gap-5   p-1  m rounded-full">
        <DropDown/>
-      </div>
+      </div> */}
     </footer>
   );
 };

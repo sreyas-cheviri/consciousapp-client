@@ -177,9 +177,9 @@ export function Dashboard() {
 
   return (
     <div>
-      <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
       <div className="flex justify-center items-center">
         <div className="flex flex-col justify-center items-center max-w-6xl w-full px-4">
+          <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
           <div
             className={`flex flex-col justify-center items-center max-w-6xl w-full  ${
               open || Copen || share || panel ? "blur-[1.5px]" : ""

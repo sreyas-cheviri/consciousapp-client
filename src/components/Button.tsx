@@ -30,7 +30,7 @@ const variantstyles = {
 const sizeStyles = {
   vsm: "px-2 py-.5 text-[.7rem]",
   sm: "px-4 py-1 text-[.9rem]",
-  md: "px-3 py-2 text-md",
+  md: "px-3 py-2 text-sm md:text-md",
   lg: "px-4 py-2 text-lg",
 };
 
