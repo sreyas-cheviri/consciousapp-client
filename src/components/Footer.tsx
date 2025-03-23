@@ -21,18 +21,19 @@ export const Footer = ({ setpanel }: FooterProps) => {
         "
       >
         <PushButtons
-          variant="transparent"
-          icon={<PanelLeftOpen />}
+          variant="opaque2"
+          icon={<PanelLeftOpen style={{ padding: "3px" }} />}
           size="sm"
           onClick={() => {
             setpanel(true);
           }}
         />
         <PushButtons
-          variant="transparent"
-          icon={<ArrowUp />}
+          variant="opaque2"
+          icon={<ArrowUp style={{ padding: "3px" }} />}
           size="sm"
           onClick={handleScrollToTop}
+          
         />
       </div>
 
