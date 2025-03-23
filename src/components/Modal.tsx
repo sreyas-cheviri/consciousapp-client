@@ -8,7 +8,14 @@ import axios from "axios";
 type ModalProps = {
   open: boolean;
   onClose: () => void;
-  onContentAdded?: (newContent: { _id: string; type: string; link: string; title: string; content: string; createdAt: Date; }) => void;
+  onContentAdded?: (newContent: {
+    _id: string;
+    type: string;
+    link: string;
+    title: string;
+    content: string;
+    createdAt: Date;
+  }) => void;
 };
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -17,7 +24,7 @@ enum ContentType {
   Url = "Url",
   Note = "Note",
   Doc = "Doc",
-  Image = "Image"
+  Image = "Image",
 }
 
 export function Modal({ open, onClose, onContentAdded }: ModalProps) {
@@ -27,7 +34,7 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
   const [selectedChip, setSelectedChip] = useState<string | null>("Url");
   const [error, setError] = useState<string | null>(null); // Error state
   const [type, setType] = useState(ContentType.Url);
-  const [loading, setLoading] = useState(false);  // This is the single source of truth for loading state
+  const [loading, setLoading] = useState(false); // This is the single source of truth for loading state
 
   useEffect(() => {
     if (open) {
@@ -57,12 +64,13 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
     setError(null); // Clear error if title is provided
 
     try {
-      const response = await axios.post(`${API_URL}/api/v1/content`, 
+      const response = await axios.post(
+        `${API_URL}/api/v1/content`,
         { title, link, type, content },
-        { headers: { "Authorization": localStorage.getItem("token") }}
+        { headers: { Authorization: localStorage.getItem("token") } }
       );
-      
-      if(onContentAdded) {
+
+      if (onContentAdded) {
         onContentAdded(response.data);
       }
       onClose();
@@ -105,7 +113,7 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
             <div className="flex flex-col h-full gap-2">
               <div className="flex gap-1 mt-10 m-2">
                 <div className="flex gap-2 mt-2 bg-black/15 p-1 rounded-full">
-                  {["Url", "Note", "Doc", "Image"].map((chip, index) => (
+                  {["Url", "Note", "Doc"].map((chip, index) => (
                     <Chips
                       key={index}
                       text={chip}
@@ -119,33 +127,62 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                 </div>
               </div>
               <div className="flex flex-col gap-2">
-                <Input placeholder="Title" reference={titleRef} variant="secondary" required />
-                {error && <p className="text-red-500 text-sm">{error}</p>} {/* Show error message */}
-
+                <Input
+                  placeholder="Title"
+                  reference={titleRef}
+                  variant="secondary"
+                  required
+                />
+                {error && <p className="text-red-500 text-sm">{error}</p>}{" "}
+                {/* Show error message */}
                 {type === ContentType.Url ? (
-                  <Input placeholder="https://consciousapp.vercel.app" reference={LinkRef} variant="secondary" />
+                  <Input
+                    placeholder="https://consciousapp.vercel.app"
+                    reference={LinkRef}
+                    variant="secondary"
+                    onKeyDown={(e) => e.key === "Enter" && addContent()}
+                  />
                 ) : (
                   <textarea
                     placeholder="Paste your Notes.........."
                     ref={NoteRef}
                     className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-screen min-h-36 bg-gray-50 border-2"
+                    onKeyDown={(e) =>
+                      e.key === "Enter" &&
+                      !e.shiftKey &&
+                      (e.preventDefault(), addContent())
+                    }
                   />
                 )}
               </div>
-              <div className={`mb-6 flex items-end justify-end ${loading ? "opacity-70 " : ""}`}>
-                <Button onClick={addContent} variant="new" size="md" loading={loading}>
+              <div
+                className={`mb-6 flex items-end justify-end ${
+                  loading ? "opacity-70 " : ""
+                }`}
+              >
+                <Button
+                  onClick={addContent}
+                  variant="new"
+                  size="md"
+                  loading={loading}
+                >
                   {loading ? (
-                    <div className="flex gap-2 items-center justify-center">
-                      <Loader2 className="h-5 w-5 animate-spin" /> 
-                      Adding...
-                      <br />
-                      <p className="text-xs italic">Content is being extracted and embedded. This may take few seconds.</p>
+                    <div className="flex gap-2 items-center justify-between">
+                      <div className="flex gap-1">
+                        <Loader2 className="h-5 w-5 animate-spin" />
+                        Adding...
+                      </div>
+                      <div>
+                        <p className="text-xs italic">
+                          Content is being extracted and embedded. This may take
+                          few seconds.
+                        </p>
+                      </div>
                     </div>
                   ) : (
                     "Add to Memory"
                   )}
                 </Button>
-                
               </div>
             </div>
           </div>

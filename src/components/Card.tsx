@@ -87,7 +87,7 @@ const Card: React.FC<CardProps> = ({
           <div>
             <iframe
               src={embedUrl || ""}
-              className="w-full h-full rounded-lg"
+              className="w-full h-full "
               allowFullScreen
               style={{ pointerEvents: "none" }}
             />
@@ -110,10 +110,10 @@ const Card: React.FC<CardProps> = ({
             <Tweet id={tweetId} />
           </div>
         ) : (
-          <div className="w-full h-full rounded-lg ">
+          <div className="w-full h-full  ">
             <iframe
               src={url}
-              className="w-full h-full rounded-lg"
+              className="w-full h-full "
               allowFullScreen
             />
           </div>
@@ -121,14 +121,14 @@ const Card: React.FC<CardProps> = ({
       } else {
         return (
           <div
-            className="w-full  rounded-lg "
+            className="w-full  "
             style={{ overflow: "hidden" }}
           >
             <iframe
               src={url}
-              className="min-w-full  rounded-lg"
+              className="min-w-full  "
               style={{
-                // minHeight: "100px",
+           
                 overflow: "hidden",
                 pointerEvents: "none",
                 msOverflowStyle: "none",
@@ -144,10 +144,10 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div>
-      <div className="flex-col bg-zinc-300  dark:bg-zinc-100/90 p-[1.5px] border z-10 border-zinc-400/40 rounded-xl flex justify-between dark:shadow-none h-60 shadow-lg shadow-gray-500/10">
-        <div className="min-w-72 max-w-72 border bg-white rounded-xl no-scrollbar min-h-32 max-h-60 overflow-y-auto">
+      <div className="flex-col bg-zinc-300  dark:bg-zinc-100/90   z-10  rounded-2xl flex justify-between dark:shadow-none h-56 shadow-lg shadow-gray-500/10">
+        <div className="min-w-72 max-w-72 overscroll-x-none  rounded-t-xl no-scrollbar min-h-36 max-h-36 overflow-hidden">
           {type == "Url" ? (
-            <div className=" rounded-t-lg text-sm min-h-36  horizontal-scroll  overflow-hidden">
+            <div className=" text-sm min-h-36 overscroll-x-none    overflow-hidden">
               {renderContent()}
             </div>
           ) : (
@@ -193,7 +193,7 @@ const Card: React.FC<CardProps> = ({
           <div className="flex items-end gap-1 justify-between rounded-xl p-1 m-1 ">
             <div className="gap-1 flex items-center justify-center">
             {type == "Url" ? (
-              <button className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+              <button className=" bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                 <a href={url} target="_blank" rel="noopener noreferrer">
                   <ShareIcon />
                 </a>
@@ -201,7 +201,7 @@ const Card: React.FC<CardProps> = ({
             ) : (
               <button
                 onClick={setNotes}
-                className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+                className=" bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
               >
                 {/* onClick={setNotes} */}
                 <Expand />
@@ -209,7 +209,7 @@ const Card: React.FC<CardProps> = ({
             )}
             <button
               onClick={setdelete}
-              className=" bg-zinc-400/50 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
+              className=" bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
             >
               <Delete />
             </button>

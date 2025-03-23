@@ -189,8 +189,9 @@ export function Dashboard() {
               setOpen={setOpen}
               setCOpen={setShare}
               setShareURL={setShareURL}
-            />
+              />
             <Footer setpanel={setPanel} />
+              <h1 className="mt-20 text-4xl dark:text-zinc-800 text-gray-300">Hello, {localStorage.getItem("username") || "Guest"}</h1>
             <SearchBox onChipSelect={handleChipSelect} />
             <div
               className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl  mb-10  mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300

@@ -119,6 +119,7 @@ export function Signin() {
               placeholder="Password"
               reference={PasswordRef}
               variant={"secondary"}
+              onKeyDown={(e) => e.key === "Enter" && signin()}
             />
 
             <Button
@@ -135,6 +136,7 @@ export function Signin() {
               size={"md"}
               loading={loading}
               onClick={signin}
+             
             ></Button>
       
 
