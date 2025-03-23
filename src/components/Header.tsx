@@ -58,7 +58,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
               setShareURL(ShareURL); 
             }}
             variant="secondary"
-            children="Share Brain"
+            children="Share "
             size="md"
             startIcon={<LinkIcon style={{ fontSize: 20 }} />}
           />
