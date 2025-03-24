@@ -30,6 +30,7 @@ export function Dashboard() {
       title: string;
       content: string;
       createdAt: Date;
+      imageUrl?: string; // Add this line
     }[]
   >([]);
   const [page, setPage] = useState(1);
@@ -73,13 +74,14 @@ export function Dashboard() {
   }, [fetchContent]);
 
   const cardsData = content.map(
-    ({ _id, type, link, title, content, createdAt }) => ({
+    ({ _id, type, link, title, content, createdAt, imageUrl }) => ({
       id: _id,
       type,
       link,
       title,
       content,
       createdAt,
+      imageUrl, // Add this line
     })
   );
 
@@ -159,6 +161,7 @@ export function Dashboard() {
     title: string;
     content: string;
     createdAt: Date;
+    imageUrl?: string; // Add this line
   }) => {
     setContent((prevContent) => [...prevContent, newContent]);
     fetchContent();
@@ -209,6 +212,7 @@ export function Dashboard() {
                       type={card.type}
                       content={card.content}
                       url={card.link}
+                      imageUrl={card.imageUrl} // Add this line
                       setdelete={() => handleDeleteClick(card.id)}
                       setNotes={() => handleNotesOpen(card.id)}
                       index={index}

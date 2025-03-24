@@ -12,11 +12,13 @@ interface CardProps {
   type?: string;
   content?: string;
   url?: string;
+  imageUrl?: string | null;
   setdelete?: () => void;
   setNotes?: () => void;
   index?: number;
-  time : string;
+  time: string;
 }
+
 
 // const colours = ["pink", "blue", "green", "yellow"];
 // const randomColour = colours[Math.floor(Math.random() * colours.length)];
@@ -29,7 +31,7 @@ const Card: React.FC<CardProps> = ({
   time = "",
   setdelete,
   setNotes,
-  
+  imageUrl = null,
 }) => {
   const getDomain = (url: string) => {
     try {
@@ -72,6 +74,8 @@ const Card: React.FC<CardProps> = ({
   };
 
   const renderContent = () => {
+   
+  
     if (type === "Note") {
       return (
         <div className="p-2">
@@ -87,7 +91,7 @@ const Card: React.FC<CardProps> = ({
           <div>
             <iframe
               src={embedUrl || ""}
-              className="w-full h-full "
+              className="w-full h-full"
               allowFullScreen
               style={{ pointerEvents: "none" }}
             />
@@ -110,37 +114,33 @@ const Card: React.FC<CardProps> = ({
             <Tweet id={tweetId} />
           </div>
         ) : (
-          <div className="w-full h-full  ">
-            <iframe
-              src={url}
-              className="w-full h-full "
-              allowFullScreen
-            />
+          <div className="w-full h-full">
+            <iframe src={url} className="w-full h-full" allowFullScreen />
           </div>
         );
       } else {
         return (
-          <div
-            className="w-full  "
-            style={{ overflow: "hidden" }}
-          >
-            <iframe
-              src={url}
-              className="min-w-full  "
-              style={{
-           
-                overflow: "hidden",
-                pointerEvents: "none",
-                msOverflowStyle: "none",
-                scrollbarWidth: "none",
-              }}
-            />
+          <div className="w-full h-36 overflow-hidden rounded-t-lg">
+            {imageUrl ? (
+              <img
+                src={imageUrl}
+                alt="Saved Content"
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-200">
+                <Globe size={24} className="text-gray-400" />
+              </div>
+            )}
           </div>
         );
+        
       }
     }
+  
     return null;
   };
+  
 
   return (
     <div>
