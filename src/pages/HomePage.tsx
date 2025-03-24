@@ -34,7 +34,7 @@ export default function HomePage(): JSX.Element {
   return (
     <div className="bg-white h-screen  flex justify-center items-center">
       <div
-        className={`m-4 p-10 w-screen h-[95vh] border-dashed border-t-2 border-l-2 border-r-2 rounded-lg shadow-lg bg-gradient-to-t from-gray-400/60 via-gray-200 to-gray-100 flex flex-col items-center justify-center text-white relative bg-cover bg-center bg-no-repeat px-4 transition-opacity duration-1000 ${
+        className={`m-8 p-10 w-screen h-[90vh] border-dashed border-2 rounded-lg shadow-lg bg-gradient-to-t from-gray-400/60 via-gray-200 to-gray-100 flex flex-col items-center justify-center text-white relative bg-cover bg-center bg-no-repeat px-4 transition-opacity duration-1000 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -45,13 +45,13 @@ export default function HomePage(): JSX.Element {
         >
           <img
             src={logo}
-            className={`w-12 md:w-12 rounded-full transition-all duration-500 ease-in-out ${
+            className={`w-10 md:w-12 rounded-full transition-all duration-500 ease-in-out ${
               hoverLogo ? "rotate-[360deg] " : ""
             }`}
             alt="Logo"
           />
           <h1
-            className={`text-5xl mt-2 italic text-black font-serif transition-all duration-300 ${
+            className={`md:text-5xl  text-3xl  mt-2 italic text-black font-serif transition-all duration-300 ${
               hoverLogo ? "tracking-wider" : ""
             }`}
           >
@@ -82,14 +82,14 @@ export default function HomePage(): JSX.Element {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center">
-          <div className="absolute flex-col justify-center items-center opacity-50 flex text-zinc-800 bottom-2 text-xs ">
+       
+      </div>
+          <div className="absolute flex-col justify-center items-center opacity-50 flex text-zinc-800 bottom-1 text-xs ">
             <p className="flex text-zinc-800 justify-center">
               © 2025 Conscious. All rights reserved.
             </p>
           </div>
-        </div>
-      </div>
+        
     </div>
   );
 }
