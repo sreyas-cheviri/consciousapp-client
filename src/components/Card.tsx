@@ -128,8 +128,13 @@ const Card: React.FC<CardProps> = ({
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                <Globe size={24} className="text-gray-400" />
+              <div className="w-full h-full flex items-center  justify-center bg-gray-200">
+               <img 
+                    src={getFaviconUrl(url)}
+                    alt="Website Logo"
+                    className="w-12 h-12 rounded-full"
+                    onError={(e) => (e.currentTarget.style.display = "none")}
+                  />
               </div>
             )}
           </div>
