@@ -22,7 +22,7 @@ const variantstyles = {
 };
 
 
-export function Input({  placeholder, variant , reference , maxlength ,required , type}: InputProps) {
+export function Input({  placeholder, variant , reference , maxlength ,required , type, onKeyDown}: InputProps) {
   return (
 
     <input
@@ -30,8 +30,7 @@ export function Input({  placeholder, variant , reference , maxlength ,required 
       ref={reference}
       type={type}
       maxLength={maxlength}
-      
-      // onChange={onChange}
+      onKeyDown={onKeyDown}
       required={required}
       className={clsx(variantstyles[variant])}
     />

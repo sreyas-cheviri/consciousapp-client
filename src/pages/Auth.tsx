@@ -8,6 +8,7 @@ import cfaeebc3ea50c461b550a8cea90b2bdc from "../assets/cfaeebc3ea50c461b550a8ce
 import signupimg from "../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg";
 import logo from "../assets/logo.png";
 
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function Auth() {
@@ -109,6 +110,7 @@ export function Auth() {
               placeholder="Username"
               reference={usernameRef}
               variant={"secondary"}
+              onKeyDown={(e) => e.key === "Enter" && handleAuth()}
             />
             <Input
               type="password"
@@ -120,6 +122,7 @@ export function Auth() {
 
             <Button
               variant={"new"}
+              
               children={
                 loading ? (
                   <div className="flex gap-2 items-center justify-center">
