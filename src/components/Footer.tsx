@@ -12,34 +12,29 @@ interface FooterProps {
 }
 
 export const Footer = ({ setpanel }: FooterProps) => {
-
- 
   return (
-    <footer className="flex dark:bg-zinc-200 md:dark:bg-transparent  z-0 w-screen fixed md:m-2 bottom-0 p-2   px-10 md:p-10   md:bg-transparent bg-zinc-800 text-zinc-900  justify-between  ">
-      <div
-        className="flex md:gap-4 gap-8 m-1 justify-between items-center 
-        "
-      >
-        <PushButtons
-          variant="opaque2"
-          icon={<PanelLeftOpen style={{ padding: "3px" }} />}
-          size="sm"
-          onClick={() => {
-            setpanel(true);
-          }}
-        />
-        <PushButtons
-          variant="opaque2"
-          icon={<ArrowUp style={{ padding: "3px" }} />}
-          size="sm"
-          onClick={handleScrollToTop}
-          
-        />
+    <footer className="fixed bottom-0 left-0  z-0 right-0 flex justify-center w-full">
+      <div className="container mx-auto px-4 sm:px-6 md:px-0">
+        <div className="flex dark:bg-zinc-200 md:dark:bg-transparent rounded-t-2xl 
+          w-full md:m-2 p-2 md:p-10 md:bg-transparent bg-zinc-800 text-zinc-900">
+          <div className="flex justify-between w-full md:px-0 p-1 md:justify-start md:gap-4">
+            <PushButtons
+              variant="opaque2"
+              icon={<PanelLeftOpen style={{ padding: "3px" }} />}
+              size="sm"
+              onClick={() => {
+                setpanel(true);
+              }}
+            />
+            <PushButtons
+              variant="opaque2"
+              icon={<ArrowUp style={{ padding: "3px" }} />}
+              size="sm"
+              onClick={handleScrollToTop}
+            />
+          </div>
+        </div>
       </div>
-
-      {/* <div className="md:hidden  z-[9999]  flex gap-5   p-1  m rounded-full">
-       <DropDown/>
-      </div> */}
     </footer>
   );
 };
