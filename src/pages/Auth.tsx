@@ -147,8 +147,8 @@ export function Auth() {
               onClick={handleAuth}
             />
 
-            {/* Google Sign In Button */}
-            <div className="mt-4 w-full">
+            {/* Google Sign In Button - Minimal spacing */}
+            <div className="mt-0 w-full"> {/* Changed from mt-2 to <mt-0></mt-0> for even less spacing */}
               <button
                 type="button"
                 onClick={handleGoogleLogin}
