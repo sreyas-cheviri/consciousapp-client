@@ -55,6 +55,8 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
                 }
               );
               const ShareURL = `${FE_URL}share/${result.data.hash}`;
+              console.log(ShareURL);
+              
               setShareURL(ShareURL); 
             }}
             variant="secondary"

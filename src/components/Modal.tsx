@@ -56,13 +56,15 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
     const content = NoteRef.current?.value;
 
     if (!title) {
-      setError("Title is required"); // Set error message
+      setError("Title is required"); 
       return;
     }
 
-    setLoading(true); // Start loading
-    setError(null); // Clear error if title is provided
-
+    setLoading(true); 
+    setError(null);
+    setTimeout(() => {
+      onClose()
+    }, 4000);
     try {
       const response = await axios.post(
         `${API_URL}/api/v1/content`,
@@ -74,11 +76,12 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
         onContentAdded(response.data);
       }
       onClose();
+  
     } catch (err) {
       console.error("Error adding content:", err);
       setError("Failed to add content. Please try again.");
     } finally {
-      setLoading(false); // End loading regardless of success/failure
+      setLoading(false);
     }
   }
 
@@ -140,7 +143,8 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                     placeholder="https://consciousapp.vercel.app"
                     reference={LinkRef}
                     variant="secondary"
-                    onKeyDown={(e) => e.key === "Enter" && addContent()}
+                    onKeyDown={(e) => e.key === "Enter" &&
+                      (e.preventDefault(), addContent())}
                   />
                 ) : (
                   <textarea

@@ -9,13 +9,21 @@ import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
 import { LinkIcon, Loader2 } from "lucide-react";
 import { Button } from "../components/Button";
+import clsx from "clsx";
+import { ArrowBack } from "@mui/icons-material";
+import { PushButtons } from "../components/PushButtons";
+import TypewriterEffect from "../components/TypewriterEffect";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [share, setShare] = useState(false);
+  // const [query , setQuery] = useState(false);
   const [Note, setNote] = useState(false);
+  const [answer, setAnswer] = useState("");
+  // const [content, setContent] = useState([]);
+  const [searchloading, setsearchLoading] = useState(false);
   const [Copen, setCOpen] = useState(false);
   const [panel, setPanel] = useState(false);
   const [shareUrl, setShareURL] = useState<string>("");
@@ -40,10 +48,17 @@ export function Dashboard() {
   } | null>(null);
 
   const fetchContent = useCallback(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("No authentication token found");
+      return;
+    }
+
     axios
       .get(`${API_URL}/api/v1/content`, {
         headers: {
-          Authorization: localStorage.getItem("token"),
+          Authorization: token, // Add token directly
         },
       })
       .then((response) => {
@@ -58,7 +73,7 @@ export function Dashboard() {
               createdAt: string;
             }) => ({
               ...item,
-              createdAt: new Date(item.createdAt), 
+              createdAt: new Date(item.createdAt),
             })
           )
         );
@@ -145,7 +160,7 @@ export function Dashboard() {
   const filteredCards = (() => {
     let data = cardsData;
 
-    if (filter === "Date") {
+    if (filter === "Date" || answer) {
       data = data.slice().reverse();
     }
 
@@ -192,10 +207,60 @@ export function Dashboard() {
               setOpen={setOpen}
               setCOpen={setShare}
               setShareURL={setShareURL}
-              />
+            />
             <Footer setpanel={setPanel} />
-              <h1 className="mt-20 text-3xl dark:text-zinc-800 text-gray-300">Hello, {localStorage.getItem("username") || "Guest"}</h1>
-            <SearchBox onChipSelect={handleChipSelect} />
+            <h1
+              className={clsx(
+                "text-3xl dark:text-zinc-800 text-gray-300 transition-all duration-1000",
+                // Use opacity and transform instead of hidden
+                searchloading || answer 
+                  ? "opacity-0 -translate-y-10 h-0 mt-0" 
+                  : "opacity-100 translate-y-0 h-auto mt-20"
+              )}
+            >
+              {`Hello, ${localStorage.getItem("username") || "Guest"}`}
+            </h1>
+            <SearchBox
+              setAnswer={setAnswer}
+              setContent={setContent}
+              setLoading={setsearchLoading}
+              onChipSelect={handleChipSelect}
+            />
+            {searchloading ? (
+              <div className="text-gray-300 dark:text-gray-600">
+                <Loader2 className="h-10 w-10 animate-spin" />
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4 w-full max-w-6xl px-4 justify-center items-center">
+                {answer && (
+                  <div className="w-full flex justify-start">
+                    <PushButtons
+                      variant="opaque2"
+                      icon={<ArrowBack style={{ padding: "3px" }} />}
+                      size="sm"
+                      onClick={() => {
+                        fetchContent();
+                        setAnswer("");
+                      }}
+                    />
+                  </div>
+                )}
+                {answer && (
+                  <div className="w-full flex flex-col gap-5">
+                    <div className="w-full rounded-md bg-zinc-700/30 dark:bg-zinc-400/30 p-4 md:p-8 shadow-xl shadow-black/30 dark:shadow-zinc-300">
+                      <p className="text-gray-300 dark:text-zinc-900 whitespace-pre-wrap text-sm md:text-base">
+                        <TypewriterEffect text={answer} />
+                      </p>
+                    </div>
+                  </div>
+                )}
+                {answer && (
+                  <p className="text-gray-300 dark:text-zinc-900 font-semibold w-full text-lg md:text-xl mt-2">
+                    Relevant Knowledge from Your Memory :
+                  </p>
+                )}
+              </div>
+            )}
             <div
               className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl  mb-10  mx-auto mt-8 p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300
               
@@ -239,7 +304,7 @@ export function Dashboard() {
                   page * 6 >= filteredCards.length
                     ? "opacity-30 pointer-events-none"
                     : ""
-                } ${filteredCards.length==0 ? "hidden" : "block" }`}
+                } ${filteredCards.length == 0 ? "hidden" : "block"}`}
               >
                 <Button
                   variant={"secondary"}
