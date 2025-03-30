@@ -76,7 +76,7 @@ function DropDown() {
         : " opacity-0 -translate-y-2 invisible"
     }`}
       >
-        <ul className="w-full flex border  rounded-lg shadow-md flex-col bg-zinc-700 items-start dark:border-zinc-400 dark:bg-zinc-300 dark:text-black text-zinc-200 ">
+        <ul className="w-full flex border   rounded-lg shadow-md border-zinc-600 flex-col bg-zinc-700 items-start dark:border-zinc-400 dark:bg-zinc-300 dark:text-black text-zinc-200 ">
           <li className="px-1 py-1 border-b-[.01rem]  border-zinc-500 dark:border-zinc-400 w-full">
             <Button
               variant="drop"

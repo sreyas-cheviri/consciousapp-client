@@ -69,8 +69,8 @@ export default function HomePage(): JSX.Element {
             <span className="animate-pulse">|</span>
           </p>
           <p className="mt-2 font-thin">
-            Conscious, an AI-powered second brain that helps you store, recall, and
-            link your knowledge effortlessly.
+            Conscious, an AI-powered second brain that helps you store, recall,
+            and link your knowledge effortlessly.
           </p>
         </div>
 
@@ -81,15 +81,12 @@ export default function HomePage(): JSX.Element {
             </Button>
           </Link>
         </div>
-
-       
       </div>
-          <div className="absolute flex-col justify-center items-center opacity-50 flex text-zinc-800 bottom-1 text-xs ">
-            <p className="flex text-zinc-800 justify-center">
-              © 2025 Conscious. All rights reserved.
-            </p>
-          </div>
-        
+      <div className="absolute flex-col justify-center items-center opacity-50 flex text-zinc-800 bottom-1 text-xs ">
+        <p className="flex text-zinc-800 justify-center">
+          © 2025 Conscious. All rights reserved.
+        </p>
+      </div>
     </div>
   );
 }

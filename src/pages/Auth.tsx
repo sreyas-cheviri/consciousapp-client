@@ -8,7 +8,6 @@ import cfaeebc3ea50c461b550a8cea90b2bdc from "../assets/cfaeebc3ea50c461b550a8ce
 import signupimg from "../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg";
 import logo from "../assets/logo.png";
 
-
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function Auth() {
@@ -55,7 +54,10 @@ export function Auth() {
       console.error(`${isSignUp ? "Signup" : "Signin"} error:`, error);
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          setError(error.response.data.message || `${isSignUp ? "Signup" : "Signin"} failed. Try again.`);
+          setError(
+            error.response.data.message ||
+              `${isSignUp ? "Signup" : "Signin"} failed. Try again.`
+          );
         } else if (error.request) {
           setError("No response from server.");
         } else {
@@ -122,15 +124,16 @@ export function Auth() {
 
             <Button
               variant={"new"}
-              
               children={
                 loading ? (
                   <div className="flex gap-2 items-center justify-center">
                     <Loader2 className="h-5 w-5 animate-spin" />{" "}
                     {isSignUp ? "Signing Up..." : "Logging In..."}
                   </div>
+                ) : isSignUp ? (
+                  "Sign Up"
                 ) : (
-                  isSignUp ? "Sign Up" : "Sign In"
+                  "Sign In"
                 )
               }
               size={"md"}
@@ -167,4 +170,4 @@ export function Auth() {
       </div>
     </div>
   );
-} 
+}
