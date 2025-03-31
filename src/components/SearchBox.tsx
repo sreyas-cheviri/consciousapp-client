@@ -91,7 +91,7 @@ const SearchBox = ({ onChipSelect, setLoading, setContent, setAnswer }: SearchBo
       <textarea
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         className="placeholder:opacity-60 bg-zinc-700 font-normal dark:bg-zinc-400/5 dark:placeholder-zinc-900 overflow-auto h-16 px-4 py-2 bg-transparent w-full focus:outline-none rounded-2xl md:w-full resize-none"
         placeholder="Ask your brain..."
       />
