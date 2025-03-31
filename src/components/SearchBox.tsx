@@ -2,25 +2,33 @@ import { useState } from "react";
 import { SearchIcon } from "lucide-react";
 import { Chips } from "./Chips";
 import axios from "axios";
+import { PushButtons } from "./PushButtons";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 interface SearchBoxProps {
   onChipSelect: (chip: string | null) => void;
   setLoading: (loading: boolean) => void;
-  setContent: (content: {
-    _id: string;
-    type: string;
-    link: string;
-    title: string;
-    content: string;
-    createdAt: Date;
-    imageUrl?: string; 
-  }[]) => void;
-  setAnswer : (amswer : string) => void;
+  setContent: (
+    content: {
+      _id: string;
+      type: string;
+      link: string;
+      title: string;
+      content: string;
+      createdAt: Date;
+      imageUrl?: string;
+    }[]
+  ) => void;
+  setAnswer: (amswer: string) => void;
 }
 
-const SearchBox = ({ onChipSelect, setLoading, setContent, setAnswer }: SearchBoxProps) => {
+const SearchBox = ({
+  onChipSelect,
+  setLoading,
+  setContent,
+  setAnswer,
+}: SearchBoxProps) => {
   const [selectedChip, setSelectedChip] = useState<string | null>(null);
   const [searchText, setSearchText] = useState<string>("");
 
@@ -31,26 +39,25 @@ const SearchBox = ({ onChipSelect, setLoading, setContent, setAnswer }: SearchBo
       setLoading(true);
 
       const token = localStorage.getItem("token");
-    
+
       if (!token) {
         console.error("No authentication token found");
         setAnswer("You need to be logged in to search.");
         setLoading(false);
         return;
       }
-      
+
       // Fix the request format to match backend expectations
 
       const res = await axios.post(
-
         `${API_URL}/api/v1/search`,
         {
-          query: searchText.trim() // Send query in request body
+          query: searchText.trim(), // Send query in request body
         },
         {
           headers: {
-            Authorization: token // Add token directly in headers
-          }
+            Authorization: token, // Add token directly in headers
+          },
         }
       );
 
@@ -63,7 +70,7 @@ const SearchBox = ({ onChipSelect, setLoading, setContent, setAnswer }: SearchBo
 
       setContent(res.data.relevantContent || []);
       setAnswer(res.data.answer || "");
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
       console.error("Search error:", error);
       setContent([]);
@@ -80,7 +87,7 @@ const SearchBox = ({ onChipSelect, setLoading, setContent, setAnswer }: SearchBo
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSearch();
     }
@@ -107,12 +114,14 @@ const SearchBox = ({ onChipSelect, setLoading, setContent, setAnswer }: SearchBo
         ))}
       </div>
 
-      <button
-        onClick={handleSearch}
-        className="absolute right-2 top-16 bg-zinc-300/10 dark:bg-zinc-200/30 border-gray-500/50 px-2 flex py-2 rounded-3xl h-fit"
-      >
-        <SearchIcon style={{ color: "black" }} />
-      </button>
+      <div className="absolute right-4 top-16  flex">
+        <PushButtons
+          icon={<SearchIcon style={{ padding: "4px" }} />}
+          onClick={handleSearch}
+          variant={"opaque2"}
+          size={"sm"}
+        ></PushButtons>
+      </div>
     </div>
   );
 };

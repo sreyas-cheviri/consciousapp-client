@@ -1,4 +1,4 @@
-import { PanelLeftOpen, ArrowUp } from "lucide-react";
+import { ArrowUp, ArrowRight } from "lucide-react";
 import { PushButtons } from "./PushButtons";
 // import DropDown from "./DropDown";
 const handleScrollToTop = () => {
@@ -20,7 +20,7 @@ export const Footer = ({ setpanel }: FooterProps) => {
           <div className="flex justify-between w-full md:px-0 p-1 md:justify-start md:gap-4">
             <PushButtons
               variant="opaque2"
-              icon={<PanelLeftOpen style={{ padding: "3px" }} />}
+              icon={<ArrowRight style={{ padding: "3px" }} />}
               size="sm"
               onClick={() => {
                 setpanel(true);
