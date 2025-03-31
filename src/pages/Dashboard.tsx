@@ -262,9 +262,7 @@ export function Dashboard() {
               </div>
             )}
             <div
-              className={`flex gap-2 flex-wrap justify-center min-h-96 w-full md:z-40 max-w-6xl  mb-10  mx-auto  p-3 sm:p-5 rounded-2xl bg-zinc-600/3 transition-all duration-300
-              
-           `}
+              className={`columns-1 sm:columns-2 lg:columns-3 gap-3 md:z-40 max-w-full mb-10 mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
               {filteredCards.length > 0 ? (
                 [...filteredCards]

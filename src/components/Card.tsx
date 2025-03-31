@@ -6,7 +6,6 @@ import { Tweet } from "react-tweet";
 import { Expand } from "../icons/Expand";
 import { DockIcon, Globe, ImageIcon } from "lucide-react";
 
-
 interface CardProps {
   title: string;
   type?: string;
@@ -18,10 +17,6 @@ interface CardProps {
   index?: number;
   time: string;
 }
-
-
-// const colours = ["pink", "blue", "green", "yellow"];
-// const randomColour = colours[Math.floor(Math.random() * colours.length)];
 
 const Card: React.FC<CardProps> = ({
   title,
@@ -74,8 +69,6 @@ const Card: React.FC<CardProps> = ({
   };
 
   const renderContent = () => {
-   
-  
     if (type === "Note") {
       return (
         <div className="p-2">
@@ -91,7 +84,7 @@ const Card: React.FC<CardProps> = ({
           <div>
             <iframe
               src={embedUrl || ""}
-              className="w-full h-full"
+              className=""
               allowFullScreen
               style={{ pointerEvents: "none" }}
             />
@@ -114,69 +107,54 @@ const Card: React.FC<CardProps> = ({
             <Tweet id={tweetId} />
           </div>
         ) : (
-          <div className="w-full h-full">
+          <div className="">
             <iframe src={url} className="w-full h-full" allowFullScreen />
           </div>
         );
       } else {
         return (
-          <div className="w-full h-36 overflow-hidden rounded-t-lg">
-            {imageUrl ? (
+          <div className=" overflow-hidden rounded-t-lg">
+            { imageUrl ?  (
               <img
-                src={imageUrl}
+                src={imageUrl || ""}
                 alt="Saved Content"
-                className="w-full h-full object-cover"
+                className=" "
               />
-            ) : (
-              <div className="w-full h-full flex items-center  justify-center bg-gray-200">
-               <img 
-                    src={getFaviconUrl(url)}
-                    alt="Website Logo"
-                    className="w-12 h-12 rounded-full"
-                    onError={(e) => (e.currentTarget.style.display = "none")}
-                  />
-              </div>
-            )}
+            ) : ( "") 
+            }
           </div>
         );
-        
       }
     }
-  
+
     return null;
   };
-  
 
   return (
-    <div>
-      <div className="flex-col bg-zinc-300  dark:bg-zinc-100/90   z-10  rounded-2xl flex justify-between dark:shadow-none h-56 shadow-lg shadow-gray-500/10">
-        <div className="min-w-72 max-w-72 overscroll-x-none  rounded-t-xl no-scrollbar min-h-36 max-h-36 overflow-hidden">
+    <div className="break-inside-avoid mb-3">
+      <div className="flex-col bg-zinc-300 w-72 dark:bg-zinc-100/90 z-10 rounded-2xl flex justify-between dark:shadow-none shadow-lg shadow-gray-500/10">
+        <div className=" overscroll-x-none rounded-t-xl no-scrollbar  overflow-hidden">
           {type == "Url" ? (
-            <div className=" text-sm min-h-36 overscroll-x-none    overflow-hidden">
+            <div className="text-sm  overscroll-x-none overflow-hidden">
               {renderContent()}
             </div>
           ) : (
             <div
-              className={`bg-${randomColour}-100 rounded-t-lg text-sm min-h-36 overflow-hidden`}
+              className={`bg-${randomColour}-100 rounded-t-lg text-sm  overflow-hidden`}
             >
               {renderContent()}
             </div>
           )}
         </div>
         <div className="rounded-b-xl">
-          <div className="flex justify-between p-2 min-w-72 max-w-72 rounded-lg">
+          <div className="flex justify-between p-2  rounded-lg">
             <div className="flex gap-2 ">
               <div className="rounded-full p-1 text-gray-700 bg-zinc-400/50">
-                {
-                
-                
-                type === "Doc" ? (
-                  <DockIcon className=" w-4 h-4 " />
-                ) : 
-                type === "Image" ? (
-                  <ImageIcon className=" w-4 h-4 " />
-                ) : 
-                type === "Note" ? (
+                {type === "Doc" ? (
+                  <DockIcon className="w-4 h-4 " />
+                ) : type === "Image" ? (
+                  <ImageIcon className="w-4 h-4 " />
+                ) : type === "Note" ? (
                   <NoteIcon />
                 ) : getFaviconUrl(url) ? (
                   <img
@@ -197,29 +175,27 @@ const Card: React.FC<CardProps> = ({
           </div>
           <div className="flex items-end gap-1 justify-between rounded-xl p-1 m-1 ">
             <div className="gap-1 flex items-center justify-center">
-            {type == "Url" ? (
-              <button className=" bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                  <ShareIcon />
-                </a>
-              </button>
-            ) : (
+              {type == "Url" ? (
+                <button className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+                  <a href={url} target="_blank" rel="noopener noreferrer">
+                    <ShareIcon />
+                  </a>
+                </button>
+              ) : (
+                <button
+                  onClick={setNotes}
+                  className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+                >
+                  <Expand />
+                </button>
+              )}
               <button
-                onClick={setNotes}
-                className=" bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+                onClick={setdelete}
+                className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
               >
-                {/* onClick={setNotes} */}
-                <Expand />
+                <Delete />
               </button>
-            )}
-            <button
-              onClick={setdelete}
-              className=" bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
-            >
-              <Delete />
-            </button>
-
-            </div >
+            </div>
             <p className="text-gray-500 flex text-xs">{time}</p>
           </div>
         </div>
