@@ -6,7 +6,7 @@ import axios from "axios";
 import { CircleX, Loader2 } from "lucide-react";
 import cfaeebc3ea50c461b550a8cea90b2bdc from "../assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg";
 import signupimg from "../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg";
-import logo from "../assets/logo.png";
+// import logo from "../assets/logo.png";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -82,7 +82,7 @@ export function Auth() {
           <div className="flex flex-col p-5 bg-zinc-300 dark:bg-zinc-100 relative max-w-80 items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
             <div className="flex flex-col justify-center items-center mb-8">
               <img
-                src={logo}
+                src="/logo.png"
                 className="h-8 rounded-full mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
                 alt=""
               />

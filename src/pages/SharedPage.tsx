@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card";
-import logo from "../assets/logo.png"
+// import logo from "../assets/logo.png"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -39,7 +39,7 @@ export default function SharedPage() {
             <Link to="/">
         <div className="flex justify-center items-center p-10 gap-1">
         <img
-            src={logo}
+            src="/logo.png"
             alt=""
             className="h-8 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />

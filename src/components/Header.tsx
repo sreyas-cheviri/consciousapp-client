@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 // import MoreVertIcon from '@mui/icons-material/MoreVert';
 // import DarkModeToggle from "./DarkModeButton";
 import axios from "axios";
-import logo from "../assets/logo.png"
+// import logo from "../assets/logo.png"
 import DropDown from "./DropDown";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -29,7 +29,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
         <button>
           <img
           onClick={() => window.location.reload()}
-            src={logo}
+            src="/logo.png"
             alt=""
             className="h-6 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />

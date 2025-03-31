@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { useEffect, useState } from "react";
-import logo from "../assets/logo.png";
+
 
 export default function HomePage(): JSX.Element {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ export default function HomePage(): JSX.Element {
           onMouseLeave={() => setHoverLogo(false)}
         >
           <img
-            src={logo}
+            src="/logo.png"
             className={`w-10 md:w-12 rounded-full transition-all duration-500 ease-in-out ${
               hoverLogo ? "rotate-[360deg] " : ""
             }`}
