@@ -215,7 +215,7 @@ export function Dashboard() {
                 // Use opacity and transform instead of hidden
                 searchloading || answer 
                   ? "opacity-0 -translate-y-10 h-0 mt-0" 
-                  : "opacity-100 translate-y-0 h-auto mt-20"
+                  : "opacity-100 translate-y-0 h-auto mt-10"
               )}
             >
               {`Hello, ${localStorage.getItem("username") || "Guest"}`}
