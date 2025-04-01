@@ -98,7 +98,6 @@ const Card: React.FC<CardProps> = ({
               position: "relative",
               zIndex: 1,
               marginTop: -30,
-              // width :  "fit",
               marginBottom: -135,
               padding: 0,
               overflow: "hidden",
@@ -132,24 +131,24 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="break-inside-avoid mb-3">
+    <article className="break-inside-avoid mb-3">
       <div className="flex-col bg-zinc-300 w-72 dark:bg-zinc-100/90 z-10 rounded-2xl flex justify-between dark:shadow shadow-lg shadow-black">
-        <div className=" overscroll-x-none rounded-t-2xl no-scrollbar  overflow-hidden">
+        <header className="overscroll-x-none rounded-t-2xl no-scrollbar overflow-hidden">
           {type == "Url" ? (
-            <div className="text-sm  overscroll-x-none rounded-t-2xl overflow-hidden">
+            <div className="text-sm overscroll-x-none rounded-t-2xl overflow-hidden">
               {renderContent()}
             </div>
           ) : (
             <div
-              className={`bg-${randomColour}-100 rounded-t-2xl text-sm  overflow-hidden`}
+              className={`bg-${randomColour}-100 rounded-t-2xl text-sm overflow-hidden`}
             >
               {renderContent()}
             </div>
           )}
-        </div>
-        <div className="rounded-b-xl">
-          <div className="flex justify-between p-2  rounded-lg">
-            <div className="flex gap-2 ">
+        </header>
+        <footer className="rounded-b-xl">
+          <div className="flex justify-between p-2 rounded-lg">
+            <div className="flex gap-2">
               <div className="rounded-full p-1 text-gray-700 bg-zinc-400/50">
                 {type === "Doc" ? (
                   <DockIcon className="w-4 h-4 " />
@@ -174,7 +173,7 @@ const Card: React.FC<CardProps> = ({
               </h2>
             </div>
           </div>
-          <div className="flex items-end gap-1 justify-between rounded-2xl p-1 m-1 ">
+          <nav className="flex items-end gap-1 justify-between rounded-2xl p-1 m-1">
             <div className="gap-1 flex items-center justify-center">
               {type == "Url" ? (
                 <button className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
@@ -198,10 +197,10 @@ const Card: React.FC<CardProps> = ({
               </button>
             </div>
             <p className="text-gray-500 flex text-xs">{time}</p>
-          </div>
-        </div>
+          </nav>
+        </footer>
       </div>
-    </div>
+    </article>
   );
 };
 

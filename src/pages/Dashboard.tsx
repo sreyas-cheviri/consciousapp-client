@@ -19,10 +19,8 @@ const API_URL = import.meta.env.VITE_API_URL;
 export function Dashboard() {
   const [open, setOpen] = useState(false);
   const [share, setShare] = useState(false);
-  // const [query , setQuery] = useState(false);
   const [Note, setNote] = useState(false);
   const [answer, setAnswer] = useState("");
-  // const [content, setContent] = useState([]);
   const [searchloading, setsearchLoading] = useState(false);
   const [Copen, setCOpen] = useState(false);
   const [panel, setPanel] = useState(false);
@@ -38,7 +36,7 @@ export function Dashboard() {
       title: string;
       content: string;
       createdAt: Date;
-      imageUrl?: string; // Add this line
+      imageUrl?: string;
     }[]
   >([]);
   const [page, setPage] = useState(1);
@@ -58,7 +56,7 @@ export function Dashboard() {
     axios
       .get(`${API_URL}/api/v1/content`, {
         headers: {
-          Authorization: token, // Add token directly
+          Authorization: token,
         },
       })
       .then((response) => {
@@ -83,7 +81,6 @@ export function Dashboard() {
       });
   }, []);
 
-  // Fixed the useEffect hook (was incorrectly using useState)
   useEffect(() => {
     fetchContent();
   }, [fetchContent]);
@@ -96,7 +93,7 @@ export function Dashboard() {
       title,
       content,
       createdAt,
-      imageUrl, // Add this line
+      imageUrl,
     })
   );
 
@@ -176,7 +173,7 @@ export function Dashboard() {
     title: string;
     content: string;
     createdAt: Date;
-    imageUrl?: string; // Add this line
+    imageUrl?: string;
   }) => {
     setContent((prevContent) => [...prevContent, newContent]);
     fetchContent();
@@ -194,9 +191,9 @@ export function Dashboard() {
   }, [open, share, Copen, panel]);
 
   return (
-    <div>
+    <main className="min-h-screen">
       <div className="flex justify-center items-center">
-        <div className="flex flex-col justify-center items-center max-w-6xl w-full px-4">
+        <article className="flex flex-col justify-center items-center max-w-6xl w-full px-4">
           <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
           <div
             className={`flex flex-col justify-center items-center max-w-6xl w-full  ${
@@ -212,9 +209,8 @@ export function Dashboard() {
             <h1
               className={clsx(
                 "text-3xl dark:text-zinc-800 text-gray-300 transition-all duration-1000",
-                // Use opacity and transform instead of hidden
-                searchloading || answer 
-                  ? "opacity-0 -translate-y-10 h-0 mt-0" 
+                searchloading || answer
+                  ? "opacity-0 -translate-y-10 h-0 mt-0"
                   : "opacity-100 translate-y-0 h-auto mt-10"
               )}
             >
@@ -231,7 +227,7 @@ export function Dashboard() {
                 <Loader2 className="h-10 w-10 animate-spin" />
               </div>
             ) : (
-              <div className="flex flex-col gap-4 w-full max-w-6xl px-4 justify-center items-center">
+              <section className="flex flex-col gap-4 w-full max-w-6xl px-4 justify-center items-center">
                 {answer && (
                   <div className="w-full flex justify-start">
                     <PushButtons
@@ -259,9 +255,9 @@ export function Dashboard() {
                     Relevant Knowledge from Your Memory :
                   </p>
                 )}
-              </div>
+              </section>
             )}
-            <div
+            <section
               className={`columns-1 sm:columns-2 lg:columns-3 gap-3 md:z-40 max-w-full mb-10 mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
               {filteredCards.length > 0 ? (
@@ -275,7 +271,7 @@ export function Dashboard() {
                       type={card.type}
                       content={card.content}
                       url={card.link}
-                      imageUrl={card.imageUrl} // Add this line
+                      imageUrl={card.imageUrl}
                       setdelete={() => handleDeleteClick(card.id)}
                       setNotes={() => handleNotesOpen(card.id)}
                       index={index}
@@ -296,7 +292,7 @@ export function Dashboard() {
                 <div className="flex items-center justify-center h-40 w-full text-gray-500">
                   No content found. Add some content to get started.
                 </div>
-              )}{" "}
+              )}
               <div
                 className={`flex w-full h-fit mt-2 mb-2  justify-center m-0 ${
                   page * 6 >= filteredCards.length
@@ -311,7 +307,7 @@ export function Dashboard() {
                   onClick={() => setPage(page + 1)}
                 />
               </div>
-            </div>{" "}
+            </section>
           </div>
 
           <CommonMondal
@@ -367,8 +363,8 @@ export function Dashboard() {
             }}
             onContentAdded={handleContentAdded}
           />
-        </div>
+        </article>
       </div>
-    </div>
+    </main>
   );
 }
