@@ -21,6 +21,8 @@ interface SearchBoxProps {
     }[]
   ) => void;
   setAnswer: (amswer: string) => void;
+  searchText: string; // Add this
+  setSearchText: (text: string) => void; // Add this
 }
 
 const SearchBox = ({
@@ -28,10 +30,11 @@ const SearchBox = ({
   setLoading,
   setContent,
   setAnswer,
+  searchText,      // Add this
+  setSearchText,   // Add this
 }: SearchBoxProps) => {
   const [selectedChip, setSelectedChip] = useState<string | null>(null);
-  const [searchText, setSearchText] = useState<string>("");
-
+  
   const handleSearch = async () => {
     if (!searchText.trim()) return;
 

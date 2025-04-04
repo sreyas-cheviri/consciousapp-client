@@ -44,6 +44,7 @@ export function Dashboard() {
     title: string;
     content: string;
   } | null>(null);
+  const [searchText, setSearchText] = useState("");
 
   const fetchContent = useCallback(() => {
     const token = localStorage.getItem("token");
@@ -229,6 +230,8 @@ export function Dashboard() {
               setContent={setContent}
               setLoading={setsearchLoading}
               onChipSelect={handleChipSelect}
+              searchText={searchText}           // Add this
+              setSearchText={setSearchText} 
             />
             {searchloading ? (
               <div className="text-gray-300 dark:text-gray-600">
@@ -245,6 +248,7 @@ export function Dashboard() {
                       onClick={() => {
                         fetchContent();
                         setAnswer("");
+                        setSearchText("");  // Add this linesetSearchText("");  // Add this line
                       }}
                     />
                   </div>
