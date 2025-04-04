@@ -9,7 +9,7 @@ interface PushButtonsProps {
 
 const variantstyles = {
   opaque:"bg-zinc-300 dark:bg-zinc-300 dark:text-zinc-900 dark:hover:bg-gray-200 text-black rounded-full hover:bg-zinc-800 hover:text-zinc-200 trasition duration-200 cursor-pointer  flex justify-center items-center",
-  opaque2:"bg-white/10 shadow dark:hover:bg-zinc-400/20 dark:text-zinc-900 dark:bg-gray-200 border-gray-300/40 text-gray-300  rounded-full hover:bg-zinc-700 hover:text-gray-300   trasition duration-200  cursor-pointer  flex justify-center items-center",
+  opaque2:"shadow  dark:text-zinc-900  border-gray-300/40 text-gray-300  rounded-full  hover:text-gray-300   trasition duration-200  cursor-pointer  flex justify-center items-center hover:bg-white/10 dark:hover:bg-zinc-400/20 dark:bg-gray-200  bg-zinc-700 ",
   transparent:
     "bg-zinc-400 dark:bg-zinc-300  opacity-40 hover:opacity-100 rounded-full text-black font-normal  hover:bg-gray-300 cursor-pointer  trasition duration-200 flex justify-center items-center",
 };
