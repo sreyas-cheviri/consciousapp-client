@@ -113,7 +113,7 @@ const Card: React.FC<CardProps> = ({
         );
       } else {
         return (
-          <div className={`overflow-hidden rounded-t-2xl ${imageUrl ? "" : "h-8 bg-gradient-to-b from-zinc-500/50 via-zinc-400/50 to-zinc-300 dark:from-zinc-300/80 dark:via-zinc-200/70 dark:to-zinc-100"}`}>
+          <div className={`overflow-hidden rounded-t-xl ${imageUrl ? "" : "h-8 bg-gradient-to-b from-zinc-500/50 via-zinc-400/50 to-zinc-300 dark:from-zinc-300/80 dark:via-zinc-200/70 dark:to-zinc-100"}`}>
             { imageUrl ?  (
               <img
                 src={imageUrl || ""}
@@ -131,25 +131,26 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <article className="break-inside-avoid mb-3">
-      <div className="flex-col bg-zinc-300 w-72 dark:bg-zinc-100/90 z-10 rounded-2xl flex justify-between dark:shadow shadow-lg shadow-black">
-        <header className="overscroll-x-none rounded-t-2xl no-scrollbar overflow-hidden">
+    <article className="break-inside-avoid mb-2">
+      <div className="flex-col  bg-zinc-300 w-72 dark:bg-zinc-100/90 z-10 rounded-xl b flex justify-between dark:shadow shadow-xl shadow-black">
+        <header className="overscroll-x-none rounded-t-xl no-scrollbar overflow-hidden">
           {type == "Url" ? (
-            <div className="text-sm overscroll-x-none rounded-t-2xl overflow-hidden">
+            <div className="text-sm overscroll-x-none  overflow-hidden">
               {renderContent()}
             </div>
           ) : (
             <div
-              className={`bg-${randomColour}-100 rounded-t-2xl text-sm overflow-hidden`}
+              className={`bg-${randomColour}-100  text-sm overflow-hidden`}
             >
               {renderContent()}
             </div>
           )}
         </header>
-        <footer className="rounded-b-xl">
-          <div className="flex justify-between p-2 rounded-lg">
+        <div
+         className="rounded-b-xl ">
+          <div className="flex justify-between p-2 rounded-xl">
             <div className="flex gap-2">
-              <div className="rounded-full p-1 text-gray-700 bg-zinc-400/50">
+              <div className="rounded-xl p-1 text-gray-700 bg-zinc-400/50">
                 {type === "Doc" ? (
                   <DockIcon className="w-4 h-4 " />
                 ) : type === "Image" ? (
@@ -173,7 +174,7 @@ const Card: React.FC<CardProps> = ({
               </h2>
             </div>
           </div>
-          <nav className="flex items-end gap-1 justify-between rounded-2xl p-1 m-1">
+          <nav className="flex items-end gap-1 justify-between  rounded-sm p-1 m-1">
             <div className="gap-1 flex items-center justify-center">
               {type == "Url" ? (
                 <button className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
@@ -184,7 +185,7 @@ const Card: React.FC<CardProps> = ({
               ) : (
                 <button
                   onClick={setNotes}
-                  className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+                  className="bg-zinc-400/10 rounded-lg  p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
                 >
                   <Expand />
                 </button>
@@ -198,7 +199,7 @@ const Card: React.FC<CardProps> = ({
             </div>
             <p className="text-gray-500 flex text-xs">{time}</p>
           </nav>
-        </footer>
+        </div>
       </div>
     </article>
   );

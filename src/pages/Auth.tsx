@@ -6,6 +6,7 @@ import axios from "axios";
 import { CircleX, Loader2 } from "lucide-react";
 import cfaeebc3ea50c461b550a8cea90b2bdc from "../assets/cfaeebc3ea50c461b550a8cea90b2bdc.jpg";
 import signupimg from "../assets/07cd57c62930a45e8d19d9d8d36aa85c.jpg";
+import { Eye , EyeClosed} from 'lucide-react';
 // import logo from "../assets/logo.png";
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -16,6 +17,7 @@ export function Auth() {
   const location = useLocation();
   const PasswordRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState("");
+  const [showPassword , setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const isSignUp = location.pathname === "/Signup";
 
@@ -115,11 +117,16 @@ export function Auth() {
               onKeyDown={(e) => e.key === "Enter" && handleAuth()}
             />
             <Input
-              type="password"
+              type={showPassword? "text" : "password"}
               placeholder="Password"
               reference={PasswordRef}
               variant={"secondary"}
               onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+              endICon={<button className="flex justify-center pointer-events-auto " onClick={(e)=>{
+                e.preventDefault();
+                setShowPassword(prev => !prev)
+              }}>
+                { showPassword ?<Eye size={20} color="gray"/> : <EyeClosed size={20} color="gray"/> }</button>}
             />
 
             <Button

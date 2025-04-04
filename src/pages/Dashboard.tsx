@@ -190,6 +190,14 @@ export function Dashboard() {
     };
   }, [open, share, Copen, panel]);
 
+  function greetings(){
+    const time  = new Date().getHours();
+    if(time >= 5 && time < 12) return "Good Morning"
+    else if(time >= 12 && time < 17) return "Good Afternoon"
+    else if(time >= 17 && time < 22) return "Good Evening"
+    else  return "Late Night"
+  }
+
   return (
     <main className="min-h-screen">
       <div className="flex justify-center items-center">
@@ -208,13 +216,13 @@ export function Dashboard() {
             <Footer setpanel={setPanel} />
             <h1
               className={clsx(
-                "text-3xl dark:text-zinc-800 text-gray-300 transition-all duration-1000",
+                " text-2xl md:text-3xl dark:text-zinc-800 text-gray-300 transition-all duration-1000",
                 searchloading || answer
                   ? "opacity-0 -translate-y-10 h-0 mt-0"
                   : "opacity-100 translate-y-0 h-auto mt-10"
               )}
             >
-              {`Hello, ${localStorage.getItem("username") || "Guest"}`}
+              {`${greetings()}, ${localStorage.getItem("username") || "Guest"}`}
             </h1>
             <SearchBox
               setAnswer={setAnswer}
@@ -258,7 +266,7 @@ export function Dashboard() {
               </section>
             )}
             <section
-              className={`columns-1 sm:columns-2 lg:columns-3 gap-3 md:z-40 max-w-full mb-10 mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
+              className={`columns-1 sm:columns-2 lg:columns-3 gap-2 md:z-40 max-w-full mb-10 mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
               {filteredCards.length > 0 ? (
                 [...filteredCards]
@@ -278,11 +286,10 @@ export function Dashboard() {
                       time={
                         card.createdAt
                           ? card.createdAt.toLocaleString("en-GB", {
-                              day: "2-digit",
+                              day:"numeric" , 
                               month: "short",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
+                              year: "2-digit"
+                          
                             })
                           : ".."
                       }

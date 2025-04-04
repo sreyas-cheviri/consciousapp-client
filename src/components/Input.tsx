@@ -1,5 +1,6 @@
 // import React from "react";
 import clsx from "clsx";
+import { ReactElement } from "react";
 
 interface InputProps {
   // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,10 +10,9 @@ interface InputProps {
   maxlength? : number;
   type? : string;
   required?: boolean;
-  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  endICon? : ReactElement;
 }
-
-
 
 const variantstyles = {
   primary:
@@ -21,19 +21,27 @@ const variantstyles = {
     "w-full px-2 py-2 md:py-2 bg-zinc-100  border border-gray-300 rounded-lg shadow text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400",
 };
 
-
-export function Input({  placeholder, variant , reference , maxlength ,required , type, onKeyDown}: InputProps) {
+export function Input({ placeholder, variant, reference, maxlength, required, type, onKeyDown, endICon }: InputProps) {
   return (
-
-    <input
-      placeholder={placeholder}
-      ref={reference}
-      type={type}
-      maxLength={maxlength}
-      onKeyDown={onKeyDown}
-      required={required}
-      className={clsx(variantstyles[variant])}
-    />
+    <div className="relative w-full">
+      <input
+        placeholder={placeholder}
+        ref={reference}
+        type={type}
+        maxLength={maxlength}
+        onKeyDown={onKeyDown}
+        required={required}
+        className={clsx(
+          variantstyles[variant],
+          endICon && "pr-10" // Add padding-right when there's an end icon
+        )}
+      />
+      {endICon && (
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          {endICon}
+        </div>
+      )}
+    </div>
   );
 }
 
