@@ -97,12 +97,12 @@ const SearchBox = ({
   };
 
   return (
-    <div className="bg-zinc-700 mt-5 mb-10 dark:bg-zinc-400/50 w-full flex flex-col dark:text-zinc-900 dark:shadow-zinc-300 shadow-xl shadow-black/30 rounded-2xl md:w-[650px] border-gray-500/5 justify-between border p-1 text-gray-300 relative">
+    <div className="bg-zinc-700 mt-5 mb-10 dark:bg-white w-full flex flex-col dark:text-zinc-900 dark:shadow-zinc-300 shadow-xl shadow-black/30 rounded-2xl md:w-[650px] border-gray-500/5 justify-between border p-1 text-gray-300 relative">
       <textarea
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         onKeyDown={handleKeyPress}
-        className="placeholder:opacity-60 bg-zinc-700 font-normal dark:bg-zinc-400/5 dark:placeholder-zinc-900 overflow-auto h-16 px-4 py-2 bg-transparent w-full focus:outline-none rounded-2xl md:w-full resize-none"
+        className="placeholder:opacity-60 bg-zinc-700 font-normal dark:bg-white dark:placeholder-zinc-900 overflow-auto h-16 px-4 py-2 bg-transparent w-full focus:outline-none rounded-2xl md:w-full resize-none"
         placeholder="Ask your brain..."
       />
 
@@ -117,9 +117,9 @@ const SearchBox = ({
         ))}
       </div>
 
-      <div className="absolute right-4 top-16  flex">
+      <div className="absolute right-3 top-20  flex">
         <PushButtons
-          icon={<SearchIcon style={{ padding: "4px" }} />}
+          icon={<SearchIcon style={{ padding: "6px" }} />}
           onClick={handleSearch}
           variant={"opaque2"}
           size={"sm"}

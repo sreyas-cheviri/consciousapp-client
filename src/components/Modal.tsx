@@ -89,11 +89,11 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
     open && (
       <div
         className="w-screen h-screen bg-black/80 fixed top-0 left-0 z-40 flex justify-center items-center"
-        onClick={onClose} // Clicking outside closes the modal
+        onClick={onClose} 
       >
         <div
-          className="bg-zinc-100 text-black rounded-2xl max-w-[90%] h-fit z-50 md:w-[44rem]  w-full "
-          onClick={(e) => e.stopPropagation()} // Prevent clicks inside from closing the modal
+          className="bg-zinc-100  text-black rounded-2xl max-w-[90%] h-fit z-50 md:w-[44rem]  w-full "
+          onClick={(e) => e.stopPropagation()} 
         >
           <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">
             <div className="flex items-center justify-between w-full text-gray-700">
@@ -137,7 +137,6 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                   required
                 />
                 {error && <p className="text-red-500 text-sm">{error}</p>}{" "}
-                {/* Show error message */}
                 {type === ContentType.Url ? (
                   <Input
                     placeholder="https://consciousapp.vercel.app"

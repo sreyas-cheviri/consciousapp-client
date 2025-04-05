@@ -10,12 +10,12 @@ export const Chips = ({ text, isSelected, onClick }: ChipsProps) => {
   return (
     <button
       onClick={onClick}
-      className={`bg-zinc-900 w-fit p-1 px-2 rounded-full text-zinc-400 flex gap-1 ease-in-out 
+      className={`bg-zinc-900 w-fit p-1 px-2 rounded-full text-zinc-400 dark:text-zinc-200 flex gap-1 ease-in-out 
         ${
           isSelected
             ? "text-orange-600 border-orange-600"
             : "hover:bg-black"
-        } 
+        }  
         items-center`}
     >
       <div className="flex gap-1 items-center">

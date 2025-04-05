@@ -20,7 +20,7 @@ interface CommonMondalProp {
 
 const variantstyles={
   normal : " h-fit w-[90vw] md:w-fit ",
-  fullscreen : "h-[90vh] w-[90vw]"
+  fullscreen : "h-[80vh] w-[80vw]"
 }
 
 
@@ -49,13 +49,15 @@ export default function CommonMondal({
         >
           <div className={clsx("bg-zinc-400/60 dark:bg-zinc-400 z-50 p-1 flex flex-col   justify-between rounded-xl ", variantstyles[variant])}>
             
-            <div className="flex-col flex m-1 rounded-lg p-1 justify-between h-full ">
+            <div className="flex-col flex  rounded-lg p-1 justify-between h-full ">
                 
               <div className="bg-white w-full flex flex-col p-2 font-semibold text-zinc-800 mb-2 rounded-lg h-full">
-                <div className="flex z-50 justify-end ">
+                <div className="flex z-50 justify-end mb-2  ">
                   <CircleX
                     onClick={onClose}
-                    className="cursor-pointer hover:text-zinc-500"
+                    className="cursor-pointer  text-zinc-500 hover:text-zinc-800"
+                    size={20}
+                    
                   />
                 </div>
                 <div className="flex mb-4 justify-center">

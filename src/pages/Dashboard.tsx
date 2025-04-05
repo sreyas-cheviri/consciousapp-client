@@ -7,7 +7,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
-import { LinkIcon, Loader2 } from "lucide-react";
+import {  Loader2 } from "lucide-react";
 import { Button } from "../components/Button";
 import clsx from "clsx";
 import { ArrowBack } from "@mui/icons-material";
@@ -346,7 +346,6 @@ export function Dashboard() {
             onClose={() => {
               setShare(false);
             }}
-            startIcon={<LinkIcon className="p-1 mr-2" />}
             Message={"Copy the link to share your brain"}
             Message2={shareUrl}
             ButtonMessage={loading ? "Copied" : "COPY"}

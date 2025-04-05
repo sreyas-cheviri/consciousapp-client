@@ -177,7 +177,7 @@ const Card: React.FC<CardProps> = ({
           <nav className="flex items-end gap-1 justify-between  rounded-sm p-1 m-1">
             <div className="gap-1 flex items-center justify-center">
               {type == "Url" ? (
-                <button className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+                <button className=" rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow  hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                   <a href={url} target="_blank" rel="noopener noreferrer">
                     <ShareIcon />
                   </a>
@@ -185,14 +185,14 @@ const Card: React.FC<CardProps> = ({
               ) : (
                 <button
                   onClick={setNotes}
-                  className="bg-zinc-400/10 rounded-lg  p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+                  className=" rounded-lg  p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
                 >
                   <Expand />
                 </button>
               )}
               <button
                 onClick={setdelete}
-                className="bg-zinc-400/10 rounded-lg p-1 text-gray-700 border-gray-400/50 hover:shadow hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
+                className=" rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
               >
                 <Delete />
               </button>
