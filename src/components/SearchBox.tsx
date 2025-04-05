@@ -106,25 +106,28 @@ const SearchBox = ({
         placeholder="Ask your brain..."
       />
 
+<div className="flex items-center justify-between">
+
       <div className="flex gap-1 p-2">
         {["Url", "Note", "Doc", "Date"].map((chip) => (
           <Chips
-            key={chip}
-            text={chip}
-            isSelected={selectedChip === chip}
-            onClick={() => handleChipClick(chip)}
+          key={chip}
+          text={chip}
+          isSelected={selectedChip === chip}
+          onClick={() => handleChipClick(chip)}
           />
         ))}
       </div>
 
-      <div className="absolute right-3 top-20  flex">
+      <div className="p-2">
         <PushButtons
           icon={<SearchIcon style={{ padding: "6px" }} />}
           onClick={handleSearch}
           variant={"opaque2"}
           size={"sm"}
-        ></PushButtons>
+          ></PushButtons>
       </div>
+          </div>
     </div>
   );
 };

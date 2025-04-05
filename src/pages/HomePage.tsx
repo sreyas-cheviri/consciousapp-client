@@ -33,7 +33,7 @@ export default function HomePage(): JSX.Element {
   return (
     <main className="bg-white h-screen flex justify-center items-center">
       <article
-        className={`m-8 p-10 w-screen h-[90vh] border-dashed border-2 rounded-lg shadow-lg bg-gradient-to-t from-gray-400/60 via-gray-200 to-gray-100 flex flex-col items-center justify-center text-white relative bg-cover bg-center bg-no-repeat px-4 transition-opacity duration-1000 ${
+        className={`m-8 p-10 w-screen h-[90vh] border-dashed border-2 rounded-lg   flex flex-col items-center justify-center text-white relative bg-cover bg-center bg-no-repeat px-4 transition-opacity duration-1000 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -50,7 +50,7 @@ export default function HomePage(): JSX.Element {
             alt="Logo"
           />
           <h1
-            className={`md:text-5xl  text-3xl  mt-2 italic text-black font-serif transition-all duration-300 ${
+            className={`md:text-5xl  text-3xl  mt-2  text-black font-serif transition-all duration-300 ${
               hoverLogo ? "tracking-wider" : ""
             }`}
           >
@@ -58,9 +58,6 @@ export default function HomePage(): JSX.Element {
           </h1>
         </header>
 
-        <span className="-rotate-12 hover:rotate-0 transition-all opacity-50 duration-300">
-          <Button variant={"new"} children={"Beta"} size={"vsm"}></Button>
-        </span>
 
         <section className="md:mt-16 mt-12 font-medium text-zinc-800 text-center max-w-lg md:max-w-2xl text-md md:text-lg">
           <p className="min-h-6 text-lg md:text-2xl ">

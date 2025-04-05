@@ -55,10 +55,10 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
     const link = LinkRef.current?.value;
     const content = NoteRef.current?.value;
 
-    if (!title) {
-      setError("Title is required"); 
-      return;
-    }
+    // if (!title) {
+    //   setError("Title is required"); 
+    //   return;
+    // }
 
     setLoading(true); 
     setError(null);
