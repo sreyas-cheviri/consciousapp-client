@@ -4,6 +4,7 @@ import { Chips } from "./Chips";
 import { Input } from "./Input";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+// import { Notes } from "@mui/icons-material";
 
 type ModalProps = {
   open: boolean;
@@ -53,14 +54,24 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
   async function addContent() {
     const title = titleRef.current?.value?.trim();
     const link = LinkRef.current?.value;
-    const content = NoteRef.current?.value;
+    const content = NoteRef.current?.value?.trim();
 
-    // if (!title) {
-    //   setError("Title is required"); 
-    //   return;
-    // }
+    if (!title && type === ContentType.Note) {
+      setError("Please enter a title");
+      return;
+    }
 
-    setLoading(true); 
+    if (type === ContentType.Url && !link) {
+      setError("Please enter a URL");
+      return;
+    }
+
+    if (type === ContentType.Note && !content) {
+      setError("Please enter some notes");
+      return;
+    }
+
+    setLoading(true);
     setError(null);
     setTimeout(() => {
       onClose()
@@ -136,18 +147,17 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                   variant="secondary"
                   required
                 />
-                {error && <p className="text-red-500 text-sm">{error}</p>}{" "}
                 {type === ContentType.Url ? (
                   <Input
-                    placeholder="https://consciousapp.vercel.app"
-                    reference={LinkRef}
-                    variant="secondary"
-                    onKeyDown={(e) => e.key === "Enter" &&
-                      (e.preventDefault(), addContent())}
-                  />
-                ) : (
+                  placeholder="https://consciousapp.vercel.app"
+                  reference={LinkRef}
+                  variant="secondary"
+                  onKeyDown={(e) => e.key === "Enter" &&
+                    (e.preventDefault(), addContent())}
+                    />
+                  ) : (
                   <textarea
-                    placeholder="Paste your Notes.........."
+                  placeholder="Paste your Notes.........."
                     ref={NoteRef}
                     className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-screen min-h-36 bg-gray-50 border-2"
                     onKeyDown={(e) =>
@@ -155,8 +165,9 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                       !e.shiftKey &&
                       (e.preventDefault(), addContent())
                     }
-                  />
-                )}
+                    />
+                  )}
+                  {error && <p className="text-red-600 text-sm font-semibold p-3">{error}</p>}{" "}
               </div>
               <div
                 className={`mb-6 flex items-end justify-end ${

@@ -4,7 +4,7 @@ import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
 import { Tweet } from "react-tweet";
 import { Expand } from "../icons/Expand";
-import { DockIcon, Globe, ImageIcon } from "lucide-react";
+import { File, Globe, ImageIcon } from "lucide-react";
 
 interface CardProps {
   title: string;
@@ -113,12 +113,12 @@ const Card: React.FC<CardProps> = ({
         );
       } else {
         return (
-          <div className={`overflow-hidden rounded-t-xl ${imageUrl ? "" : "h-8 bg-gradient-to-b from-zinc-500/50 via-zinc-400/50 to-zinc-300 dark:from-zinc-300/80 dark:via-zinc-200/70 dark:to-zinc-100"}`}>
+          <div className={`overflow-hidden  rounded-t-xl ${imageUrl ? "" : "h-8  bg-gradient-to-b from-zinc-500/50 via-zinc-400/50 to-zinc-300 dark:from-zinc-300/80 dark:via-zinc-200/70 dark:to-zinc-100"}`}>
             { imageUrl ?  (
               <img
                 src={imageUrl || ""}
                 alt="Saved Content"
-                className=" "
+                className="w-72 object-cover max-h-56"
               />
             ) : ("") 
             }
@@ -135,7 +135,7 @@ const Card: React.FC<CardProps> = ({
       <div className="flex-col  bg-zinc-300 w-72 dark:bg-zinc-100/90 z-10 rounded-xl b flex justify-between dark:shadow shadow-xl shadow-black">
         <header className="overscroll-x-none rounded-t-xl no-scrollbar overflow-hidden">
           {type == "Url" ? (
-            <div className="text-sm overscroll-x-none  overflow-hidden">
+            <div className="text-sm overscroll-x-none   overflow-hidden">
               {renderContent()}
             </div>
           ) : (
@@ -152,7 +152,7 @@ const Card: React.FC<CardProps> = ({
             <div className="flex gap-2">
               <div className="rounded-xl p-1 text-gray-700 bg-zinc-400/50">
                 {type === "Doc" ? (
-                  <DockIcon className="w-4 h-4 " />
+                  <File className="w-4 h-4 " />
                 ) : type === "Image" ? (
                   <ImageIcon className="w-4 h-4 " />
                 ) : type === "Note" ? (
