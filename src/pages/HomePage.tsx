@@ -1,7 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { useEffect, useState } from "react";
-// import { duration } from "@mui/material";
+import image1 from "../assets/image.png";
+import image2 from "../assets/image2.png";
+import image3 from "../assets/image3.png";
+import image4 from "../assets/image4.png";
+
 
 export default function HomePage(): JSX.Element {
   const navigate = useNavigate();
@@ -42,26 +46,26 @@ export default function HomePage(): JSX.Element {
           {/* <div className={` ${isLoaded ? "size-100" : "size-1"}, duration-200`}> */}
 
           <img
-            src="/src/assets/image.png"
+            src={image1}
             alt="Decor 1"
-            className="absolute md:left-12 h-28 md:h-48 object-cover  -top-14 md:-top-6 border-4 md:border-8 rounded-xl md:rounded-3xl border-gray-500/10  hover:rotate-6 transition-all hover:shadow-2xl duration-300 left-6 md:w-64 w-36  z-10 rotate-12"
-            />
-          <img
-            src="/src/assets/image2.png"
-            alt="Decor 2"
-            className="absolute md:top-24 top-14 md:right-20 -right-14   border-4 md:border-8 rounded-xl md:rounded-3xl border-gray-500/10   hover:-rotate-6 transition-all hover:shadow-2xl duration-300  md:w-64 w-36  z-10 -rotate-12"
+            className="absolute md:left-12 h-28 md:h-48 object-cover -top-14 md:-top-6 border-4 md:border-8 rounded-xl md:rounded-3xl border-gray-500/10 hover:rotate-6 transition-all hover:shadow-2xl duration-300 left-6 md:w-64 w-36 z-10 rotate-12"
           />
           <img
-            src="/src/assets/image3.png"
-            alt="Decor 3"
-            className="absolute -bottom-32 md:-bottom-14 -left-4  md:left-20 w-36 md:w-52 hover:-bottom-12 border-gray-500/10  transition-all duration-300 hover:shadow-2xl border-4 md:border-8 rounded-xl md:rounded-3xl "
-            />
+            src={image2}
+            alt="Decor 2"
+            className="absolute md:top-24 top-14 md:right-20 -right-14 border-4 md:border-8 rounded-xl md:rounded-3xl border-gray-500/10 hover:-rotate-6 transition-all hover:shadow-2xl duration-300 md:w-64 w-36 z-10 -rotate-12"
+          />
           <img
-            src="/src/assets/image4.png"
+            src={image3}
+            alt="Decor 3"
+            className="absolute -bottom-32 md:-bottom-14 -left-4 md:left-20 w-36 md:w-52 hover:-bottom-12 border-gray-500/10 transition-all duration-300 hover:shadow-2xl border-4 md:border-8 rounded-xl md:rounded-3xl"
+          />
+          <img
+            src={image4}
             alt="Decor 4"
-            className="absolute -bottom-14 md:-bottom-20 -right-4  md:-right-3 w-36 md:w-64 rotate-12 hover:rotate-6 border-gray-500/10 transition-all duration-300 hover:shadow-2xl border-4 md:border-8 rounded-xl md:rounded-3xl"
-            />
-            {/* </div> */}
+            className="absolute -bottom-14 md:-bottom-20 -right-4 md:-right-3 w-36 md:w-64 rotate-12 hover:rotate-6 border-gray-500/10 transition-all duration-300 hover:shadow-2xl border-4 md:border-8 rounded-xl md:rounded-3xl"
+          />
+          {/* </div> */}
 
           <header
             className="flex flex-col items-center transition-transform duration-500 hover:scale-105"
@@ -107,7 +111,7 @@ export default function HomePage(): JSX.Element {
             {/* <p className="flex text-zinc-800 justify-center">
               © 2025 Conscious. All rights reserved.
             </p> */}
-          {/* </footer> */} 
+          {/* </footer> */}
         </article>
       </main>{" "}
     </div>
