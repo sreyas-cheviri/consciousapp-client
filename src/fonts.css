@@ -1,0 +1,8 @@
+/* src/fonts.css */
+@font-face {
+    font-family: 'Recoleta';
+    src: url('./assets/fonts/Recoleta-RegularDEMO.otf') format('opentype');
+    font-weight: bold;
+    font-style:normal;
+  }
+  

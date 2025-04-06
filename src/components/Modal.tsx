@@ -117,7 +117,7 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
               />
             </div>
 
-            <div className="flex justify-center text-xs text-gray-600 items-center font-semibold">
+            <div className="flex justify-center text-xs text-gray-600 items-center ">
               <p className="flex justify-center items-center w-96 text-center">
                 Choose an option to get started: Notes, Doc, Image, or URL.
                 Select the type of content you want to add!

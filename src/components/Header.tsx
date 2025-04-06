@@ -34,7 +34,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
             className="h-6 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
           />
         </button>
-        <h1 className="shadow-none text-xl text-zinc-200 font-normal dark:text-zinc-800 transition-all duration-300">
+        <h1 className="shadow-none text-xl text-zinc-200 font-recoleta dark:text-zinc-800 transition-all duration-300">
           Conscious  
           {/* {localStorage.getItem("username")} */}
         </h1>

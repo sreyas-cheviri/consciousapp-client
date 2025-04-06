@@ -10,6 +10,11 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily:{
+        poppins: ['Poppins', 'sans-serif'],
+        playfair: ['"Playfair Display"', 'serif'],
+        recoleta: ['Recoleta', 'serif']
+      },
       colors:{
         primary : "#242421",
         secondary:"#171717"

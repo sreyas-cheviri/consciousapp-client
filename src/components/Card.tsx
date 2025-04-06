@@ -169,7 +169,7 @@ const Card: React.FC<CardProps> = ({
                 )}
               </div>
 
-              <h2 className="text-md font-semibold text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60">
+              <h2 className="text-md font-medium text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60">
                 {title}
               </h2>
             </div>
