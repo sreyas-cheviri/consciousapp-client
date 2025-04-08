@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { GitHub, Person, Star } from "@mui/icons-material";
 import DarkModeButton from "./DarkModeButton";
 import { Button } from "./Button";
+import axios from "axios";
 // import { Avatar } from "@mui/material";
 
 function DropDown() {
@@ -15,6 +16,7 @@ function DropDown() {
   const [themeText, setThemeText] = useState(
     localStorage.getItem("theme") === "dark" ? "Dark" : "Light"
   );
+  const [stars, setStars] = useState<number | null>(null);
 
   const toggleDropDown = () => {
     setIsOpen((prev) => !prev);
@@ -29,6 +31,22 @@ function DropDown() {
       window.location.reload();
     }, 100);
   }
+
+  useEffect(() => {
+    const fetchStars = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.github.com/repos/sreyas-cheviri/consciousapp"
+        );
+        setStars(response.data.stargazers_count);
+      } catch (error) {
+        console.error("Error fetching stars:", error);
+        setStars(null);
+      }
+    };
+
+    fetchStars();
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -84,7 +102,7 @@ function DropDown() {
               size="sm"
             >
               <p className="font-normal">
-                {localStorage.getItem("username") ?? "Guest"}
+                {localStorage.getItem("username") ?? "You need to Login / SignUp"}
               </p>
             </Button>
           </li>
@@ -110,7 +128,7 @@ function DropDown() {
                   toggleDropDown();
                 }}
               >
-                GitHub
+                {`GitHub (${stars !== null ? stars : "0"})`}
               </Button>
             </a>
           </li>

@@ -223,7 +223,14 @@ export function Dashboard() {
                   : "opacity-100 translate-y-0 h-auto mt-10"
               )}
             >
-              {`${greetings()}, ${localStorage.getItem("username") || "Guest"}`}
+              {greetings()}, {localStorage.getItem("username") ? (
+                localStorage.getItem("username")
+              ) : (
+                <>
+                  <br />
+                 <p className="text-md"> Please Log in to continue.</p>
+                </>
+              )}
             </h1>
             <SearchBox
               setAnswer={setAnswer}
@@ -275,7 +282,7 @@ export function Dashboard() {
               {filteredCards.length > 0 ? (
                 [...filteredCards]
                   .reverse()
-                  .slice(0, page * 6)
+                  .slice(0, page * 10)
                   .map((card, index) => (
                     <Card
                       key={card.id}
@@ -306,7 +313,7 @@ export function Dashboard() {
               )}
               <div
                 className={`flex w-full h-fit mt-2 mb-2  justify-center m-0 ${
-                  page * 6 >= filteredCards.length
+                  page * 10 >= filteredCards.length
                     ? "opacity-30 pointer-events-none"
                     : ""
                 } ${filteredCards.length == 0 ? "hidden" : "block"}`}
