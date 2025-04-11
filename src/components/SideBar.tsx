@@ -1,7 +1,8 @@
 import { Add } from "@mui/icons-material";
 import { Button } from "./Button";
-import { ArrowLeft } from "lucide-react";
 import { PushButtons } from "./PushButtons";
+import {  PanelRightOpen } from "lucide-react";
+
 
 interface SideBarProps {
   openpanel: boolean;
@@ -52,12 +53,12 @@ The issue with  this approach is that when isOpen is false, the element is compl
         </div>
 
         <div className="absolute bottom-10 right-3 text-white">
-          <PushButtons
-            icon={<ArrowLeft style={{ padding: "3px" }} />}
-            size="sm"
-            variant="opaque"
-            onClick={closepanel}
-          />
+          <PushButtons 
+                   variant="transparent" 
+                   icon={<PanelRightOpen className="w-5 h-5"/>} 
+                   onClick={closepanel} 
+                   size="sm"
+                 />
         </div>
       </div>
     </div>

@@ -238,8 +238,9 @@ export function Dashboard() {
               setOpen={setOpen}
               setCOpen={setShare}
               setShareURL={setShareURL}
+              setpanel={setPanel}
             />
-            <Footer setpanel={setPanel} />
+            <Footer  />
             <h1
               className={clsx(
                 " text-2xl md:text-3xl dark:text-zinc-800 font-recoleta text-gray-300 transition-all duration-1000",
