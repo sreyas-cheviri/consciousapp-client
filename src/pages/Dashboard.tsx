@@ -277,7 +277,7 @@ export function Dashboard() {
               </section>
             )}
             <section
-              className={`columns-1 sm:columns-2 lg:columns-3 gap-2 md:z-40 max-w-full mb-10 mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
+              className={`columns-1 sm:columns-2 lg:columns-3 gap-2 md:z-40 max-w-full  mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
               {filteredCards.length > 0 ? (
                 [...filteredCards]
@@ -311,8 +311,9 @@ export function Dashboard() {
                   No content found. Add some content to get started.
                 </div>
               )}
+            </section>
               <div
-                className={`flex w-full h-fit mt-2 mb-2  justify-center m-0 ${
+                className={`flex w-full h-fit  mb-20 z-50 justify-center m-0 ${
                   page * 10 >= filteredCards.length
                     ? "opacity-30 pointer-events-none"
                     : ""
@@ -325,7 +326,6 @@ export function Dashboard() {
                   onClick={() => setPage(page + 1)}
                 />
               </div>
-            </section>
           </div>
 
           <CommonMondal

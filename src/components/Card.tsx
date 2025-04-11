@@ -2,9 +2,16 @@ import React from "react";
 import { NoteIcon } from "../icons/NoteIcon";
 import { Delete } from "../icons/Delete";
 import { ShareIcon } from "../icons/ShareIcon";
-import { Tweet } from "react-tweet";
 import { Expand } from "../icons/Expand";
 import { File, Globe, ImageIcon } from "lucide-react";
+import { 
+  InstagramEmbed,
+  PinterestEmbed,
+  YouTubeEmbed,
+  LinkedInEmbed,
+  FacebookEmbed,
+  XEmbed,
+} from 'react-social-media-embed';
 
 interface CardProps {
   title: string;
@@ -26,8 +33,11 @@ const Card: React.FC<CardProps> = ({
   time = "",
   setdelete,
   setNotes,
-  imageUrl = null,
+  imageUrl = "",
 }) => {
+
+
+  //--------------------------------------------------
   const getDomain = (url: string) => {
     try {
       const hostname = new URL(url).hostname;
@@ -43,31 +53,32 @@ const Card: React.FC<CardProps> = ({
       ? `https://www.google.com/s2/favicons?domain=${domain}&sz=32`
       : undefined;
   };
+ //--------------------------------------------------
 
+  //--------------------------------------------------
   const randomColour = React.useMemo(() => {
     const colours = ["blue", "green", "yellow", "purple"];
     return colours[Math.floor(Math.random() * colours.length)];
   }, []);
-  const isValidYoutubeUrl = (url: string) => {
-    return url.match(/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/);
-  };
+ //--------------------------------------------------
 
-  const isValidTwitterUrl = (url: string) => {
-    return url.match(/^(https?:\/\/)?(twitter\.com|x\.com)/);
-  };
+  //--------------------------------------------------
+  const isValidSocialUrl = (url: string) => {
+    const socialPatterns = {
+      youtube: /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)/,
+      twitter: /^(https?:\/\/)?(twitter\.com|x\.com)/,
+      instagram: /^(https?:\/\/)?(www\.)?instagram\.com/,
+      facebook: /^(https?:\/\/)?(www\.)?facebook\.com/,
+      linkedin: /^(https?:\/\/)?(www\.)?linkedin\.com/,
+      Pinterest: /^(https?:\/\/)?(www\.)?pinterest\.com/,
+    };
 
-  const getYoutubeEmbedUrl = (url: string) => {
-    const videoId =
-      url.split("v=")[1]?.split("&")[0] ||
-      url.split("youtu.be/")[1]?.split("?")[0];
-    return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+    for (const [platform, pattern] of Object.entries(socialPatterns)) {
+      if (url.match(pattern)) return platform;
+    }
+    return null;
   };
-
-  const getTwitterTweetId = (url: string) => {
-    const matches = url.match(/\/status\/(\d+)/);
-    return matches ? matches[1] : "nothing";
-  };
-
+ //--------------------------------------------------
   const renderContent = () => {
     if (type === "Note") {
       return (
@@ -78,55 +89,78 @@ const Card: React.FC<CardProps> = ({
         </div>
       );
     } else if (type === "Url") {
-      if (isValidYoutubeUrl(url)) {
-        const embedUrl = getYoutubeEmbedUrl(url);
-        return (
-          <div>
-            <iframe
-              src={embedUrl || ""}
-              className=""
-              allowFullScreen
-              style={{ pointerEvents: "none" }}
-            />
-          </div>
-        );
-      } else if (isValidTwitterUrl(url)) {
-        const tweetId = getTwitterTweetId(url);
-        return tweetId ? (
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              marginTop: -30,
-              marginBottom: -135,
-              padding: 0,
-              overflow: "hidden",
-              pointerEvents: "none",
-            }}
-          >
-            <Tweet id={tweetId} />
-          </div>
-        ) : (
-          <div className="">
-            <iframe src={url} className="w-full h-full" allowFullScreen />
-          </div>
-        );
-      } else {
-        return (
-          <div className={`overflow-hidden  rounded-t-xl ${imageUrl ? "" : "h-8  bg-gradient-to-b from-zinc-500/50 via-zinc-400/50 to-zinc-300 dark:from-zinc-300/80 dark:via-zinc-200/70 dark:to-zinc-100"}`}>
-            { imageUrl ?  (
-              <img
-                src={imageUrl || ""}
-                alt="Saved Content"
-                className="w-72 object-cover max-h-56"
-              />
-            ) : ("") 
-            }
-          </div>
-        );
-      }
-    }
+      const socialPlatform = isValidSocialUrl(url);
+      
+      if (socialPlatform) {
+        const embedDiv = {
+          position: 'relative' as const,
+          zIndex: 1,
+          overflow: 'hidden',
+          pointerEvents: 'none' as const,
+          width: '100%',
+          // height : '200px'
+        };
 
+        const embedProps = {
+          url,
+          width: 288,
+          height: 'auto'
+        };
+
+        switch (socialPlatform) {
+          case 'youtube':
+            return (
+              <div style={embedDiv}>
+                <YouTubeEmbed {...embedProps} />
+              </div>
+            );
+          case 'pinterest':
+            return (
+              <div style={embedDiv}>
+                <PinterestEmbed {...embedProps} />
+              </div>
+            );
+          case 'twitter':
+            return (
+              <div style={embedDiv}>
+                <XEmbed {...embedProps} />
+              </div>
+            );
+          case 'instagram':
+            return (
+              <div style={ embedDiv}>
+                <InstagramEmbed {...{ ...embedProps, height:'400px' }} />
+              </div>
+            );
+          case 'facebook':
+            return (
+              <div style={embedDiv}>
+                <FacebookEmbed {...embedProps} />
+              </div>
+            );
+          case 'linkedin':
+            return (
+              <div style={embedDiv}>
+                <LinkedInEmbed {...embedProps} />
+              </div>
+            );
+        }
+      }
+      
+      return (
+        <div className={`overflow-hidden rounded-t-xl ${imageUrl ? "" : "h-8 bg-gradient-to-b from-zinc-500/50 via-zinc-400/50 to-zinc-300 dark:from-zinc-300/80 dark:via-zinc-200/70 dark:to-zinc-100"}`}>
+          {imageUrl ? (
+            <img
+              src={imageUrl || ""}
+              alt="Saved Content"
+              className="w-72 object-cover max-h-56"
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      );
+    }
     return null;
   };
 
