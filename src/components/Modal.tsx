@@ -17,6 +17,7 @@ type ModalProps = {
     content: string;
     createdAt: Date;
   }) => void;
+  setToastLoading: (loading: boolean) => void;
 };
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -28,18 +29,17 @@ enum ContentType {
   Image = "Image",
 }
 
-export function Modal({ open, onClose, onContentAdded }: ModalProps) {
+export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalProps) {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const LinkRef = useRef<HTMLInputElement | null>(null);
   const NoteRef = useRef<HTMLTextAreaElement | null>(null);
   const [selectedChip, setSelectedChip] = useState<string | null>("Url");
   const [error, setError] = useState<string | null>(null); // Error state
   const [type, setType] = useState(ContentType.Url);
-  const [loading, setLoading] = useState(false); // This is the single source of truth for loading state
+  const [loading, setLoading] = useState(false); 
 
   useEffect(() => {
     if (open) {
-      // Reset form when modal opens
       setSelectedChip("Url");
       setType(ContentType.Url);
       setError(null);
@@ -72,10 +72,11 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
     }
 
     setLoading(true);
+    setToastLoading(true);
     setError(null);
     setTimeout(() => {
       onClose()
-    }, 4000);
+    }, 1000);
     try {
       const response = await axios.post(
         `${API_URL}/api/v1/content`,
@@ -93,6 +94,9 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
       setError("Failed to add content. Please try again.");
     } finally {
       setLoading(false);
+      setTimeout(() => {
+        setToastLoading(false);
+      }, 1000);
     }
   }
 

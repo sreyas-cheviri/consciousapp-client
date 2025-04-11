@@ -13,6 +13,7 @@ import clsx from "clsx";
 import { ArrowBack } from "@mui/icons-material";
 import { PushButtons } from "../components/PushButtons";
 import TypewriterEffect from "../components/TypewriterEffect";
+import Toast from "../components/Toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -46,6 +47,7 @@ export function Dashboard() {
     content: string;
   } | null>(null);
   const [searchText, setSearchText] = useState("");
+  const [toastLoading, setToastLoading] = useState(false);
 
   const fetchContent = useCallback(() => {
     const token = localStorage.getItem("token");
@@ -423,7 +425,9 @@ export function Dashboard() {
               setOpen(false);
             }}
             onContentAdded={handleContentAdded}
+            setToastLoading={setToastLoading}
           />
+          <Toast loading={toastLoading} />
         </article>
       </div>
     </main>
