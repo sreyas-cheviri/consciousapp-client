@@ -103,10 +103,10 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
         onClick={onClose} 
       >
         <div
-          className="bg-zinc-100  text-black rounded-2xl max-w-[90%] h-fit z-50 md:w-[44rem]  w-full "
+          className="bg-zinc-100  text-black rounded-2xl max-w-[90%] h-fit  z-50 md:w-[44rem]  w-full "
           onClick={(e) => e.stopPropagation()} 
         >
-          <div className="bg-zinc-400/60 p-5 w-full h-full rounded-2xl">
+          <div className="bg-zinc-400/60 p-5 w-full  min-h-96 rounded-2xl">
             <div className="flex items-center justify-between w-full text-gray-700">
               <div className="flex-grow flex justify-center">
                 <p className="font-bold text-lg">Add your content</p>
@@ -141,8 +141,8 @@ export function Modal({ open, onClose, onContentAdded }: ModalProps) {
                 </div>
               </div>
               <div className="flex flex-col gap-2">
-                <Input
-                  placeholder="Title"
+              <Input
+                    placeholder="Title"
                   reference={titleRef}
                   variant="secondary"
                   required

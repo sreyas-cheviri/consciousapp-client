@@ -7,7 +7,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
-import {  Loader2 } from "lucide-react";
+import {  Link, Loader2 } from "lucide-react";
 import { Button } from "../components/Button";
 import clsx from "clsx";
 import { ArrowBack } from "@mui/icons-material";
@@ -28,6 +28,7 @@ export function Dashboard() {
   const [filter, setFilter] = useState<string | null>(null);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isSharing, setIsSharing] = useState(true);
   const [content, setContent] = useState<
     {
       _id: string;
@@ -97,6 +98,30 @@ export function Dashboard() {
       imageUrl,
     })
   );
+
+  const StopShare = async ()=>{
+    try {
+
+      const res = await axios.post(
+        `${API_URL}/api/v1/brain/share`,
+        { share: false }, 
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
+
+      setShareURL(res.data.hash);
+      setIsSharing(false);
+      
+    } catch (error) {
+      console.log("error while stopping share" , error);
+      return;
+      
+      
+    }
+  }
 
   const handleDeleteClick = (id: string) => {
     setSelectedCardId(id);
@@ -347,16 +372,34 @@ export function Dashboard() {
             onConfirm={deleteCard}
             loading={loading}
             variant={"normal"}
+            isDanger={true}
           />
 
           <CommonMondal
             onClose={() => {
               setShare(false);
+              setIsSharing(true);
             }}
             Message={"Copy the link to share your brain"}
             Message2={shareUrl}
-            ButtonMessage={loading ? "Copied" : "COPY"}
+            ButtonDisabled={!isSharing}
+            ButtonMessage={
+              loading ? "Copied" : (
+                <div className="flex items-center gap-2">
+                  <Link size={16} />
+                  COPY
+                </div>
+              )
+            }
+            WrongButtonMessage={"Stop sharing"}
+            WrongButtonDisabled={!isSharing}
             onConfirm={copyLink}
+            onWrongButtonClick={() => {StopShare()
+              setTimeout(() => {
+                setShare(false);
+                setIsSharing(true);
+              }, 2000);
+            }}
             loading={loading}
             Copen={share}
             variant={"normal"}

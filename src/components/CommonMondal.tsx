@@ -15,6 +15,10 @@ interface CommonMondalProp {
   WrongButtonMessage?: React.ReactNode;
   loading?: boolean;
   variant: "normal" | "fullscreen";
+  isDanger?: boolean;
+  onWrongButtonClick?: () => void;
+  WrongButtonDisabled?: boolean;
+  ButtonDisabled?: boolean;
 }
 
 
@@ -34,8 +38,12 @@ export default function CommonMondal({
   startIcon,
   Message2,
   WrongButtonMessage,
+  ButtonDisabled = false,
   loading,
   variant,
+  isDanger = false,
+  onWrongButtonClick,
+  WrongButtonDisabled = false,
 }: CommonMondalProp) {
   return (
     Copen && (
@@ -72,23 +80,30 @@ export default function CommonMondal({
                   </div>
                 )}
               </div>
-              <div className={`flex justify-end gap-3 px-3 ${loading ? "opacity-70" : ""}`}>
+              <div className={`flex justify-center gap-3 px-3 w-full `}>
+                <div className={`${loading ? "opacity-70" : ""} w-full`}>
                {ButtonMessage && ( <Button
-                  variant={"new"}
+                  variant={isDanger ? "danger" : "new"}
                   children={ButtonMessage}
                   size={"md"}
                   onClick={onConfirm}
+                  disabled={ButtonDisabled}
                   loading={false}
-                />)}
+                  />)}
+                  </div>
+                  <div className="w-full">
+
                 {WrongButtonMessage && (
                   <Button
-                    variant={"new"}
-                    children={WrongButtonMessage}
-                    size={"md"}
-                    onClick={onClose}
-                    loading={false}
+                  variant={"new"}
+                  children={WrongButtonMessage}
+                  size={"md"}
+                  onClick={onWrongButtonClick || onClose}
+                  loading={false}
+                  disabled={WrongButtonDisabled}
                   />
                 )}
+                </div>
               </div>
             </div>
           </div>

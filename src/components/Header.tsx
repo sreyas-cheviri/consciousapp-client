@@ -45,17 +45,17 @@ export const Header = ({ setOpen, setCOpen, setShareURL }: HeaderProps) => {
           <Button
             onClick={async () => {
               setCOpen(true);
-              const result = await axios.post(
-                `${API_URL}/api/v1/brain/share`,
-                { share: true }, 
-                {
-                  headers: {
-                    Authorization: localStorage.getItem("token"),
-                  },
-                }
-              );
+                const result = await axios.post(
+                  `${API_URL}/api/v1/brain/share`,
+                  { share: true }, 
+                  {
+                    headers: {
+                      Authorization: localStorage.getItem("token"),
+                    },
+                  }
+                );
               const ShareURL = `${FE_URL}share/${result.data.hash}`;
-              console.log(ShareURL);
+              // console.log(ShareURL);
               
               setShareURL(ShareURL); 
             }}

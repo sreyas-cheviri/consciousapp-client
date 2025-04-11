@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { ReactElement } from "react";
 
 interface ButtonProps {
-  variant: "primary" | "secondary" | "round" | "roundchips" | "new" | "load" | "drop";
+  variant: "primary" | "secondary" | "round" | "roundchips" | "new" | "load" | "drop" |"danger";
   children: React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
@@ -25,6 +25,7 @@ const variantstyles = {
   secondary:
     " hover:bg-white/10 flex justify-center  items-center dark:hover:bg-zinc-400/20 dark:text-zinc-900 dark:bg-white border-gray-300/40 text-gray-300 rounded-xl  font-normal bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
   new: "bg-zinc-700 flex justify-center items-center hover:bg-zinc-700/90  text-gray-300 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
+  danger: "bg-red-700 flex justify-center items-center hover:bg-red-700/50  text-gray-300  rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
 };
 
 const sizeStyles = {
