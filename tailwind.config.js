@@ -13,7 +13,8 @@ export default {
       fontFamily:{
         poppins: ['Poppins', 'sans-serif'],
         playfair: ['"Playfair Display"', 'serif'],
-        recoleta: ['Recoleta', 'serif']
+        recoleta: ['Recoleta', 'serif'],
+        instrument: ['Instrument Serif', 'serif']
       },
       colors:{
         primary : "#242421",

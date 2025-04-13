@@ -80,18 +80,16 @@ export default function HomePage(): JSX.Element {
               alt="Logo"
             />
             <h1
-              className={`md:text-5xl  text-3xl  mt-2  text-black font-recoleta  transition-all duration-300 ${
-                hoverLogo ? "tracking-wider" : "tracking-tighter"
-              }`}
+              className={`md:text-5xl  text-3xl  mt-2  tracking-tighter text-black font-recoleta  transition-all duration-300`}
             >
               Conscious
             </h1>
           </header>
 
-          <section className="md:mt-16 mt-12  font-poppins text-zinc-600 font-medium  text-center max-w-lg md:max-w-2xl text-md md:text-lg">
+          <section className="md:mt-16 mt-12  font-recoleta text-zinc-800 font-medium  text-center max-w-lg md:max-w-2xl text-md md:text-lg">
             <p className="min-h-6 text-lg md:text-2xl ">
               {typedText}
-              <span className="animate-pulse">|</span>
+              {/* <span className="animate-pulse"></span> */}
             </p>
             <p className="mt-2 font-thin text-md font-recoleta text-zinc-600">
               Conscious, an AI-powered second brain that helps you store,
