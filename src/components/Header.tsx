@@ -56,7 +56,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel }: HeaderProps
                     },
                   }
                 );
-                setShareURL(`${FE_URL}/api/v1/share/${result.data.hash}`);
+                setShareURL(`${FE_URL}api/v1/share/${result.data.hash}`);
               }}
               variant="secondary"
               size="md"
