@@ -23,7 +23,7 @@ export default function SharedPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}api/v1/${hash}`, {
+      .get(`${API_URL}/api/v1/share/${hash}`, {
       })
       .then((response) => {
         setContent(response.data.content);
