@@ -4,7 +4,8 @@ import { Chips } from "./Chips";
 import { Input } from "./Input";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-// import { Notes } from "@mui/icons-material";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 type ModalProps = {
   open: boolean;
@@ -32,17 +33,19 @@ enum ContentType {
 export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalProps) {
   const titleRef = useRef<HTMLInputElement | null>(null);
   const LinkRef = useRef<HTMLInputElement | null>(null);
-  const NoteRef = useRef<HTMLTextAreaElement | null>(null);
+  const [noteContent, setNoteContent] = useState('');
   const [selectedChip, setSelectedChip] = useState<string | null>("Url");
-  const [error, setError] = useState<string | null>(null); // Error state
+  const [error, setError] = useState<string | null>(null);
   const [type, setType] = useState(ContentType.Url);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  const quillRef = useRef<ReactQuill>(null);
 
   useEffect(() => {
     if (open) {
       setSelectedChip("Url");
       setType(ContentType.Url);
       setError(null);
+      setNoteContent('');
     }
   }, [open]);
 
@@ -51,10 +54,21 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
     setType(ContentType[chip as keyof typeof ContentType]);
   };
 
+  // Convert HTML content to plain text
+  const getPlainText = (): string => {
+    if (quillRef.current) {
+      const editor = quillRef.current.getEditor();
+      return editor.getText() || '';
+    }
+    return '';
+  };
+
   async function addContent() {
     const title = titleRef.current?.value?.trim();
     const link = LinkRef.current?.value;
-    const content = NoteRef.current?.value?.trim();
+    
+    // Get plain text content from ReactQuill
+    const plainTextContent = type === ContentType.Note ? getPlainText() : '';
 
     if (!title && type === ContentType.Note) {
       setError("Please enter a title");
@@ -66,7 +80,7 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
       return;
     }
 
-    if (type === ContentType.Note && !content) {
+    if (type === ContentType.Note && !plainTextContent.trim()) {
       setError("Please enter some notes");
       return;
     }
@@ -77,10 +91,16 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
     setTimeout(() => {
       onClose()
     }, 1000);
+    
     try {
       const response = await axios.post(
         `${API_URL}/api/v1/content`,
-        { title, link, type, content },
+        { 
+          title, 
+          link, 
+          type, 
+          content: plainTextContent  // Use plain text instead of HTML
+        },
         { headers: { Authorization: localStorage.getItem("token") } }
       );
 
@@ -100,6 +120,20 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
     }
   }
 
+  // ReactQuill modules 
+  const modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      ['clean']
+    ],
+  };
+
+  const formats = [
+    'bold', 'italic', 'underline',
+    'list', 'bullet',
+  ];
+
   return (
     open && (
       <div
@@ -107,10 +141,10 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
         onClick={onClose} 
       >
         <div
-          className="bg-zinc-100  text-black rounded-2xl max-w-[90%] h-fit  z-50 md:w-[44rem]  w-full "
+          className="bg-zinc-100 text-black rounded-2xl max-w-[90%] h-fit z-50 md:w-[44rem] w-full"
           onClick={(e) => e.stopPropagation()} 
         >
-          <div className="bg-zinc-400/60 p-5 w-full  min-h-96 rounded-2xl">
+          <div className="bg-zinc-400/60 p-5 w-full min-h-96 rounded-2xl">
             <div className="flex items-center justify-between w-full text-gray-700">
               <div className="flex-grow flex justify-center">
                 <p className="font-bold text-lg">Add your content</p>
@@ -121,7 +155,7 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
               />
             </div>
 
-            <div className="flex justify-center text-xs text-gray-600 items-center ">
+            <div className="flex justify-center text-xs text-gray-600 items-center">
               <p className="flex justify-center items-center w-96 text-center">
                 Choose an option to get started: Notes, Doc, Image, or URL.
                 Select the type of content you want to add!
@@ -145,37 +179,62 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
                 </div>
               </div>
               <div className="flex flex-col gap-2">
-              <Input
-                    placeholder="Title"
+                <Input
+                  placeholder="Title"
                   reference={titleRef}
                   variant="secondary"
                   required
                 />
                 {type === ContentType.Url ? (
                   <Input
-                  placeholder="https://consciousapp.vercel.app"
-                  reference={LinkRef}
-                  variant="secondary"
-                  onKeyDown={(e) => e.key === "Enter" &&
-                    (e.preventDefault(), addContent())}
+                    placeholder="https://consciousapp.vercel.app"
+                    reference={LinkRef}
+                    variant="secondary"
+                    onKeyDown={(e) => e.key === "Enter" &&
+                      (e.preventDefault(), addContent())}
+                  />
+                ) : (
+                  <div className="bg-zinc-100 h-56 shadow border-gray-700 rounded-xl overflow-hidden">
+                    {/* Custom styling for ReactQuill */}
+                    <style >{`
+                      .quill {
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                      }
+                      .ql-container {
+                        flex: 1;
+                        border-bottom-left-radius: 0.75rem;
+                        border-bottom-right-radius: 0.75rem;
+                        border: none;
+                      }
+                      .ql-toolbar {
+                        border-top-left-radius: 0.75rem;
+                        border-top-right-radius: 0.75rem;
+                        border: none;
+                        background-color: #f7f7f7;
+                      }
+                      .ql-editor {
+                        min-height: 100px;
+                      }
+                    `}</style>
+                    <ReactQuill
+                      ref={quillRef}
+                      theme="snow"
+                      value={noteContent}
+                      onChange={setNoteContent}
+                      modules={modules}
+                      formats={formats}
+                      className="rounded-xl"
+                      placeholder="Enter your notes here..."
                     />
-                  ) : (
-                  <textarea
-                  placeholder="Paste your Notes.........."
-                    ref={NoteRef}
-                    className="p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400 border-gray-300 max-h-screen min-h-36 bg-gray-50 border-2"
-                    onKeyDown={(e) =>
-                      e.key === "Enter" &&
-                      !e.shiftKey &&
-                      (e.preventDefault(), addContent())
-                    }
-                    />
-                  )}
-                  {error && <p className="text-red-600 text-sm font-semibold p-3">{error}</p>}{" "}
+                  </div>
+                )}
+                {error && <p className="text-red-600 text-sm font-semibold p-3">{error}</p>}
               </div>
               <div
-                className={`mb-6 flex items-end justify-end ${
-                  loading ? "opacity-70 " : ""
+                className={`mb-6 mt-2 flex items-end justify-end ${
+                  loading ? "opacity-70" : ""
                 }`}
               >
                 <Button
