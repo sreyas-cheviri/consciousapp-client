@@ -48,7 +48,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel }: HeaderProps
               onClick={async () => {
                 setCOpen(true);
                 const result = await axios.post(
-                  `${API_URL}/api/v1/brain/share`,
+                  `${API_URL}/api/v1/share`,
                   { share: true },
                   {
                     headers: {
