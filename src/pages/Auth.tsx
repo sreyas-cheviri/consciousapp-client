@@ -32,14 +32,14 @@ export function Auth() {
 
     try {
       if (isSignUp) {
-        await axios.post(`${API_URL}/api/v1/signup`, {
+        await axios.post(`${API_URL}/api/v1/auth/signup`, {
           username,
           password,
         });
         setLoading(false);
         navigate("/Signin");
       } else {
-        const response = await axios.post(`${API_URL}/api/v1/signin`, {
+        const response = await axios.post(`${API_URL}/api/v1/auth/signin`, {
           username,
           password,
         });
