@@ -7,17 +7,21 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
-import {  Link, Loader2 } from "lucide-react";
+import { Link, Loader2 } from "lucide-react";
 import { Button } from "../components/Button";
 import clsx from "clsx";
 import { ArrowBack } from "@mui/icons-material";
 import { PushButtons } from "../components/PushButtons";
 import TypewriterEffect from "../components/TypewriterEffect";
 import Toast from "../components/Toast";
+import { useParams } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export function Dashboard() {
+  const { hash } = useParams();
+  const [isSharedView, setIsSharedView] = useState(!!hash);
+  const [sharedUsername, setSharedUsername] = useState("");
   const [open, setOpen] = useState(false);
   const [share, setShare] = useState(false);
   const [Note, setNote] = useState(false);
@@ -85,9 +89,32 @@ export function Dashboard() {
       });
   }, []);
 
+  const fetchSharedContent = useCallback(() => {
+    if (!hash) return;
+
+    axios
+      .get(`${API_URL}/api/v1/share/${hash}`, {})
+      .then((response) => {
+        setContent(
+          response.data.content.map((item: any) => ({
+            ...item,
+            createdAt: new Date(item.createdAt),
+          }))
+        );
+        setSharedUsername(response.data.username);
+      })
+      .catch((error) => {
+        console.error("Error fetching shared content:", error);
+      });
+  }, [hash]);
+
   useEffect(() => {
-    fetchContent();
-  }, [fetchContent]);
+    if (isSharedView) {
+      fetchSharedContent();
+    } else {
+      fetchContent();
+    }
+  }, [isSharedView, fetchContent, fetchSharedContent]);
 
   const cardsData = content.map(
     ({ _id, type, link, title, content, createdAt, imageUrl }) => ({
@@ -101,12 +128,11 @@ export function Dashboard() {
     })
   );
 
-  const StopShare = async ()=>{
+  const StopShare = async () => {
     try {
-
       const res = await axios.post(
         `${API_URL}/api/v1/share`,
-        { share: false }, 
+        { share: false },
         {
           headers: {
             Authorization: localStorage.getItem("token"),
@@ -116,14 +142,11 @@ export function Dashboard() {
 
       setShareURL(res.data.hash);
       setIsSharing(false);
-      
     } catch (error) {
-      console.log("error while stopping share" , error);
+      console.log("error while stopping share", error);
       return;
-      
-      
     }
-  }
+  };
 
   const handleDeleteClick = (id: string) => {
     setSelectedCardId(id);
@@ -218,19 +241,21 @@ export function Dashboard() {
     };
   }, [open, share, Copen, panel]);
 
-  function greetings(){
-    const time  = new Date().getHours();
-    if(time >= 5 && time < 12) return "Good Morning"
-    else if(time >= 12 && time < 17) return "Good Afternoon"
-    else if(time >= 17 && time < 22) return "Good Evening"
-    else  return "Late Night"
+  function greetings() {
+    const time = new Date().getHours();
+    if (time >= 5 && time < 12) return "Good Morning";
+    else if (time >= 12 && time < 17) return "Good Afternoon";
+    else if (time >= 17 && time < 22) return "Good Evening";
+    else return "Late Night";
   }
 
   return (
     <main className="min-h-screen">
       <div className="flex justify-center items-center">
         <article className="flex flex-col justify-center items-center max-w-6xl w-full px-4">
-          <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
+          {!isSharedView && (
+            <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
+          )}
           <div
             className={`flex flex-col justify-center items-center max-w-6xl w-full  ${
               open || Copen || share || panel ? "blur-[1.5px]" : ""
@@ -241,32 +266,34 @@ export function Dashboard() {
               setCOpen={setShare}
               setShareURL={setShareURL}
               setpanel={setPanel}
+              isSharedView={isSharedView}
             />
-            <Footer  />
+
+            <Footer />
             <h1
               className={clsx(
-                " text-2xl md:text-3xl dark:text-zinc-800 font-recoleta text-gray-300 transition-all duration-1000",
+                "text-2xl md:text-3xl  dark:text-zinc-800 font-recoleta text-gray-300 transition-all duration-1000",
                 searchloading || answer
                   ? "opacity-0 -translate-y-10 h-0 mt-0"
                   : "opacity-100 translate-y-0 h-auto mt-10"
               )}
             >
-              {greetings()}, {localStorage.getItem("username") ? (
-                localStorage.getItem("username")
-              ) : (
-                <>
-                  <br />
-                 <p className="text-md"> Please Log in to continue.</p>
-                </>
-              )}
+              {isSharedView
+                ? `* Shared Brain From ${sharedUsername}`
+                : greetings() + ",\n" + (localStorage.getItem("username") || "please login to continue")}
             </h1>
+            {isSharedView && (
+              <h4 className="text-black flex dark:text-zinc-200 dark:bg-zinc-800 font-poppins p-2 m-2 w-fit mx-auto rounded-lg  bg-gray-300  justify-center text-xs md:text-sm mb-4">
+                Shared content cannot be edited, deleted or added
+              </h4>
+            )}
             <SearchBox
               setAnswer={setAnswer}
               setContent={setContent}
               setLoading={setsearchLoading}
               onChipSelect={handleChipSelect}
-              searchText={searchText}           // Add this
-              setSearchText={setSearchText} 
+              searchText={searchText} // Add this
+              setSearchText={setSearchText}
             />
             {searchloading ? (
               <div className="text-gray-300 dark:text-gray-600">
@@ -283,7 +310,7 @@ export function Dashboard() {
                       onClick={() => {
                         fetchContent();
                         setAnswer("");
-                        setSearchText("");  // Add this linesetSearchText("");  // Add this line
+                        setSearchText(""); // Add this linesetSearchText("");  // Add this line
                       }}
                     />
                   </div>
@@ -319,16 +346,19 @@ export function Dashboard() {
                       content={card.content}
                       url={card.link}
                       imageUrl={card.imageUrl}
-                      setdelete={() => handleDeleteClick(card.id)}
+                      setdelete={
+                        !isSharedView
+                          ? () => handleDeleteClick(card.id)
+                          : undefined
+                      }
                       setNotes={() => handleNotesOpen(card.id)}
                       index={index}
                       time={
                         card.createdAt
                           ? card.createdAt.toLocaleString("en-GB", {
-                              day:"numeric" , 
+                              day: "numeric",
                               month: "short",
-                              year: "2-digit"
-                          
+                              year: "2-digit",
                             })
                           : ".."
                       }
@@ -340,20 +370,20 @@ export function Dashboard() {
                 </div>
               )}
             </section>
-              <div
-                className={`flex w-full h-fit  mb-20 z-50 justify-center m-0 ${
-                  page * 10 >= filteredCards.length
-                    ? "opacity-30 pointer-events-none"
-                    : ""
-                } ${filteredCards.length == 0 ? "hidden" : "block"}`}
-              >
-                <Button
-                  variant={"secondary"}
-                  children={"Load More"}
-                  size={"md"}
-                  onClick={() => setPage(page + 1)}
-                />
-              </div>
+            <div
+              className={`flex w-full h-fit  mb-20 z-50 justify-center m-0 ${
+                page * 10 >= filteredCards.length
+                  ? "opacity-30 pointer-events-none"
+                  : ""
+              } ${filteredCards.length == 0 ? "hidden" : "block"}`}
+            >
+              <Button
+                variant={"secondary"}
+                children={"Load More"}
+                size={"md"}
+                onClick={() => setPage(page + 1)}
+              />
+            </div>
           </div>
 
           <CommonMondal
@@ -387,7 +417,9 @@ export function Dashboard() {
             Message2={shareUrl}
             ButtonDisabled={!isSharing}
             ButtonMessage={
-              loading ? "Copied" : (
+              loading ? (
+                "Copied"
+              ) : (
                 <div className="flex items-center gap-2">
                   <Link size={16} />
                   COPY
@@ -397,7 +429,8 @@ export function Dashboard() {
             WrongButtonMessage={"Stop sharing"}
             WrongButtonDisabled={!isSharing}
             onConfirm={copyLink}
-            onWrongButtonClick={() => {StopShare()
+            onWrongButtonClick={() => {
+              StopShare();
               setTimeout(() => {
                 setShare(false);
                 setIsSharing(true);

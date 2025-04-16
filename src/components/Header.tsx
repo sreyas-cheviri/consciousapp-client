@@ -14,9 +14,10 @@ interface HeaderProps {
   setCOpen: (open: boolean) => void;
   setShareURL: (url: string) => void;
   setpanel: (url: boolean) => void;
+  isSharedView?: boolean;
 }
 
-export const Header = ({ setOpen, setCOpen, setShareURL, setpanel }: HeaderProps) => {
+export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView = false }: HeaderProps) => {
   return (
     <>
       <div className="fixed left-2 md:left-4 bottom-8 z-40">
@@ -44,36 +45,39 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel }: HeaderProps
           </div>
 
           <div className="flex items-center gap-2">
-            <Button
-              onClick={async () => {
-                setCOpen(true);
-                const result = await axios.post(
-                  `${API_URL}/api/v1/share`,
-                  { share: true },
-                  {
-                    headers: {
-                      Authorization: localStorage.getItem("token"),
-                    },
-                  }
-                );
-                setShareURL(`${FE_URL}share/${result.data.hash}`);
-              }}
-              variant="secondary"
-              size="md"
-              startIcon={<LinkIcon style={{ fontSize: 20 }} />}
-            >
-              Share
-            </Button>
-            
-            <Button
-              onClick={() => setOpen(true)}
-              variant="secondary"
-              size="md"
-              startIcon={<AddIcon style={{ fontSize: 20 }} />}
-            >
-              Add Memory
-            </Button>
-            
+            {!isSharedView && (
+              <>
+                <Button
+                  onClick={async () => {
+                    setCOpen(true);
+                    const result = await axios.post(
+                      `${API_URL}/api/v1/share`,
+                      { share: true },
+                      {
+                        headers: {
+                          Authorization: localStorage.getItem("token"),
+                        },
+                      }
+                    );
+                    setShareURL(`${FE_URL}share/${result.data.hash}`);
+                  }}
+                  variant="secondary"
+                  size="md"
+                  startIcon={<LinkIcon style={{ fontSize: 20 }} />}
+                >
+                  Share
+                </Button>
+                
+                <Button
+                  onClick={() => setOpen(true)}
+                  variant="secondary"
+                  size="md"
+                  startIcon={<AddIcon style={{ fontSize: 20 }} />}
+                >
+                  Add Memory
+                </Button>
+              </>
+            )}
             <DropDown />
           </div>
         </div>
