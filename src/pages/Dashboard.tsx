@@ -20,7 +20,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export function Dashboard() {
   const { hash } = useParams();
-  const [isSharedView, setIsSharedView] = useState(!!hash);
+  const [isSharedView] = useState(!!hash);
   const [sharedUsername, setSharedUsername] = useState("");
   const [open, setOpen] = useState(false);
   const [share, setShare] = useState(false);
