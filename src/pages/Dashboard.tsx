@@ -105,7 +105,7 @@ export function Dashboard() {
     try {
 
       const res = await axios.post(
-        `${API_URL}/api/v1/brain/share`,
+        `${API_URL}/api/v1/share`,
         { share: false }, 
         {
           headers: {

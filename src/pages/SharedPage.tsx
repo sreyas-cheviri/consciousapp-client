@@ -1,8 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "../components/Card";
-// import logo from "../assets/logo.png"
+import Card from "../components/Card"; 
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -24,7 +23,7 @@ export default function SharedPage() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/api/v1/${hash}`, {
+      .get(`${API_URL}api/v1/${hash}`, {
       })
       .then((response) => {
         setContent(response.data.content);
