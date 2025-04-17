@@ -98,12 +98,15 @@ const Card: React.FC<CardProps> = ({
           overflow: 'hidden',
           pointerEvents: 'none' as const,
           width: '100%',
+          
         };
 
         const embedProps = {
           url,
           width: '100%',
-          height: 'auto'
+          
+          height: 'auto',
+        
         };
 
         switch (socialPlatform) {
@@ -121,14 +124,14 @@ const Card: React.FC<CardProps> = ({
             );
           case 'twitter':
             return (
-              <div style={embedDiv} className="twitter-embed">
+              <div style={{...embedDiv, marginBottom: '-90px' }} className="twitter-embed">
                 <XEmbed {...embedProps} />
               </div>
             );
           case 'instagram':
             return (
-              <div style={embedDiv}>
-                <InstagramEmbed {...{ ...embedProps, height:'400px' }} />
+              <div style={{...embedDiv, marginTop: '-55px' , width : 'fit', height: '320px', display: 'flex', justifyContent: 'center' } } >
+                <InstagramEmbed {...{ ...embedProps  }} />
               </div>
             );
           case 'facebook':
