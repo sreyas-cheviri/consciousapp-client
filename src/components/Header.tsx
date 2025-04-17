@@ -76,9 +76,9 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView 
                 >
                   Add Memory
                 </Button>
+                <DropDown />
               </>
             )}
-            <DropDown />
           </div>
         </div>
       </header>

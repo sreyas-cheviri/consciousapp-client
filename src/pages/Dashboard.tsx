@@ -284,7 +284,7 @@ export function Dashboard() {
             </h1>
             {isSharedView && (
               <h4 className="text-black flex dark:text-zinc-200 dark:bg-zinc-800 font-poppins p-2 m-2 w-fit mx-auto rounded-lg  bg-gray-300  justify-center text-xs md:text-sm mb-4">
-                Shared content cannot be edited, deleted or added
+                Shared content cannot be  deleted or added
               </h4>
             )}
             <SearchBox
@@ -332,37 +332,38 @@ export function Dashboard() {
               </section>
             )}
             <section
-              className={`columns-1 sm:columns-2 lg:columns-3 gap-2 md:z-40 max-w-full  mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
+              className={`columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 md:z-40 max-w-[95%] mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
               {filteredCards.length > 0 ? (
                 [...filteredCards]
                   .reverse()
-                  .slice(0, page * 10)
+                  .slice(0, page * 12)
                   .map((card, index) => (
-                    <Card
-                      key={card.id}
-                      title={card.title}
-                      type={card.type}
-                      content={card.content}
-                      url={card.link}
-                      imageUrl={card.imageUrl}
-                      setdelete={
-                        !isSharedView
-                          ? () => handleDeleteClick(card.id)
-                          : undefined
-                      }
-                      setNotes={() => handleNotesOpen(card.id)}
-                      index={index}
-                      time={
-                        card.createdAt
-                          ? card.createdAt.toLocaleString("en-GB", {
-                              day: "numeric",
-                              month: "short",
-                              year: "2-digit",
-                            })
-                          : ".."
-                      }
-                    />
+                    <div key={card.id} className="break-inside-avoid mb-4">
+                      <Card
+                        title={card.title}
+                        type={card.type}
+                        content={card.content}
+                        url={card.link}
+                        imageUrl={card.imageUrl}
+                        setdelete={
+                          !isSharedView
+                            ? () => handleDeleteClick(card.id)
+                            : undefined
+                        }
+                        setNotes={() => handleNotesOpen(card.id)}
+                        index={index}
+                        time={
+                          card.createdAt
+                            ? card.createdAt.toLocaleString("en-GB", {
+                                day: "numeric",
+                                month: "short",
+                                year: "2-digit",
+                              })
+                            : ".."
+                        }
+                      />
+                    </div>
                   ))
               ) : (
                 <div className="flex items-center justify-center h-40 w-full text-gray-500">
@@ -372,7 +373,7 @@ export function Dashboard() {
             </section>
             <div
               className={`flex w-full h-fit  mb-20 z-50 justify-center m-0 ${
-                page * 10 >= filteredCards.length
+                page * 12 >= filteredCards.length
                   ? "opacity-30 pointer-events-none"
                   : ""
               } ${filteredCards.length == 0 ? "hidden" : "block"}`}
@@ -380,7 +381,7 @@ export function Dashboard() {
               <Button
                 variant={"secondary"}
                 children={"Load More"}
-                size={"md"}
+                size={"sm"}
                 onClick={() => setPage(page + 1)}
               />
             </div>

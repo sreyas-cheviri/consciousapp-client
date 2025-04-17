@@ -98,12 +98,11 @@ const Card: React.FC<CardProps> = ({
           overflow: 'hidden',
           pointerEvents: 'none' as const,
           width: '100%',
-          // height : '200px'
         };
 
         const embedProps = {
           url,
-          width: 288,
+          width: '100%',
           height: 'auto'
         };
 
@@ -122,13 +121,13 @@ const Card: React.FC<CardProps> = ({
             );
           case 'twitter':
             return (
-              <div style={embedDiv}>
+              <div style={embedDiv} className="twitter-embed">
                 <XEmbed {...embedProps} />
               </div>
             );
           case 'instagram':
             return (
-              <div style={ embedDiv}>
+              <div style={embedDiv}>
                 <InstagramEmbed {...{ ...embedProps, height:'400px' }} />
               </div>
             );
@@ -153,7 +152,7 @@ const Card: React.FC<CardProps> = ({
             <img
               src={imageUrl || ""}
               alt="Saved Content"
-              className="w-72 object-cover max-h-56"
+              className="w-full object-cover max-h-56"
             />
           ) : (
             ""
@@ -166,29 +165,26 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <article className="break-inside-avoid mb-2">
-      <div className="flex-col  bg-zinc-300 w-72 dark:bg-zinc-100/90 z-10 rounded-xl b flex justify-between dark:shadow shadow-xl shadow-black">
+      <div className="flex-col bg-zinc-300 w-full dark:bg-zinc-100/90 z-10 rounded-xl b flex justify-between dark:shadow shadow-xl shadow-black">
         <header className="overscroll-x-none rounded-t-xl no-scrollbar overflow-hidden">
           {type == "Url" ? (
-            <div className="text-sm overscroll-x-none   overflow-hidden">
+            <div className="text-sm overscroll-x-none overflow-hidden">
               {renderContent()}
             </div>
           ) : (
-            <div
-              className={`bg-${randomColour}-100  text-sm overflow-hidden`}
-            >
+            <div className={`bg-${randomColour}-100 text-sm overflow-hidden`}>
               {renderContent()}
             </div>
           )}
         </header>
-        <div
-         className="rounded-b-xl ">
+        <div className="rounded-b-xl">
           <div className="flex justify-between p-2 rounded-xl">
-            <div className="flex gap-2">
+            <div className="flex gap-2 items-center">
               <div className="rounded-xl p-1 text-gray-700 bg-zinc-400/50">
                 {type === "Doc" ? (
-                  <File className="w-4 h-4 " />
+                  <File className="w-4 h-4" />
                 ) : type === "Image" ? (
-                  <ImageIcon className="w-4 h-4 " />
+                  <ImageIcon className="w-4 h-4" />
                 ) : type === "Note" ? (
                   <NoteIcon />
                 ) : getFaviconUrl(url) ? (
@@ -203,15 +199,15 @@ const Card: React.FC<CardProps> = ({
                 )}
               </div>
 
-              <h2 className="text-md font-medium text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-60">
+              <h2 className="text-sm font-medium text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-[180px]">
                 {title}
               </h2>
             </div>
           </div>
-          <nav className="flex items-end gap-1 justify-between  rounded-sm p-1 m-1">
+          <nav className="flex items-end gap-1 justify-between rounded-sm p-1 m-1">
             <div className="gap-1 flex items-center justify-center">
               {type == "Url" ? (
-                <button className=" rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow  hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
+                <button className="rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100">
                   <a href={url} target="_blank" rel="noopener noreferrer">
                     <ShareIcon />
                   </a>
@@ -219,19 +215,21 @@ const Card: React.FC<CardProps> = ({
               ) : (
                 <button
                   onClick={setNotes}
-                  className=" rounded-lg  p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
+                  className="rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 transition duration-100"
                 >
                   <Expand />
                 </button>
               )}
-              <button
-                onClick={setdelete}
-                className=" rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
-              >
-                <Delete />
-              </button>
+              {setdelete && (
+                <button
+                  onClick={setdelete}
+                  className="rounded-lg p-1 text-gray-600 border-gray-400/50 hover:shadow hover:dark:bg-white hover:bg-gray-200 hover:inset-shadow-indigo-500 duration-100"
+                >
+                  <Delete />
+                </button>
+              )}
             </div>
-            <p className="text-gray-500 flex text-xs">{time}</p>
+            <p className="text-gray-500 text-xs">{time}</p>
           </nav>
         </div>
       </div>
