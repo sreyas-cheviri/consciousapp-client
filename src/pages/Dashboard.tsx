@@ -272,7 +272,7 @@ export function Dashboard() {
             <Footer />
             <h1
               className={clsx(
-                "text-2xl md:text-3xl  dark:text-zinc-800 font-recoleta text-gray-300 transition-all duration-1000",
+                "text-2xl md:text-3xl  dark:text-zinc-900 font-recoleta text-gray-100 transition-all duration-1000",
                 searchloading || answer
                   ? "opacity-0 -translate-y-10 h-0 mt-0"
                   : "opacity-100 translate-y-0 h-auto mt-10"

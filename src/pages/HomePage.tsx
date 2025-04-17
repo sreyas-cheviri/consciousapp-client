@@ -86,12 +86,12 @@ export default function HomePage(): JSX.Element {
             </h1>
           </header>
 
-          <section className="md:mt-16 mt-12  font-recoleta text-zinc-800 font-medium  text-center max-w-lg md:max-w-2xl text-md md:text-lg">
+          <section className="md:mt-16 mt-12  font-recoleta text-zinc-900 font-medium  text-center max-w-lg md:max-w-2xl text-md md:text-lg">
             <p className="min-h-6 text-lg md:text-2xl ">
               {typedText}
-              {/* <span className="animate-pulse"></span> */}
+            
             </p>
-            <p className="mt-2 font-thin text-md font-recoleta text-zinc-600">
+            <p className="mt-2  text-sm font-poppins font-medium text-zinc-500">
               Conscious, an AI-powered second brain that helps you store,
               recall, and link your knowledge effortlessly.
             </p>
@@ -105,11 +105,7 @@ export default function HomePage(): JSX.Element {
             </Link>
           </nav>
 
-          {/* <footer className="absolute flex-col justify-center items-center opacity-50 flex text-zinc-800 bottom-1 text-xs">
-            {/* <p className="flex text-zinc-800 justify-center">
-              © 2025 Conscious. All rights reserved.
-            </p> */}
-          {/* </footer> */}
+          
         </article>
       </main>{" "}
     </div>

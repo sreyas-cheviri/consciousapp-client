@@ -13,7 +13,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="bg-secondary min-h-svh dark:bg-zinc-300">
+    <div className="bg-zinc-950 min-h-svh dark:bg-zinc-300">
       <RouterProvider router={router} />
     </div>
   );

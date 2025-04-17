@@ -31,7 +31,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView 
 
       <header className="sticky top-0 w-full bg-zinc-900 z-50 dark:bg-zinc-300 backdrop-blur-md shadow-2xl shadow-black/50 dark:shadow-zinc-400/50 rounded-b-2xl ">
         <div className="flex  flex-col md:flex-row gap-3 items-center justify-between px-4 py-3">
-          <div className="flex  items-center gap-2">
+          <div className="flex  items-center justify-center gap-2">
             <button onClick={() => window.location.reload()}>
               <img
                 src="/logo.png"
@@ -39,7 +39,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView 
                 className="h-6 w-6 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               />
             </button>
-            <h1 className="text-xl text-zinc-200 font-recoleta dark:text-zinc-800 transition-all duration-300">
+            <h1 className="text-xl text-zinc-100 font-recoleta dark:text-zinc-900 transition-all duration-300">
               Conscious
             </h1>
           </div>
