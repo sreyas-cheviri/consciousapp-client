@@ -358,7 +358,7 @@ export function Dashboard() {
                             ? card.createdAt.toLocaleString("en-GB", {
                                 day: "numeric",
                                 month: "short",
-                                year: "2-digit",
+                                year: "numeric"
                               })
                             : ".."
                         }

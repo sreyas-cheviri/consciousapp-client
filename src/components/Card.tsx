@@ -166,7 +166,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <article className="break-inside-avoid mb-2">
       <div className="flex-col bg-zinc-300 w-full dark:bg-zinc-100/90 z-10 rounded-xl b flex justify-between dark:shadow shadow-xl shadow-black">
-        <header className="overscroll-x-none rounded-t-xl no-scrollbar overflow-hidden">
+        <header className="overscroll-x-none rounded-xl no-scrollbar overflow-hidden">
           {type == "Url" ? (
             <div className="text-sm overscroll-x-none overflow-hidden">
               {renderContent()}
@@ -204,6 +204,7 @@ const Card: React.FC<CardProps> = ({
               </h2>
             </div>
           </div>
+          
           <nav className="flex items-end gap-1 justify-between rounded-sm p-1 m-1">
             <div className="gap-1 flex items-center justify-center">
               {type == "Url" ? (
