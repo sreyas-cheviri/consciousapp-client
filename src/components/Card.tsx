@@ -95,6 +95,7 @@ const Card: React.FC<CardProps> = ({
         const embedDiv = {
           position: 'relative' as const,
           zIndex: 1,
+          // padding : '-10px',
           overflow: 'hidden',
           pointerEvents: 'none' as const,
           width: '100%',
@@ -128,12 +129,25 @@ const Card: React.FC<CardProps> = ({
                 <XEmbed {...embedProps} />
               </div>
             );
-          case 'instagram':
-            return (
-              <div style={{...embedDiv, marginTop: '-55px' , width : 'fit', height: '320px', display: 'flex', justifyContent: 'center' } } >
-                <InstagramEmbed {...{ ...embedProps  }} />
-              </div>
-            );
+            case 'instagram':
+              return (
+                <div style={{
+                  ...embedDiv,
+                  height: '350px',  
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  overflow: 'hidden',
+                  marginTop : '-60px' ,
+                  transform: 'scale(1.9)',  // Slightly scale up to hide borders
+                  transformOrigin: 'center center'
+                }}>
+                  <InstagramEmbed 
+                    {...embedProps} 
+                    height="100%" 
+                  />
+                </div>
+              );
           case 'facebook':
             return (
               <div style={embedDiv}>
@@ -167,15 +181,15 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <article className="break-inside-avoid mb-2">
-      <div className="flex-col bg-zinc-300 w-full dark:bg-zinc-100/90 z-10 rounded-xl b flex justify-between dark:shadow shadow-xl shadow-black">
-        <header className="overscroll-x-none rounded-xl no-scrollbar overflow-hidden">
+    <article className="break-inside-avoid mb-2 ">
+      <div className="flex-col bg-zinc-300 w-full dark:bg-zinc-100/90 z-10 rounded-xl  b flex justify-between dark:shadow shadow-xl shadow-black">
+        <header className="overscroll-x-none  -mt-1 rounded-xl no-scrollbar overflow-hidden ">
           {type == "Url" ? (
-            <div className="text-sm overscroll-x-none overflow-hidden">
+            <div className="text-sm overscroll-x-none overflow-hidden rounded-xl">
               {renderContent()}
             </div>
           ) : (
-            <div className={`bg-${randomColour}-100 text-sm overflow-hidden`}>
+            <div className={`bg-${randomColour}-100 text-sm overflow-hidden rounded-xl`}>
               {renderContent()}
             </div>
           )}
