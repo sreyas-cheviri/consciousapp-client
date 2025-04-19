@@ -24,8 +24,8 @@ const variantstyles = {
   drop: " flex bg-zinc-700 hover:bg-zinc-800  text-zinc-300 dark:bg-white dark:hover:bg-zinc-200 dark:text-zinc-800 rounded-lg w-full  ",
   secondary:
     " hover:bg-white/10 flex justify-center  items-center dark:hover:bg-zinc-400/20 dark:text-zinc-900 dark:bg-white border-gray-300/40 text-gray-300 rounded-xl  font-normal bg-zinc-700 hover:text-gray-300   transition duration-200 flex justify-center items-center",
-  new: "bg-zinc-700 flex justify-center items-center hover:bg-zinc-700/90  text-gray-300 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
-  danger: "bg-red-800 r border-red-600 flex justify-center items-center hover:bg-red-700/50  text-gray-300  rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
+  new: "bg-zinc-700 flex justify-center items-center hover:bg-zinc-700/90  text-gray-100 border-gray-600 border rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
+  danger: "bg-red-700 r border-red-600 flex justify-center items-center hover:bg-red-700/50  text-gray-100 rounded-xl  font-normal hover:shadow-lg w-full   flex justify-center items-center",
 };
 
 const sizeStyles = {

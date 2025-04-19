@@ -2,6 +2,8 @@ import { Dashboard } from "./pages/Dashboard";
 import { Auth } from "./pages/Auth";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
@@ -13,9 +15,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <div className="bg-zinc-950 min-h-svh dark:bg-zinc-300">
-      <RouterProvider router={router} />
-    </div>
+    <Provider store={store}>
+      <div className="bg-zinc-950 dark:bg-zinc-300">
+        <RouterProvider router={router} />
+      </div>
+    </Provider>
   );
 }
 

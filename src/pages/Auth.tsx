@@ -73,7 +73,7 @@ export function Auth() {
 
   return (
     <div className="flex md:flex-row flex-col justify-center gap-2">
-        <h1 className="absolute top-0  text-center text-gray-300 text-md md:text-lg bg-zinc-800 rounded p-2">Hosted on free instance, which may delay requests by 50 seconds or more due to inactivity, please wait. </h1>
+        <h1 className="absolute top-0  text-center text-gray-400 text-md md:text-xs  rounded p-2">Hosted on free instance, which may delay requests by 50 seconds or more due to inactivity, please wait. </h1>
       <div className="flex justify-center items-center min-h-screen">
         <div className="bg-zinc-300 border-gray-600 border dark:bg-zinc-100 flex rounded-xl p-[4px] relative">
           <div className="right-0 p-3 top-0 absolute z-50 justify-end flex-row  text-gray-700 md:text-gray-200">

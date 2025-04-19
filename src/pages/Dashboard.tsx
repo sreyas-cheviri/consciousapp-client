@@ -7,7 +7,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import axios from "axios";
 import CommonMondal from "../components/CommonMondal";
-import { Link, Loader2 } from "lucide-react";
+import { Copy, CopyCheck, Link, Link2Off, Loader2 } from "lucide-react";
 import { Button } from "../components/Button";
 import clsx from "clsx";
 import { ArrowBack } from "@mui/icons-material";
@@ -15,6 +15,15 @@ import { PushButtons } from "../components/PushButtons";
 import TypewriterEffect from "../components/TypewriterEffect";
 import Toast from "../components/Toast";
 import { useParams } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useAppSelector, useAppDispatch } from "../store/hooks";
+import {
+  setModalOpen,
+  setShareModalOpen,
+  setPanelOpen,
+  setShareUrl,
+  setIsSharing,
+} from "../store/features/uiSlice";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -22,18 +31,13 @@ export function Dashboard() {
   const { hash } = useParams();
   const [isSharedView] = useState(!!hash);
   const [sharedUsername, setSharedUsername] = useState("");
-  const [open, setOpen] = useState(false);
-  const [share, setShare] = useState(false);
   const [Note, setNote] = useState(false);
   const [answer, setAnswer] = useState("");
   const [searchloading, setsearchLoading] = useState(false);
   const [Copen, setCOpen] = useState(false);
-  const [panel, setPanel] = useState(false);
-  const [shareUrl, setShareURL] = useState<string>("");
   const [filter, setFilter] = useState<string | null>(null);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isSharing, setIsSharing] = useState(true);
   const [content, setContent] = useState<
     {
       _id: string;
@@ -52,6 +56,14 @@ export function Dashboard() {
   } | null>(null);
   const [searchText, setSearchText] = useState("");
   const [toastLoading, setToastLoading] = useState(false);
+
+  // Get UI state from Redux
+  const isModalOpen = useAppSelector((state) => state.ui.isModalOpen);
+  const isShareModalOpen = useAppSelector((state) => state.ui.isShareModalOpen);
+  const isPanelOpen = useAppSelector((state) => state.ui.isPanelOpen);
+  const shareUrl = useAppSelector((state) => state.ui.shareUrl);
+  const isSharing = useAppSelector((state) => state.ui.isSharing);
+  const dispatch = useAppDispatch();
 
   const fetchContent = useCallback(() => {
     const token = localStorage.getItem("token");
@@ -96,10 +108,19 @@ export function Dashboard() {
       .get(`${API_URL}/api/v1/share/${hash}`, {})
       .then((response) => {
         setContent(
-          response.data.content.map((item: { _id: string; type: string; link: string; title: string; content: string; createdAt: string }) => ({
-            ...item,
-            createdAt: new Date(item.createdAt),
-          }))
+          response.data.content.map(
+            (item: {
+              _id: string;
+              type: string;
+              link: string;
+              title: string;
+              content: string;
+              createdAt: string;
+            }) => ({
+              ...item,
+              createdAt: new Date(item.createdAt),
+            })
+          )
         );
         setSharedUsername(response.data.username);
       })
@@ -140,8 +161,8 @@ export function Dashboard() {
         }
       );
 
-      setShareURL(res.data.hash);
-      setIsSharing(false);
+      dispatch(setShareUrl(res.data.hash));
+      dispatch(setIsSharing(false));
     } catch (error) {
       console.log("error while stopping share", error);
       return;
@@ -231,7 +252,7 @@ export function Dashboard() {
   };
 
   useEffect(() => {
-    if (open || Copen || share || panel) {
+    if (isModalOpen || Copen || isShareModalOpen || isPanelOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -239,7 +260,7 @@ export function Dashboard() {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [open, share, Copen, panel]);
+  }, [isModalOpen, isShareModalOpen, Copen, isPanelOpen]);
 
   function greetings() {
     const time = new Date().getHours();
@@ -253,21 +274,19 @@ export function Dashboard() {
     <main className="min-h-screen">
       <div className="flex justify-center items-center">
         <article className="flex flex-col justify-center items-center max-w-6xl w-full px-4">
-          {!isSharedView && (
-            <Sidebar openpanel={panel} closepanel={() => setPanel(false)} />
-          )}
+          <Sidebar
+            openpanel={isPanelOpen}
+            closepanel={() => dispatch(setPanelOpen(false))}
+          />
+
           <div
             className={`flex flex-col justify-center items-center max-w-6xl w-full  ${
-              open || Copen || share || panel ? "blur-[1.5px]" : ""
+              isModalOpen || Copen || isShareModalOpen || isPanelOpen
+                ? "blur-[1.5px]"
+                : ""
             }`}
           >
-            <Header
-              setOpen={setOpen}
-              setCOpen={setShare}
-              setShareURL={setShareURL}
-              setpanel={setPanel}
-              isSharedView={isSharedView}
-            />
+            <Header isSharedView={isSharedView} />
 
             <Footer />
             <h1
@@ -280,11 +299,14 @@ export function Dashboard() {
             >
               {isSharedView
                 ? `* Shared Brain From ${sharedUsername}`
-                : greetings() + ",\n" + (localStorage.getItem("username") || "please login to continue")}
+                : greetings() +
+                  ",\n" +
+                  (localStorage.getItem("username") ||
+                    "please login to continue")}
             </h1>
             {isSharedView && (
               <h4 className="text-black flex dark:text-zinc-200 dark:bg-zinc-800 font-poppins p-2 m-2 w-fit mx-auto rounded-lg  bg-gray-300  justify-center text-xs md:text-sm mb-4">
-                Shared content cannot be  deleted or added
+                Shared content cannot be deleted or edited
               </h4>
             )}
             <SearchBox
@@ -292,7 +314,7 @@ export function Dashboard() {
               setContent={setContent}
               setLoading={setsearchLoading}
               onChipSelect={handleChipSelect}
-              searchText={searchText} // Add this
+              searchText={searchText} 
               setSearchText={setSearchText}
             />
             {searchloading ? (
@@ -358,7 +380,7 @@ export function Dashboard() {
                             ? card.createdAt.toLocaleString("en-GB", {
                                 day: "numeric",
                                 month: "short",
-                                year: "numeric"
+                                year: "numeric",
                               })
                             : ".."
                         }
@@ -392,17 +414,29 @@ export function Dashboard() {
             onClose={() => {
               setCOpen(false);
             }}
-            Message={"Are you sure you want to delete the content?"}
+            Message={
+              <div className="flex  flex-col justify-center items-center gap-1">
+                <DeleteIcon style={{ color: "red" }} />
+                <p className="text-sm text-center text-gray-500 font-poppins font-normal p-2">
+                  {" "}
+                  <span className="text-lg text-black">
+                    You're about to delete this Memory.
+                  </span>{" "}
+                  <br />
+                  Once deleted, it will not show up in the search results.
+                </p>
+              </div>
+            }
             ButtonMessage={
               loading ? (
                 <div className="flex gap-2 items-center justify-center">
                   <Loader2 className="h-5 w-5 animate-spin" /> Deleting...
                 </div>
               ) : (
-                "Yes"
+                "Delete"
               )
             }
-            WrongButtonMessage={"No"}
+            WrongButtonMessage={"Cancel"}
             onConfirm={deleteCard}
             loading={loading}
             variant={"normal"}
@@ -411,34 +445,50 @@ export function Dashboard() {
 
           <CommonMondal
             onClose={() => {
-              setShare(false);
-              setIsSharing(true);
+              dispatch(setShareModalOpen(false));
+              dispatch(setIsSharing(true));
             }}
-            Message={"Copy the link to share your brain"}
+            Message={<div className="flex  flex-col justify-center items-center gap-1">
+              <Link  />
+              <p className="text-sm text-center text-gray-500 font-poppins font-normal p-2">
+                {" "}
+                <span className="text-lg text-black">
+                Share your brain with others
+                </span>{" "}
+                <br />
+                Copy the link below to allow others to view your shared content.
+              </p>
+            </div>}
             Message2={shareUrl}
             ButtonDisabled={!isSharing}
             ButtonMessage={
               loading ? (
-                "Copied"
+                <div className="flex items-center gap-2">
+                  <CopyCheck size={16} />
+                  Copied
+                </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <Link size={16} />
-                  COPY
+                  <Copy size={16} />
+                  Copy
                 </div>
               )
             }
-            WrongButtonMessage={"Stop sharing"}
+            WrongButtonMessage={ <div className="flex items-center gap-2">
+              <Link2Off size={16} />
+              Stop Sharing
+            </div>}
             WrongButtonDisabled={!isSharing}
             onConfirm={copyLink}
             onWrongButtonClick={() => {
               StopShare();
               setTimeout(() => {
-                setShare(false);
-                setIsSharing(true);
+                dispatch(setShareModalOpen(false));
+                dispatch(setIsSharing(true));
               }, 2000);
             }}
             loading={loading}
-            Copen={share}
+            Copen={isShareModalOpen}
             variant={"normal"}
           />
           <CommonMondal
@@ -454,10 +504,8 @@ export function Dashboard() {
           />
 
           <Modal
-            open={open}
-            onClose={() => {
-              setOpen(false);
-            }}
+            open={isModalOpen}
+            onClose={() => dispatch(setModalOpen(false))}
             onContentAdded={handleContentAdded}
             setToastLoading={setToastLoading}
           />

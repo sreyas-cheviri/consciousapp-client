@@ -249,12 +249,7 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
                         <Loader2 className="h-5 w-5 animate-spin" />
                         Adding...
                       </div>
-                      <div>
-                        <p className="text-xs italic">
-                          Content is being extracted and embedded. This may take
-                          few seconds.
-                        </p>
-                      </div>
+                      
                     </div>
                   ) : (
                     "Add to Memory"

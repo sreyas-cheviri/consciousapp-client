@@ -5,33 +5,48 @@ import axios from "axios";
 import DropDown from "./DropDown";
 import { PushButtons } from "./PushButtons";
 import { PanelLeftOpen } from "lucide-react";
+import { useAppDispatch } from "../store/hooks";
+import { setModalOpen, setShareModalOpen, setPanelOpen, setShareUrl } from "../store/features/uiSlice";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const FE_URL = import.meta.env.VITE_FE_URL;
 
 interface HeaderProps {
-  setOpen: (open: boolean) => void;
-  setCOpen: (open: boolean) => void;
-  setShareURL: (url: string) => void;
-  setpanel: (url: boolean) => void;
   isSharedView?: boolean;
 }
 
-export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView = false }: HeaderProps) => {
+export const Header = ({ isSharedView = false }: HeaderProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleShare = async () => {
+    dispatch(setShareModalOpen(true));
+    const result = await axios.post(
+      `${API_URL}/api/v1/share`,
+      { share: true },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+    dispatch(setShareUrl(`${FE_URL}share/${result.data.hash}`));
+  };
+
   return (
     <>
       <div className="fixed left-2 md:left-4 bottom-8 z-40">
+      {!isSharedView && (
         <PushButtons 
           variant="transparent" 
           icon={<PanelLeftOpen className="w-5 h-5"/>} 
-          onClick={() => setpanel(true)} 
+          onClick={() => dispatch(setPanelOpen(true))} 
           size="sm"
-        />
+        /> )}
       </div>
 
-      <header className="sticky top-0 w-full bg-zinc-900 z-50 dark:bg-zinc-300 backdrop-blur-md shadow-2xl shadow-black/50 dark:shadow-zinc-400/50 rounded-b-2xl ">
+      <header className="sticky top-0 w-full bg-zinc-900 z-40 dark:bg-zinc-300 backdrop-blur-md shadow-2xl shadow-black/50 dark:shadow-zinc-400/50 rounded-b-2xl ">
         <div className="flex  flex-col md:flex-row gap-3 items-center justify-between px-4 py-3">
-          <div className="flex  items-center justify-center gap-2">
+          <div className="flex items-start gap-2">
             <button onClick={() => window.location.reload()}>
               <img
                 src="/logo.png"
@@ -39,7 +54,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView 
                 className="h-6 w-6 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
               />
             </button>
-            <h1 className="text-xl text-zinc-100 font-recoleta dark:text-zinc-900 transition-all duration-300">
+            <h1 className="text-xl text-zinc-100  font-recoleta dark:text-zinc-900 transition-all duration-300">
               Conscious
             </h1>
           </div>
@@ -48,19 +63,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView 
             {!isSharedView && (
               <>
                 <Button
-                  onClick={async () => {
-                    setCOpen(true);
-                    const result = await axios.post(
-                      `${API_URL}/api/v1/share`,
-                      { share: true },
-                      {
-                        headers: {
-                          Authorization: localStorage.getItem("token"),
-                        },
-                      }
-                    );
-                    setShareURL(`${FE_URL}share/${result.data.hash}`);
-                  }}
+                  onClick={handleShare}
                   variant="secondary"
                   size="md"
                   startIcon={<LinkIcon style={{ fontSize: 20 }} />}
@@ -69,7 +72,7 @@ export const Header = ({ setOpen, setCOpen, setShareURL, setpanel, isSharedView 
                 </Button>
                 
                 <Button
-                  onClick={() => setOpen(true)}
+                  onClick={() => dispatch(setModalOpen(true))}
                   variant="secondary"
                   size="md"
                   startIcon={<AddIcon style={{ fontSize: 20 }} />}

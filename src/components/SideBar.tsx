@@ -52,7 +52,7 @@ The issue with  this approach is that when isOpen is false, the element is compl
           </p>
         </div>
 
-        <div className="absolute bottom-10 right-3 text-white">
+        <div className="absolute bottom-8 right-3 text-white">
           <PushButtons 
                    variant="transparent" 
                    icon={<PanelRightOpen className="w-5 h-5"/>} 

@@ -199,16 +199,16 @@ const Card: React.FC<CardProps> = ({
             <div className="flex gap-2 items-center">
               <div className="rounded-xl p-1 text-gray-700 bg-zinc-400/50">
                 {type === "Doc" ? (
-                  <File className="w-4 h-4" />
+                  <File className="w-4 h-auto" />
                 ) : type === "Image" ? (
-                  <ImageIcon className="w-4 h-4" />
+                  <ImageIcon className="w-4 h-auto" />
                 ) : type === "Note" ? (
                   <NoteIcon />
                 ) : getFaviconUrl(url) ? (
                   <img
                     src={getFaviconUrl(url)}
                     alt="Website Logo"
-                    className="w-4 h-4 rounded-full"
+                    className="w-4  p-0.5 "
                     onError={(e) => (e.currentTarget.style.display = "none")}
                   />
                 ) : (
@@ -216,7 +216,7 @@ const Card: React.FC<CardProps> = ({
                 )}
               </div>
 
-              <h2 className="text-sm font-medium text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-[180px]">
+              <h2 className="text-sm  font-medium text-gray-700 overflow-hidden text-ellipsis whitespace-nowrap max-w-[180px]">
                 {title}
               </h2>
             </div>

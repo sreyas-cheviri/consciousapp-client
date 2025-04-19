@@ -9,7 +9,7 @@ interface CommonMondalProp {
   onClose: () => void;
   onConfirm?: () => void;
   startIcon?: ReactElement;
-  Message?: string;
+  Message?: string | JSX.Element;
   Message2?: string;
   ButtonMessage?: React.ReactNode;
   WrongButtonMessage?: React.ReactNode;
@@ -24,7 +24,7 @@ interface CommonMondalProp {
 
 const variantstyles={
   normal : " h-fit w-[90vw] md:w-fit ",
-  fullscreen : "h-[80vh] w-[80vw]"
+  fullscreen : "h-[80vh] w-[85vw]"
 }
 
 
@@ -48,18 +48,18 @@ export default function CommonMondal({
   return (
     Copen && (
       <div
-        className="w-screen h-screen bg-black/80   z-50 fixed top-0 left-0 flex justify-center items-center"
+        className="w-screen h-screen bg-black/80 font-poppins  z-50 fixed top-0 left-0 flex justify-center items-center"
         onClick={onClose}
       >
         <div
-          className="bg-zinc-100 z-50 rounded-xl flex flex-col m-2 "
+          className="bg-zinc-100 z-50 rounded-xl flex flex-col  "
           onClick={(e) => e.stopPropagation()}
         >
-          <div className={clsx("bg-zinc-400/60 dark:bg-zinc-400 z-50 p-1 flex flex-col   justify-between rounded-xl ", variantstyles[variant])}>
+          <div className={clsx("bg-zinc-400/60 dark:bg-zinc-400 z-50  flex flex-col   justify-between rounded-xl ", variantstyles[variant])}>
             
-            <div className="flex-col flex  rounded-lg p-1 justify-between h-full ">
+            <div className="flex-col flex  rounded-lg p-2 justify-between h-full ">
                 
-              <div className="bg-white w-full flex flex-col p-2 font-semibold text-zinc-800 mb-2 rounded-lg h-full">
+              <div className="bg-white w-full flex flex-col p-1 font-semibold text-zinc-800 mb-2 rounded-lg h-full">
                 <div className="flex z-50 justify-end mb-2  ">
                   <CircleX
                     onClick={onClose}
@@ -68,7 +68,7 @@ export default function CommonMondal({
                     
                   />
                 </div>
-                <div className="flex mb-4 justify-center">
+                <div className="flex mb-4 ml-3 font-medium text-lg">
                   {startIcon}
                   {Message}
                 </div>
@@ -80,7 +80,7 @@ export default function CommonMondal({
                   </div>
                 )}
               </div>
-              <div className={`flex justify-center gap-3 px-3 w-full `}>
+              <div className={`flex justify-center gap-2   w-full `}>
                 <div className={`${loading ? "opacity-70" : ""} w-full`}>
                {ButtonMessage && ( <Button
                   variant={isDanger ? "danger" : "new"}
