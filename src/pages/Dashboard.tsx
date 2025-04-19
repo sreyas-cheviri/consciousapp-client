@@ -354,7 +354,7 @@ export function Dashboard() {
               </section>
             )}
             <section
-              className={`columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 md:z-40 max-w-[95%] mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
+              className={`columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3  max-w-[95%] mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
               {filteredCards.length > 0 ? (
                 [...filteredCards]
