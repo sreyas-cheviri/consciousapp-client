@@ -96,7 +96,7 @@ export function Dashboard() {
       .get(`${API_URL}/api/v1/share/${hash}`, {})
       .then((response) => {
         setContent(
-          response.data.content.map((item: any) => ({
+          response.data.content.map((item: { _id: string; type: string; link: string; title: string; content: string; createdAt: string }) => ({
             ...item,
             createdAt: new Date(item.createdAt),
           }))
