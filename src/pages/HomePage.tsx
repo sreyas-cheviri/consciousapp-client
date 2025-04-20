@@ -15,11 +15,7 @@ export default function HomePage(): JSX.Element {
   const fullText: string = "Never Lose an Idea Again !";
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/Dashboard");
-    }
-
+   
     setTimeout(() => setIsLoaded(true), 100);
 
     let currentIndex: number = 0;

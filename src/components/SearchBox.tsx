@@ -55,16 +55,15 @@ const SearchBox = ({
       const res = await axios.post(
         `${API_URL}/api/v1/search`,
         {
-          query: searchText.trim(), // Send query in request body
+          query: searchText.trim(), 
         },
         {
           headers: {
-            Authorization: token, // Add token directly in headers
+            Authorization: token, 
           },
         }
       );
 
-      // Handle response based on backend structure
       if (res.data.message && !res.data.relevantContent?.length) {
         setContent([]);
         setAnswer(res.data.message);

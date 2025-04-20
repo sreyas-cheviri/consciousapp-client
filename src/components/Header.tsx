@@ -7,6 +7,7 @@ import { PushButtons } from "./PushButtons";
 import { PanelLeftOpen } from "lucide-react";
 import { useAppDispatch } from "../store/hooks";
 import { setModalOpen, setShareModalOpen, setPanelOpen, setShareUrl } from "../store/features/uiSlice";
+import { useNavigate } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL;
 const FE_URL = import.meta.env.VITE_FE_URL;
@@ -17,7 +18,7 @@ interface HeaderProps {
 
 export const Header = ({ isSharedView = false }: HeaderProps) => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const handleShare = async () => {
     dispatch(setShareModalOpen(true));
     const result = await axios.post(
@@ -31,6 +32,13 @@ export const Header = ({ isSharedView = false }: HeaderProps) => {
     );
     dispatch(setShareUrl(`${FE_URL}share/${result.data.hash}`));
   };
+  const gotohome = ()=>{
+
+    setTimeout(() => {
+      navigate("/", { replace: true });
+      window.location.reload();
+    }, 100);
+  }
 
   return (
     <>
@@ -47,7 +55,7 @@ export const Header = ({ isSharedView = false }: HeaderProps) => {
       <header className="sticky top-0 w-full bg-zinc-900 z-40 dark:bg-zinc-300 backdrop-blur-md shadow-2xl shadow-black/50 dark:shadow-zinc-400/50 rounded-b-2xl ">
         <div className="flex  flex-col md:flex-row gap-3 items-center justify-between px-4 py-3">
           <div className="flex items-start gap-2">
-            <button onClick={() => window.location.reload()}>
+            <button onClick={() => gotohome()}>
               <img
                 src="/logo.png"
                 alt="Logo"
