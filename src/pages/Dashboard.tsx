@@ -146,6 +146,7 @@ export function Dashboard() {
       content,
       createdAt,
       imageUrl,
+      
     })
   );
 
@@ -375,26 +376,34 @@ export function Dashboard() {
                         }
                         setNotes={() => handleNotesOpen(card.id)}
                         index={index}
-                        time={
-                          card.createdAt
-                            ? card.createdAt.toLocaleString("en-GB", {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                              })
-                            : ".."
-                        }
+                        time={(() => {
+                          try {
+                            const date = new Date(card.createdAt);
+                            if (isNaN(date.getTime())) {
+                              return 'Invalid date';
+                            }
+                            return new Intl.DateTimeFormat('en-GB', {
+                              day: 'numeric',
+                              month: 'short',
+                              year: 'numeric',
+                          
+                            }).format(date);
+                          } catch (error) {
+                            console.error('Date parsing error:', error);
+                            return 'Invalid date';
+                          }
+                        })()}
                       />
                     </div>
                   ))
               ) : (
-                <div className="flex items-center justify-center h-40 w-full text-gray-500">
+                <div className="flex items-center justify-center md:h-80  md:w-96 text-gray-500">
                   No content found. Add some content to get started.
                 </div>
               )}
             </section>
             <div
-              className={`flex w-full h-fit  mb-20 z-50 justify-center m-0 ${
+              className={`flex w-full h-fit  mb-20  justify-center m-0 ${
                 page * 12 >= filteredCards.length
                   ? "opacity-30 pointer-events-none"
                   : ""

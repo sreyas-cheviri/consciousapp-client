@@ -70,10 +70,7 @@ export function Modal({ open, onClose, onContentAdded, setToastLoading }: ModalP
     // Get plain text content from ReactQuill
     const plainTextContent = type === ContentType.Note ? getPlainText() : '';
 
-    if (!title && type === ContentType.Note) {
-      setError("Please enter a title");
-      return;
-    }
+   
 
     if (type === ContentType.Url && !link) {
       setError("Please enter a URL");

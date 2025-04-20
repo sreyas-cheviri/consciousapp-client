@@ -24,14 +24,14 @@ export const Footer = () => {
   return (
     <>
       {showScroll && (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ease-in-out">
+        <footer className="fixed bottom-10 left-1/2 z-50 -translate-x-1/2  transition-all duration-300 ease-in-out">
           <PushButtons
             variant="bold"
             icon={<ArrowUp style={{ padding: "1px" }} />}
             size="md"
             onClick={handleScrollToTop}
           />
-        </div>
+        </footer>
       )}
     </>
   );

@@ -10,6 +10,7 @@ interface InputProps {
   maxlength? : number;
   type? : string;
   required?: boolean;
+  onChange?: () => void;
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
   endICon? : ReactElement;
 }

@@ -16,7 +16,8 @@ export function Auth() {
   const navigate = useNavigate();
   const location = useLocation();
   const PasswordRef = useRef<HTMLInputElement>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string[]>([]);
+  const [currentErrorIndex, setCurrentErrorIndex] = useState(0);
   const [showPassword , setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const isSignUp = location.pathname === "/Signup";
@@ -25,6 +26,15 @@ export function Auth() {
     usernameRef.current?.focus();
   }, [isSignUp]);
 
+ 
+  const handleInputChange = () => {
+    if (error.length > 0) {
+      const newErrors = error.filter((_, index) => index > currentErrorIndex);
+      setError(newErrors);
+      setCurrentErrorIndex(0);
+    }
+  };
+
   async function handleAuth() {
     setLoading(true);
     const username = usernameRef.current?.value;
@@ -32,6 +42,8 @@ export function Auth() {
 
     try {
       if (isSignUp) {
+      
+        
         await axios.post(`${API_URL}/api/v1/auth/signup`, {
           username,
           password,
@@ -53,27 +65,33 @@ export function Auth() {
       }
     } catch (error: unknown) {
       setLoading(false);
-      console.error(`${isSignUp ? "Signup" : "Signin"} error:`, error);
       if (axios.isAxiosError(error)) {
-        if (error.response) {
-          setError(
-            error.response.data.message ||
-              `${isSignUp ? "Signup" : "Signin"} failed. Try again.`
-          );
+        if (error.response?.data) {
+          const errorData = error.response.data;
+          if (Array.isArray(errorData.message)) {
+            setError(errorData.message);
+          } else if (Array.isArray(errorData.messages)) {
+            setError(errorData.messages);
+          } else if (typeof errorData.message === 'string') {
+            setError([errorData.message]);
+          } else {
+            setError([`${isSignUp ? "Signup" : "Signin"} failed. Try again.`]);
+          }
+          setCurrentErrorIndex(0);
         } else if (error.request) {
-          setError("No response from server.");
+          setError(["No response from server."]);
         } else {
-          setError("Something went wrong. Please try again.");
+          setError(["Something went wrong. Please try again."]);
         }
       } else {
-        setError("An unexpected error occurred. Please try again.");
+        setError(["An unexpected error occurred. Please try again."]);
       }
     }
   }
 
   return (
     <div className="flex md:flex-row flex-col justify-center gap-2">
-        <h1 className="absolute top-0  text-center text-gray-400 text-md md:text-xs  rounded p-2">Hosted on free instance, which may delay requests by 50 seconds or more due to inactivity, please wait. </h1>
+        <h1 className="absolute top-0  text-center text-gray-400 text-md text-xs  rounded p-2">Hosted on free instance, which may delay requests by 50 seconds or more due to inactivity, please wait. </h1>
       <div className="flex justify-center items-center min-h-screen">
         <div className="bg-zinc-300 border-gray-600 border dark:bg-zinc-100 flex rounded-xl p-[4px] relative">
           <div className="right-0 p-3 top-0 absolute z-50 justify-end flex-row  text-gray-700 md:text-gray-200">
@@ -83,7 +101,7 @@ export function Auth() {
           </div>
 
           <div className="flex flex-col p-5 bg-zinc-300 dark:bg-zinc-100 relative max-w-80 items-center justify-center gap-2 rounded-xl md:rounded-l-xl md:rounded-none">
-            <div className="flex flex-col justify-center items-center mb-8">
+            <div className="flex flex-col justify-center items-center mb-4">
               <img
                 src="/logo.png"
                 className="h-8 rounded-full mb-5 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
@@ -116,6 +134,7 @@ export function Auth() {
               reference={usernameRef}
               variant={"secondary"}
               onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+              onChange={handleInputChange}
             />
             <Input
               type={showPassword? "text" : "password"}
@@ -123,6 +142,7 @@ export function Auth() {
               reference={PasswordRef}
               variant={"secondary"}
               onKeyDown={(e) => e.key === "Enter" && handleAuth()}
+              onChange={handleInputChange}
               endICon={<button className="flex justify-center pointer-events-auto " onClick={(e)=>{
                 e.preventDefault();
                 setShowPassword(prev => !prev)
@@ -149,9 +169,9 @@ export function Auth() {
               onClick={handleAuth}
             />
 
-            {error && (
-              <p className="text-red-500 font-semibold text-center text-xs mt-2">
-                {error}
+            {error.length > 0 && (
+              <p className="text-red-500 font-semibold text-center text-xs animate-smoothLanding">
+                {error[currentErrorIndex]}
               </p>
             )}
 
@@ -171,7 +191,7 @@ export function Auth() {
             <img
               className="contrast-75 backdrop-contrast-50"
               src={isSignUp ? signupimg : cfaeebc3ea50c461b550a8cea90b2bdc}
-              alt=""
+              alt="images conscious"
             />
           </div>
         </div>
