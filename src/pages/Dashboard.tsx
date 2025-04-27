@@ -319,8 +319,18 @@ export function Dashboard() {
               setSearchText={setSearchText}
             />
             {searchloading ? (
-              <div className="text-gray-300 dark:text-gray-600">
-                <Loader2 className="h-10 w-10 animate-spin" />
+              <div className="text-gray-300 dark:text-gray-600 relative flex justify-center items-center">
+                <Loader2 className="h-12 duration-500 text-gray-100 w-12 animate-spin" />
+                <img
+                  src="/logo.png"
+                  className="w-5 absolute rounded-full  animate-pulse transition-all duration-500 ease-in-out hover:rotate-[360deg]"
+                  alt="Logo"
+                  style={{ 
+                    top: '50%', 
+                    left: '50%', 
+                    transform: 'translate(-50%, -50%)' 
+                  }}
+                />
               </div>
             ) : (
               <section className="flex flex-col gap-4 w-full max-w-6xl px-4 justify-center items-center">
