@@ -6,6 +6,7 @@ import SearchBox from "../components/SearchBox";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import axios from "axios";
+import { Delete } from "../icons/Delete";
 import CommonMondal from "../components/CommonMondal";
 import { Copy, CopyCheck, Link, Link2Off, Loader2 } from "lucide-react";
 import { Button } from "../components/Button";
@@ -15,7 +16,6 @@ import { PushButtons } from "../components/PushButtons";
 import TypewriterEffect from "../components/TypewriterEffect";
 import Toast from "../components/Toast";
 import { useParams } from "react-router-dom";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import {
   setModalOpen,
@@ -425,7 +425,7 @@ export function Dashboard() {
             }}
             Message={
               <div className="flex  flex-col justify-center items-center gap-1">
-                <DeleteIcon style={{ color: "red" }} />
+                <Delete size={5} color="red" />
                 <p className="text-sm text-center text-gray-500 font-poppins font-normal p-2">
                   {" "}
                   <span className="text-lg text-black">
@@ -438,11 +438,13 @@ export function Dashboard() {
             }
             ButtonMessage={
               loading ? (
-                <div className="flex gap-2 items-center justify-center">
+                <div className="flex gap-2  items-center justify-center">
                   <Loader2 className="h-5 w-5 animate-spin" /> Deleting...
                 </div>
               ) : (
-                "Delete"
+                <div className="flex gap-2 items-center">
+                <><Delete size={4} color="white"/> Delete</>
+                </div>
               )
             }
             WrongButtonMessage={"Cancel"}
