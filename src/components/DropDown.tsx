@@ -88,11 +88,10 @@ function DropDown() {
      flex flex-col items-start  
      
     transition-all duration-200 transform top-14
-    ${
-      isOpen
-        ? "opacity-100  translate-y-0 visible"
-        : " opacity-0 -translate-y-2 invisible"
-    }`}
+    ${isOpen
+            ? "opacity-100  translate-y-0 visible"
+            : " opacity-0 -translate-y-2 invisible"
+          }`}
       >
         <ul className="w-full flex    rounded-lg shadow-lg  flex-col bg-zinc-700 items-start  dark:bg-white dark:text-black text-zinc-200 ">
           <li className="px-1 py-1 border-b-[.01rem]  border-zinc-500 dark:border-zinc-400 w-full">
@@ -119,16 +118,15 @@ function DropDown() {
             >
               <Button
                 variant="drop"
-                endIcon={
-                  <Star style={{ color: "#e3b341", fontSize: "medium" }} />
-                }
+                endIcon={<Star style={{ color: "#e3b341", fontSize: "medium" }} />}
                 startIcon={<GitHub style={{ fontSize: "medium" }} />}
                 size="sm"
                 onClick={() => {
                   toggleDropDown();
                 }}
+                className="flex-nowrap" // <-- add this if your Button supports passing className
               >
-                {`GitHub (${stars !== null ? stars : "0"})`}
+                <span className="whitespace-nowrap">{`GitHub (${stars !== null ? stars : "0"})`}</span>
               </Button>
             </a>
           </li>
