@@ -115,7 +115,7 @@ function DropDown() {
               href="https://github.com/sreyas-cheviri/superconscious"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-start gap-2"
+              className="w-full flex items-start gap-2 text-nowrap"
             >
               <Button
                 variant="drop"
