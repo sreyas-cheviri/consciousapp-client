@@ -133,13 +133,12 @@ const Card: React.FC<CardProps> = ({
               return (
                 <div style={{
                   ...embedDiv,
-                  height: '350px',  
+                  height: '370px',  
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   overflow: 'hidden',
-                  marginTop : '-60px' ,
-                  transform: 'scale(1.9)',  // Slightly scale up to hide borders
+                  transform: 'scale(2)',  // Slightly scale up to hide borders
                   transformOrigin: 'center center'
                 }}>
                   <InstagramEmbed 
