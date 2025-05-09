@@ -18,23 +18,12 @@
   </div>
 </p>
 
-## Description
 
-conscious is a TS-based second brain web app project designed to save and search links, notes, & other media from various sources effortlessly..
+## BE repo -> [backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)
 
-### BE repo
-[backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)
 
-## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
-## Installation
-
+### Installation
 To install and set up the project, follow these steps:
 
 1. Clone the repository:
