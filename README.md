@@ -5,7 +5,7 @@
 <br/>
   <h3 align="center">Conscious app</h3>
   <p align="center" >
-   Conscious is a second brain web app designed to save and search links, notes, and other media from various sources effortlessly. This repository contains the backend codebase for the Conscious application.
+   Conscious is a second brain web app designed to save and search links, notes, and other media from various sources effortlessly. This repository contains the frontend codebase for the Conscious application.
 
   </p>
   <div align="center">
