@@ -1,27 +1,29 @@
-# conscious 
+<p align="center">
+  <a href="https://github.com/sreyas-cheviri/consciousapp-client">
+    <img src="https://github.com/sreyas-cheviri/consciousapp-client/blob/main/public/logo.png" alt="Logo" width="40px" >
+  </a>
+<br/>
+  <h3 align="center">Conscious app</h3>
+  <p align="center" >
+   Conscious is a second brain web app designed to save and search links, notes, and other media from various sources effortlessly. This repository contains the frontend codebase for the Conscious application.
 
-![License](https://img.shields.io/github/license/sreyas-cheviri/superconscious-client)
-![Language](https://img.shields.io/github/languages/top/sreyas-cheviri/superconscious-client)
-![Last Commit](https://img.shields.io/github/last-commit/sreyas-cheviri/superconscious-client)
-![Repo Size](https://img.shields.io/github/repo-size/sreyas-cheviri/superconscious-client)
+  </p>
+  <div align="center">
 
-## Description
+   
+![Language](https://img.shields.io/github/languages/top/sreyas-cheviri/consciousapp-client)
+![Last Commit](https://img.shields.io/github/last-commit/sreyas-cheviri/consciousapp-client)
+![Repo Size](https://img.shields.io/github/repo-size/sreyas-cheviri/consciousapp-client)
 
-conscious is a TS-based second brain web app project designed to save and search links, notes, & other media from various sources effortlessly..
+  </div>
+</p>
 
-### BE repo
-[backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)
 
-## Table of Contents
+## BE repo -> [backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
-## Installation
 
+### Installation
 To install and set up the project, follow these steps:
 
 1. Clone the repository:
