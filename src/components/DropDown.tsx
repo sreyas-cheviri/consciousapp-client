@@ -3,11 +3,10 @@ import { PushButtons } from "./PushButtons";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
-import { GitHub, Person, Star } from "@mui/icons-material";
+import { GitHub, Person, Star, Twitter } from "@mui/icons-material";
 import DarkModeButton from "./DarkModeButton";
 import { Button } from "./Button";
 import axios from "axios";
-// import { Avatar } from "@mui/material";
 
 function DropDown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -128,7 +127,25 @@ function DropDown() {
                   toggleDropDown();
                 }}
               >
-                {`GitHub (${stars !== null ? stars : "0"})`}
+                {`GitHub ${stars !== null ? stars : "0"}`}
+              </Button>
+            </a>
+          </li>
+          <li
+            onClick={toggleDropDown}
+            className="px-1 py-1  dark:border-zinc-400 w-full cursor-pointer"
+          >
+            <a
+              href="https://x.com/sreyascheviri"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-start gap-2 text-nowrap"
+            >
+              <Button
+                variant="drop" size={"sm"} 
+                startIcon={<Twitter style={{ fontSize: "medium" }} />}              
+              >
+                    X
               </Button>
             </a>
           </li>
