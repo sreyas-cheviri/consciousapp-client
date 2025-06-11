@@ -54,12 +54,12 @@ export const Header = ({ isSharedView = false }: HeaderProps) => {
 
       <header className="sticky top-0 w-full bg-zinc-900 z-40 dark:bg-zinc-300 backdrop-blur-md shadow-2xl shadow-black/50 dark:shadow-zinc-400/50 rounded-b-2xl ">
         <div className="flex  flex-col md:flex-row gap-3 items-center justify-between px-4 py-3">
-          <div className="flex items-start gap-2">
+          <div className="flex items-start gap-2 ">
             <button onClick={() => gotohome()}>
               <img
                 src="/logo.png"
                 alt="Logo"
-                className="h-6 w-6 rounded-full border-gray-500 transition-transform duration-500 ease-in-out hover:rotate-[360deg]"
+                className="h-6 w-6 rounded-full active:p-0.5 border-gray-500 transition-all duration-500 ease-in-out hover:rotate-[360deg]"
               />
             </button>
             <h1 className="text-xl text-zinc-100  font-recoleta dark:text-zinc-900 transition-all duration-300">
@@ -74,9 +74,10 @@ export const Header = ({ isSharedView = false }: HeaderProps) => {
                   onClick={handleShare}
                   variant="secondary"
                   size="md"
-                  startIcon={<LinkIcon style={{ fontSize: 20 }} />}
+                  startIcon={<LinkIcon style={{ fontSize: 20 }} 
+                  className="-rotate-45 "/>}
                 >
-                  Share
+                  
                 </Button>
                 
                 <Button

@@ -8,7 +8,8 @@ import { Footer } from "../components/Footer";
 import axios from "axios";
 import { Delete } from "../icons/Delete";
 import CommonMondal from "../components/CommonMondal";
-import { Copy, CopyCheck, Link, Link2Off, Loader2 } from "lucide-react";
+import { Copy, CopyCheck,  Link2Off,  Loader2 } from "lucide-react";
+import LinkIcon from "@mui/icons-material/Link";
 import { Button } from "../components/Button";
 import clsx from "clsx";
 import { ArrowBack } from "@mui/icons-material";
@@ -24,6 +25,7 @@ import {
   setShareUrl,
   setIsSharing,
 } from "../store/features/uiSlice";
+import LoadingCard from "../components/LoadingCard";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -56,6 +58,7 @@ export function Dashboard() {
   } | null>(null);
   const [searchText, setSearchText] = useState("");
   const [toastLoading, setToastLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Get UI state from Redux
   const isModalOpen = useAppSelector((state) => state.ui.isModalOpen);
@@ -67,6 +70,7 @@ export function Dashboard() {
 
   const fetchContent = useCallback(() => {
     const token = localStorage.getItem("token");
+    setIsLoading(true);
 
     if (!token) {
       console.error("No authentication token found");
@@ -98,11 +102,15 @@ export function Dashboard() {
       })
       .catch((error) => {
         console.error("Error fetching content:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
   const fetchSharedContent = useCallback(() => {
     if (!hash) return;
+    setIsLoading(true);
 
     axios
       .get(`${API_URL}/api/v1/share/${hash}`, {})
@@ -126,6 +134,9 @@ export function Dashboard() {
       })
       .catch((error) => {
         console.error("Error fetching shared content:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [hash]);
 
@@ -365,9 +376,14 @@ export function Dashboard() {
               </section>
             )}
             <section
-              className={`columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3  max-w-[95%] mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
+              className={`columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-3 max-w-[95%] mx-auto p-3 sm:p-5 rounded-2xl bg-zinc-600/3`}
             >
-              {filteredCards.length > 0 ? (
+              {isLoading ? (
+                // Loading skeleton cards
+                Array.from({ length: 12 }).map((_, index) => (
+                  <LoadingCard key={index} className="" />
+                ))
+              ) : filteredCards.length > 0 ? (
                 [...filteredCards]
                   .reverse()
                   .slice(0, page * 12)
@@ -470,7 +486,7 @@ export function Dashboard() {
               dispatch(setIsSharing(true));
             }}
             Message={<div className="flex  flex-col justify-center items-center gap-1">
-              <Link  />
+              <LinkIcon className="w-12 h-12 -rotate-45" />
               <p className="text-sm text-center text-gray-500 font-poppins font-normal p-2">
                 {" "}
                 <span className="text-lg text-black">

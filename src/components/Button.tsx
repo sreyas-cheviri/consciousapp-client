@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 
 interface ButtonProps {
   variant: "primary" | "secondary" | "round" | "roundchips" | "new" | "load" | "drop" |"danger";
-  children: React.ReactNode;
+  children?: React.ReactNode;
   startIcon?: ReactElement;
   endIcon?: ReactElement;
   size: "sm" | "md" | "lg" | "vsm";
@@ -62,10 +62,9 @@ export const Button = ({
         }
       )}
     >
-      <div className="flex justify-center items-center gap-2 ">
+      <div className={`flex justify-center items-center ${children ? 'gap-2' : ''}`}>
         {startIcon}
         <div>{children}</div>
-
         {endIcon}
       </div>
     </button>

@@ -16,6 +16,7 @@
     "@mui/material": "^6.4.0",
     "@reduxjs/toolkit": "^2.6.1",
     "axios": "^1.7.9",
+    "caniuse-lite": "^1.0.30001722",
     "clsx": "^2.1.1",
     "env": "^0.0.2",
     "lucide-react": "^0.471.1",
