@@ -1,7 +1,4 @@
-import React from 'react';
-import { Delete } from "../icons/Delete";
-import { ShareIcon } from "../icons/ShareIcon";
-import { Expand } from "../icons/Expand";
+
 
 interface LoadingCardProps {
   className?: string;
