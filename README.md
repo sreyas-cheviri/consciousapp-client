@@ -19,7 +19,7 @@
 </p>
 
 
-## BE repo -> [backedn repositry - superconscious](https://github.com/sreyas-cheviri/superconscious)
+## BE repo -> [backend repositry - consciousApp](https://github.com/sreyas-cheviri/superconscious)
 
 
 
